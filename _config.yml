@@ -3,13 +3,20 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+# title 网站标题
+# subtitle  网站副标题
+# description 网站描述
+# keywords  网站的关键词。支持多个关键词。
+# author  您的名字
+# language  网站使用的语言。对于简体中文用户来说，使用不同的主题可能需要设置成不同的值，请参考你的主题的文档自行设置，常见的有 zh-Hans和 zh-CN。
+# timezone  网站时区。Hexo 默认使用您电脑的时区。请参考 时区列表 进行设置，如 America/New_York, Japan, 和 UTC 。一般的，对于中国大陆地区可以使用 Asia/Shanghai。
+title: Zany' Blog
 subtitle: ''
 description: ''
 keywords:
-author: John Doe
-language: en
-timezone: ''
+author: ZJH
+language: zh-Hans
+timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
@@ -21,6 +28,14 @@ pretty_urls:
   trailing_html: true # Set to false to remove trailing '.html' from permalinks
 
 # Directory
+# source_dir  资源文件夹，这个文件夹用来存放内容。  source
+# public_dir  公共文件夹，这个文件夹用于存放生成的站点文件。 public
+# tag_dir 标签文件夹 tags
+# archive_dir 归档文件夹 archives
+# category_dir  分类文件夹 categories
+# code_dir  Include code 文件夹，source_dir 下的子目录 downloads/code
+# i18n_dir  国际化（i18n）文件夹  :lang
+# skip_render 跳过指定文件的渲染。匹配到的文件将会被不做改动地复制到 public 目录中。您可使用 glob 表达式来匹配路径。
 source_dir: source
 public_dir: public
 tag_dir: tags
@@ -97,11 +112,13 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+#theme: landspace
+#theme: volantis
+theme: melody
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/YourgithubName/YourgithubName.github.io.git
+  repo: https://github.com/2757412961/2757412961.github.io.git
   branch: main
