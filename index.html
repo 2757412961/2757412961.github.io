@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content=""><meta name="keywords" content=""><meta name="author" content="ZJH"><meta name="copyright" content="ZJH"><title>Zany' Blog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="Talk is cheap, show me your code"><meta name="keywords" content=""><meta name="author" content="ZJH"><meta name="copyright" content="ZJH"><title>Zany's Blog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
   root: '/',
   algolia: undefined,
   localSearch: undefined,
@@ -8,20 +8,588 @@
     noSupport: '浏览器不支持'
   },
   hexoVersion: '5.4.0'
-} </script><meta name="generator" content="Hexo 5.4.0"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">ZJH</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">3</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Zany' Blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Zany' Blog</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2021/06/27/%E6%B5%8B%E8%AF%95%E5%88%86%E7%B1%BB/hello-world/">Hello World</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-06-27</time><div class="content"><p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2021/06/27/landsat%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3/">Landsat卫星数据管理接口设计文档</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-06-27</time><div class="content"><h1 id="Landsat卫星数据管理接口设计文档"><a href="#Landsat卫星数据管理接口设计文档" class="headerlink" title="Landsat卫星数据管理接口设计文档"></a>Landsat卫星数据管理接口设计文档</h1><h2 id="1-0-基本设计"><a href="#1-0-基本设计" class="headerlink" title="1.0 基本设计"></a>1.0 基本设计</h2><h3 id="在分支branch-landsat上进行开发"><a href="#在分支branch-landsat上进行开发" class="headerlink" title="在分支branch-landsat上进行开发"></a>在分支branch-landsat上进行开发</h3><p><a target="_blank" rel="noopener" href="https://e.coding.net/Maoshengyan/fuxi.git">https://e.coding.net/Maoshengyan/fuxi.git</a></p>
+} </script><meta name="generator" content="Hexo 5.4.0"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">ZJH</div><div class="author-info__description text-center">Talk is cheap, show me your code</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">5</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">9</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">4</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Zany's Blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/categories">Categories</a><a class="site-page" href="/tags">Tags</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Zany's Blog</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2021/07/06/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%82%E8%80%83/">系统架构参考</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-07-06</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%82%E8%80%83/">系统架构参考</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/">系统架构</a></span><div class="content"><h1 id="系统架构参考"><a href="#系统架构参考" class="headerlink" title="系统架构参考"></a>系统架构参考</h1><h2 id="企业级分布式应用服务EDAS"><a href="#企业级分布式应用服务EDAS" class="headerlink" title="企业级分布式应用服务EDAS"></a>企业级分布式应用服务EDAS</h2><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/p232673.png" alt="img"></p>
+<h2 id="阿里中台架构图"><a href="#阿里中台架构图" class="headerlink" title="阿里中台架构图"></a>阿里中台架构图</h2><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/v2-8623f0835181951bc40bcac5ab8713cf_720w.jpg" alt="img"></p>
+<h2 id="淘宝服务端高并发分布式架构"><a href="#淘宝服务端高并发分布式架构" class="headerlink" title="淘宝服务端高并发分布式架构"></a>淘宝服务端高并发分布式架构</h2><ul>
+<li>架构特点：负载均衡、正向代理和反向代理、分布式、高可用</li>
+<li>MPP数据库</li>
+<li>使用LVS或F5来使多个Nginx负载均衡（可使用keepalived软件模拟出虚拟IP，然后把虚拟IP绑定到多台LVS服务器上）</li>
+<li>通过DNS轮询实现机房间的负载均衡（系统可做到机房级别的水平扩展）</li>
+<li><h5 id="引入NoSQL数据库和搜索引擎等技术"><a href="#引入NoSQL数据库和搜索引擎等技术" class="headerlink" title="引入NoSQL数据库和搜索引擎等技术+"></a>引入NoSQL数据库和搜索引擎等技术+</h5></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/v2-65d4f75b68cd095805bafceb8c2e4a2c_720w.jpg" alt="img"></p>
+<h2 id="JUST-DB"><a href="#JUST-DB" class="headerlink" title="JUST-DB"></a>JUST-DB</h2><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210701102643136.png" alt="image-20210701102643136"></p>
+<h2 id="云原生技术架构"><a href="#云原生技术架构" class="headerlink" title="云原生技术架构"></a>云原生技术架构</h2><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/v2-4df5f78230cda29a2a28bb789562f522_720w.jpg" alt="img"></p>
+<h2 id="全空间混合数据服务引擎"><a href="#全空间混合数据服务引擎" class="headerlink" title="全空间混合数据服务引擎"></a>全空间混合数据服务引擎</h2><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210701144211306.png" alt="image-20210701144211306"></p>
+<h2 id="Ganos"><a href="#Ganos" class="headerlink" title="Ganos"></a>Ganos</h2><p>Ganos是包含SQL + NoSQL云数据库的时空引擎。</p>
+<ul>
+<li>公有云原生架构的空间、时空、遥感一体化NoSQL大数据引擎产品，开箱即用；</li>
+<li>PB级存储、高并发写入、百亿级时空查询秒级响应；</li>
+<li>支持数据冷热分离存储和数据高效压缩算法，海量数据存储成本低；</li>
+<li>与云上Spark无缝集成，快速搭建空间大数据仓库和空间大数据分析平台；</li>
+<li>基于OGC标准设计，便于系统间的集成与互操作；</li>
+<li>基于阿里云HBase、XPack专业运维，全托管方式，提供可靠稳定的服务。</li>
+</ul>
+<h3 id="Ganos中的时空模型"><a href="#Ganos中的时空模型" class="headerlink" title="Ganos中的时空模型"></a>Ganos中的时空模型</h3><p>除了支持传统的几何模型、栅格模型和拓扑网络模型，还扩充支持了网格模型、时空轨迹模型以及点云模型。</p>
+<p><img src="https://ucc.alicdn.com/pic/developer-ecology/6bc55a54abb944289c4ef6d99db99adf.png" alt="image.png"></p>
+<h3 id="PG-Ganos"><a href="#PG-Ganos" class="headerlink" title="PG Ganos"></a>PG Ganos</h3><ol>
+<li><strong>如何管理PB级遥感影像：PostgresSQL + Ganos + OSS</strong></li>
+</ol>
+<p>通过“PostgresSQL + Ganos + OSS”组合，可实现 PB级遥感影像的管理。源数据和部分金字塔数据可以存储在数据库内部，遥感原始数据存放在OOS中，由于OOS存储价格低廉，使得用户的使用成本也有所降低。</p>
+<ol start="2">
+<li><strong>遥感影像注册（入库）</strong></li>
+</ol>
+<p>需要按照insertSQL语句直接写入到数据库，将OSS地址传给createrast接口即可。</p>
+<ol start="3">
+<li><strong>矢量数据入库</strong></li>
+</ol>
+<p>主要依赖空间开源的工具，包括Ogr2ogr、shp2pgsql、QGIS、pg_dump/pg_restore等。</p>
+<ol start="4">
+<li><strong>PG Ganos如何管理轨迹数据</strong></li>
+</ol>
+<p>Ganos管理轨迹数据主要通过轨迹构造、轨迹压缩和轨迹相似性判断。</p>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/d83b6862464d47b3959d224890ab323f.png" alt="image.png"></p>
+<ol start="5">
+<li><strong>Ganos与开源工具</strong></li>
+</ol>
+<p>Ganos无缝对接兼容PostGIS的各类GIS软件，显示和编辑包括GeoServer、QGIS、uDig、OpenJump等，PGAdmin4。</p>
+<h3 id="示例：某位置服务平台"><a href="#示例：某位置服务平台" class="headerlink" title="示例：某位置服务平台"></a>示例：某位置服务平台</h3><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/4594052-c1342ad1e96c0079.png" alt="img"></p>
+<h3 id="示例：遥感大数据管理与智能服务平台"><a href="#示例：遥感大数据管理与智能服务平台" class="headerlink" title="示例：遥感大数据管理与智能服务平台"></a>示例：遥感大数据管理与智能服务平台</h3><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/184a2ace18314d57a5b3b40b15676cac.png" alt="图片 6.png"></p>
+<h2 id="名词解释："><a href="#名词解释：" class="headerlink" title="名词解释："></a>名词解释：</h2><ul>
+<li><p>NoSQL</p>
+<ul>
+<li>\1. 键值数据库：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/crs?from=10680">Redis</a>、Memcached、Riak、Cassandra、LevelDB</li>
+<li>\2. 列族数据库：Bigtable、<a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/hbase?from=10680">HBase</a>、Cassandra、Druid</li>
+<li>\3. 文档数据库：MongoDB、CouchDB、MarkLogic</li>
+<li>\4. 图形数据库：Neo4j（知识图谱）、InfoGrid、ArangoDB</li>
+</ul>
+</li>
+<li><p>MPP (Massively Parallel Processing)大规模并行处理架构。比较流行的有Greenplum、TiDB、Postgresql XC、HAWQ等，商用的如南大通用的GBase、睿帆科技的雪球DB、华为的LibrA</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/148621151">https://zhuanlan.zhihu.com/p/148621151</a></p>
+</li>
+<li><p>LVS(Linux Virtual Server)：本质上是一个软件。是一种集群(Cluster)技术，采用IP负载均衡技术和基于内容请求分发技术。</p>
+<ul>
+<li>VS/NAT 负载均衡策略：</li>
+<li>VS/TUN 负载均衡策略：</li>
+<li>VS/NAT 负载均衡策略：</li>
+<li><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/v2-9a56981b5fe5a218bb41a684d96b5d4f_720w.jpg" alt="img"></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/87109094#:~:text=%E9%A6%96%E5%85%88%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8BLVS%20%28Linux%20Virtual,Server%29%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88%E4%B8%9C%E8%A5%BF%EF%BC%8C%E5%85%B6%E5%AE%9E%E5%AE%83%E6%98%AF%E4%B8%80%E7%A7%8D%E9%9B%86%E7%BE%A4%20%28Cluster%29%E6%8A%80%E6%9C%AF%EF%BC%8C%E9%87%87%E7%94%A8IP%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E6%8A%80%E6%9C%AF%E5%92%8C%E5%9F%BA%E4%BA%8E%E5%86%85%E5%AE%B9%E8%AF%B7%E6%B1%82%E5%88%86%E5%8F%91%E6%8A%80%E6%9C%AF%E3%80%82%20%E8%B0%83%E5%BA%A6%E5%99%A8%E5%85%B7%E6%9C%89%E5%BE%88%E5%A5%BD%E7%9A%84%E5%90%9E%E5%90%90%E7%8E%87%EF%BC%8C%E5%B0%86%E8%AF%B7%E6%B1%82%E5%9D%87%E8%A1%A1%E5%9C%B0%E8%BD%AC%E7%A7%BB%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E6%89%A7%E8%A1%8C%EF%BC%8C%E4%B8%94%E8%B0%83%E5%BA%A6%E5%99%A8%E8%87%AA%E5%8A%A8%E5%B1%8F%E8%94%BD%E6%8E%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%95%85%E9%9A%9C%EF%BC%8C%E4%BB%8E%E8%80%8C%E5%B0%86%E4%B8%80%E7%BB%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%84%E6%88%90%E4%B8%80%E4%B8%AA%E9%AB%98%E6%80%A7%E8%83%BD%E7%9A%84%E3%80%81%E9%AB%98%E5%8F%AF%E7%94%A8%E7%9A%84%E8%99%9A%E6%8B%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%82">链接</a></li>
+</ul>
+</li>
+<li><p>F5是一种负载均衡硬件，与LVS提供的能力类似，性能比LVS更高，但价格昂贵。</p>
+</li>
+<li><p>如对于海量文件存储，可通过分布式文件系统HDFS解决，对于key value类型的数据，可通过HBase和Redis等方案解决，对于全文检索场景，可通过搜索引擎如ElasticSearch解决，对于多维分析场景，可通过Kylin或Druid等方案解决。</p>
+</li>
+<li><p>geoTrellis：处理栅格数据。生成金字塔图层、渲染切片、GeoJson的序列化与反序列化</p>
+</li>
+<li><p>geoMesa：处理矢量数据。由locationtech开源的一套地理大数据处理工具套件。 GeoMesa目前支持的NoSQL数据库包括Accumulo、HBase、Google Bigtable和Cassandra等。</p>
+</li>
+<li><p>DLI：数据湖探索</p>
+</li>
+<li><p>DLA：数据湖分析</p>
+</li>
+<li><p>Apache Kylin™是一个开源的、分布式的分析型数据仓库。提供<code>Hadoop/Spark</code>之上的<code>SQL</code>查询接口及多维分析(<code>OLAP</code>)能力以支持超大规模数据，它能在亚秒内查询巨大的<code>Hive</code>表。其核心是预计算，计算结果存在<code>HBase</code>中。</p>
+<p>作为大数据分析神器，它也需要站在巨人的肩膀上，依赖<code>HDFS</code>、<code>MapReduce/Spark</code>、<code>Hive/Kafka</code>、<code>HBase</code>等服务。</p>
+</li>
+<li><p>Apache Flink并不提供自己的数据存储系统，但为<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Amazon_Web_Services#Analytics">Amazon Kinesis</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Apache_Kafka">Apache Kafka</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Alluxio">Alluxio</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/HDFS">HDFS</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Apache_Cassandra">Apache Cassandra</a>和<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Elasticsearch">Elasticsearch</a>等系统提供了数据源和接收器。</p>
+</li>
+<li><p><strong>Presto</strong>是一种用于大数据的高性能分布式<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/SQL">SQL</a>查询引擎。其架构允许用户查询各种数据源，如Hadoop、AWS S3、Alluxio、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/MySQL">MySQL</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Cassandra">Cassandra</a>、Kafka和MongoDB。</p>
+</li>
+<li><p>Drill：<strong>Drill</strong> is an Apache open-source SQL query engine for Big Data exploration. </p>
+</li>
+<li><p>LSM-tree 最大的特点就是写入速度快，主要利用了磁盘的顺序写，pk掉了需要随机写入的 B-tree。关于磁盘的顺序和随机写可以参考：《硬盘的各种概念》</p>
+</li>
+</ul>
+<h1 id="全时空信息系统架构设计"><a href="#全时空信息系统架构设计" class="headerlink" title="全时空信息系统架构设计"></a>全时空信息系统架构设计</h1><h2 id="数据底层分类"><a href="#数据底层分类" class="headerlink" title="数据底层分类"></a>数据底层分类</h2><h2 id="数据库引擎"><a href="#数据库引擎" class="headerlink" title="数据库引擎"></a>数据库引擎</h2><p>NewSQL 见文档-NewSQL主流数据库对比</p>
+<hr>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/clip_image002.jpg" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/0%7EGT%5D37GOLTO7XQ%5BNKI4%60VQ.png" alt="img"></p>
+<h2 id="检索引擎"><a href="#检索引擎" class="headerlink" title="检索引擎"></a>检索引擎</h2><h2 id="计算引擎"><a href="#计算引擎" class="headerlink" title="计算引擎"></a>计算引擎</h2><h2 id="容器化、微服务、DevOps"><a href="#容器化、微服务、DevOps" class="headerlink" title="容器化、微服务、DevOps"></a>容器化、微服务、DevOps</h2><h2 id="可视化引擎"><a href="#可视化引擎" class="headerlink" title="可视化引擎"></a>可视化引擎</h2><h1 id="参考连接"><a href="#参考连接" class="headerlink" title="参考连接"></a>参考连接</h1><h2 id="1-淘宝服务端高并发分布式架构演进之路"><a href="#1-淘宝服务端高并发分布式架构演进之路" class="headerlink" title="1. 淘宝服务端高并发分布式架构演进之路"></a>1. 淘宝服务端高并发分布式架构演进之路</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/69999325">https://zhuanlan.zhihu.com/p/69999325</a></p>
+<h2 id="2-微服务网关Zuul、Gateway、nginx的区别"><a href="#2-微服务网关Zuul、Gateway、nginx的区别" class="headerlink" title="2. 微服务网关Zuul、Gateway、nginx的区别"></a>2. 微服务网关Zuul、Gateway、nginx的区别</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/8d82c6c2e5ee">https://www.jianshu.com/p/8d82c6c2e5ee</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lizz861109/article/details/103575186">https://blog.csdn.net/lizz861109/article/details/103575186</a></p>
+<h2 id="3-Hive、Hbase、mysql的区别"><a href="#3-Hive、Hbase、mysql的区别" class="headerlink" title="3. Hive、Hbase、mysql的区别"></a>3. Hive、Hbase、mysql的区别</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/137458844">https://zhuanlan.zhihu.com/p/137458844</a></p>
+<h2 id="4-解惑图数据库！你知道什么是图数据库吗？"><a href="#4-解惑图数据库！你知道什么是图数据库吗？" class="headerlink" title="4. 解惑图数据库！你知道什么是图数据库吗？"></a>4. 解惑图数据库！你知道什么是图数据库吗？</h2><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1634337">https://cloud.tencent.com/developer/article/1634337</a></p>
+<h2 id="5-图数据库选型对比：HugeGraph、JanusGraph、Neo4j"><a href="#5-图数据库选型对比：HugeGraph、JanusGraph、Neo4j" class="headerlink" title="5. 图数据库选型对比：HugeGraph、JanusGraph、Neo4j"></a>5. 图数据库选型对比：HugeGraph、JanusGraph、Neo4j</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hellohiworld/article/details/104824764">https://blog.csdn.net/hellohiworld/article/details/104824764</a></p>
+<h2 id="6-JanusGraph-Neo4j-TigerGraph简单对比"><a href="#6-JanusGraph-Neo4j-TigerGraph简单对比" class="headerlink" title="6. JanusGraph/Neo4j/TigerGraph简单对比"></a>6. JanusGraph/Neo4j/TigerGraph简单对比</h2><p>目前TigerGraph的生态不是很全，编程api等能力也有一定限制</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/74424421">https://zhuanlan.zhihu.com/p/74424421</a></p>
+<h2 id="7-全文搜索引擎-ElasticSearch-还是-Solr？"><a href="#7-全文搜索引擎-ElasticSearch-还是-Solr？" class="headerlink" title="7. 全文搜索引擎 ElasticSearch 还是 Solr？"></a>7. 全文搜索引擎 ElasticSearch 还是 Solr？</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jajian/p/9801154.html">https://www.cnblogs.com/jajian/p/9801154.html</a></p>
+<h2 id="8-9个基于Java的搜索引擎框架-转"><a href="#8-9个基于Java的搜索引擎框架-转" class="headerlink" title="8. 9个基于Java的搜索引擎框架 转"></a>8. 9个基于Java的搜索引擎框架 转</h2><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1184216?from=article.detail.1178714">https://cloud.tencent.com/developer/article/1184216?from=article.detail.1178714</a></p>
+<h2 id="9-什么是CIM？究竟和BIM有什么关系？"><a href="#9-什么是CIM？究竟和BIM有什么关系？" class="headerlink" title="9. 什么是CIM？究竟和BIM有什么关系？"></a>9. 什么是CIM？究竟和BIM有什么关系？</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/359816845">https://zhuanlan.zhihu.com/p/359816845</a></p>
+<h2 id="10-BIM-GIS应用的八大挑战"><a href="#10-BIM-GIS应用的八大挑战" class="headerlink" title="10. BIM+GIS应用的八大挑战"></a>10. BIM+GIS应用的八大挑战</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/supermapsupport/article/details/95048023">https://blog.csdn.net/supermapsupport/article/details/95048023</a></p>
+<h2 id="11-HBase-Ganos简介"><a href="#11-HBase-Ganos简介" class="headerlink" title="11. HBase Ganos简介"></a>11. HBase Ganos简介</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/cad5467cc67d">https://www.jianshu.com/p/cad5467cc67d</a></p>
+<h2 id="12-对比五款数据库，告诉你-NewSQL-的独到之处"><a href="#12-对比五款数据库，告诉你-NewSQL-的独到之处" class="headerlink" title="12. 对比五款数据库，告诉你 NewSQL 的独到之处"></a>12. 对比五款数据库，告诉你 NewSQL 的独到之处</h2><p><a target="_blank" rel="noopener" href="https://www.techug.com/post/what-is-new-about-newsql.html">https://www.techug.com/post/what-is-new-about-newsql.html</a></p>
+<h2 id="13-NewSQL究竟新在哪里？"><a href="#13-NewSQL究竟新在哪里？" class="headerlink" title="13. NewSQL究竟新在哪里？"></a>13. NewSQL究竟新在哪里？</h2><p><a target="_blank" rel="noopener" href="http://oserror.com/distributed/newsql/">http://oserror.com/distributed/newsql/</a></p>
+<h2 id="14-分布式-NewSQL-对比"><a href="#14-分布式-NewSQL-对比" class="headerlink" title="14. 分布式 NewSQL 对比"></a>14. 分布式 NewSQL 对比</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/GO-NO-1/p/9935195.html">https://www.cnblogs.com/GO-NO-1/p/9935195.html</a></p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2021/07/06/PostGIS%E8%B0%83%E7%A0%94/">PostGIS 调研</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-07-06</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/GIS/">GIS</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/OpenGIS/">OpenGIS</a><span class="article-meta__link">-</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/OGC/">OGC</a></span><div class="content"><h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><h2 id="相关标准化组织机构介绍"><a href="#相关标准化组织机构介绍" class="headerlink" title="相关标准化组织机构介绍"></a>相关标准化组织机构介绍</h2><ul>
+<li><p>OGC 表示开放地理空间信息联盟 （Open Geospatial Consortium-OGC） ，致力于提供地理信息行业软件和数据及服务的标准化工作。OGC在1994年到2004年期间机构名为Open GIS Consortium， 后因业务需要更名。</p>
+</li>
+<li><p>IS0/TC 211(国际标准化组织地理信息技术委员会211)</p>
+</li>
+<li><p>W3C(World Wide Web onsortium，万维网联盟)</p>
+</li>
+<li><p>OpenGIS(Open Geodata Interoperation Specification,开放地理数据互操作规范)</p>
+</li>
+<li><p>GML（Geographic Markup Language）由OGC定义的XML（标准通用标记语言的子集）格式，用来表达地理信息要素。</p>
+</li>
+</ul>
+<h2 id="OpenGIS"><a href="#OpenGIS" class="headerlink" title="OpenGIS"></a>OpenGIS</h2><p>要素（Feature）：几何信息和属性信息</p>
+<ul>
+<li>OpenGIS定义了一组基于数据的服务，而数据的基础是要素（Feature)。所谓要素，简单地说就是一个独立的对象，在地图中可能表现为一个多边形建筑物，在数据库中即是一个独立的条目。要素具有两个必要的组成部分——几何信息和属性信息。</li>
+</ul>
+<p>几何信息：点（Point）、边缘（LineString）、面（Polygon）和几何集合（GeometryCollection）</p>
+<ul>
+<li>OpenGIS将几何信息分为点、边缘、面和几何集合四种： 其中这里熟悉的线（LineString)属于边缘的一个子类，而多边形（Polygon)是面的一个子类。也就是说OpenGIS定义的几何类型并不仅仅是我们常见的点、线、多边形三种，它提供了更复杂更详细的定义，增强了未来的可扩展性。另外，几何类型的设计中采用了组合模式（Composite)，将几何集合（GeometryCollection)也定义为一种几何类型。类似地，要素集合（FeatureCollection)也是一种要素。</li>
+</ul>
+<p>属性信息（FeatureType）：</p>
+<ul>
+<li>属性信息没有做太多的限制，可以在实际应用中结合具体的实现进行设置。相同的几何类型、属性类型的组合成为要素类型（FeatureType)，类型相同的要素可以存放在一个数据源中。而一个数据源只能拥有一个要素类型。因此，可以用要素类型来描述一组属性相似的要素。</li>
+</ul>
+<p>在面向对象的模型中，完全可以把要素类型理解为一个类，而要素则是类的实例。通过GIS中间件可以从数据源中取出数据，供WMS服务器和WFS服务器使用。WMS服务器接收请求，根据请求内容的不同，可以返回不同格式的最终数据。例如，WMS可以返回常用图片格式的地图片段供最终用户阅读（类似GoogleMaps)，其中地图是根据一个样式文件(SLD)生成的，它描述了地图的线的宽度、色彩等；WMS也可以返回GeoRSS和KML用来与其他地图服务互通。WFS服务器也可以接收请求，但WFS将返回GML格式的地理信息数据。GML是一种基于XML的数据格式，它可以完整地再现数据，也是OpenGIS数据源的重要形式。也就是说，WFS返回的GML可以继续作为数据源。在WFS请求中，OpenGIS定义了一个Filter标准，用来实现对数据的筛选，使WFS更加灵活。另一方面，WFS还支持通过WFS-t提交客户端对数据的修改。通俗地说，WMS是只读的，而WFS则是可以读写的。</p>
+<h2 id="OGC地图服务标准介绍"><a href="#OGC地图服务标准介绍" class="headerlink" title="OGC地图服务标准介绍"></a>OGC地图服务标准介绍</h2><blockquote>
+<p>OGC1999年开始 WMT1（Web Map Tested）和 WMT2 互操作项目。其中著名的GML来自WMT1的成果。在WMT2中OGC定义了三种地理参考信息模型：Web Map Server(WMS) , Web Feature Server(WFS) ，Web Coverage Server(WCS) .</p>
+<p>OGC 地图服务协议，包括 WMS、WFS、WCS、WMTS、WPS 。其中比较重要的现在用得比较多的标准是GML、WMS和WFS。</p>
+</blockquote>
+<h3 id="网络地图服务（WMS）"><a href="#网络地图服务（WMS）" class="headerlink" title="网络地图服务（WMS）"></a>网络地图服务（WMS）</h3><ul>
+<li><p>Web Map Server（WMS）能够根据用户的请求返回相应的地图（包括PNG，GIF，JPEG等栅格形式或者是SVG和WEB CGM等矢量形式）。</p>
+</li>
+<li><p>WMS支持网络协议HTTP，所支持的操作是由URL定义的。有三个重要操作 <code>GetCapabilities</code> ， <code>GetMap</code> ， <code>GetFeatureinfo</code> 。</p>
+</li>
+</ul>
+<h3 id="网络要素服务（WFS）"><a href="#网络要素服务（WFS）" class="headerlink" title="网络要素服务（WFS）"></a>网络要素服务（WFS）</h3><ul>
+<li><p>Web 要素服务（WFS）支持对地理要素的插入，更新，删除，检索和发现服务。该服务根据HTTP客户请求返回GML数据。</p>
+</li>
+<li><p>其基础接口是：GetCapabilities，DescribeFeatureType，GetFeature　 GetCapabilities同上。</p>
+</li>
+</ul>
+<h3 id="网络覆盖服务（WCS）"><a href="#网络覆盖服务（WCS）" class="headerlink" title="网络覆盖服务（WCS）"></a>网络覆盖服务（WCS）</h3><ul>
+<li><p>Web地理覆盖服务（WCS）：提供的是包含了地理位置信息或属性的空间栅格图层，而不是静态地图的访问。</p>
+</li>
+<li><p>根据HTTP客户端要求发送相应数据，包括影像，多光谱影像和其它科学数据. 有二个重要操作GetCapabilities，GetCoverage GetCapabilities返回一个描述服务和XML文档，从中可获取覆盖的数据集合。</p>
+</li>
+</ul>
+<h3 id="切片地图服务（TMS）"><a href="#切片地图服务（TMS）" class="headerlink" title="切片地图服务（TMS）"></a>切片地图服务（TMS）</h3><ul>
+<li>切片地图服务（TMS）定义了一些操作，这些操作允许用户访问切片地图。WMTS可能是OGC首个支持RESTful访问的服务标准。</li>
+</ul>
+<h3 id="WMS和WNTS区别"><a href="#WMS和WNTS区别" class="headerlink" title="WMS和WNTS区别"></a>WMS和WNTS区别</h3><ul>
+<li>WMTS服务和WMS服务对客户端请求服务的响应不同，比如在接受客户端请求WMTS服务时，返回给客户端是固定大小的瓦片，客户端根据索引号来获取每一张瓦片，而后拼接成地图进行展示，如图1所示；由于瓦片的规则是固定的，服务端可以预先缓存对应的瓦片，客户端需要时直接返回即可，因而WMTS是可缓存的。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/fig-wmts-server.png" alt="img"></p>
+<h1 id="END"><a href="#END" class="headerlink" title="END"></a>END</h1></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2021/07/06/NewSQL%E4%B8%BB%E6%B5%81%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AF%B9%E6%AF%94-GIS%E7%AF%87/">NewSQL主流数据库对比——GIS篇</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-07-06</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/NewSQL/">NewSQL</a><span class="article-meta__link">-</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/%E4%BA%91%E6%95%B0%E6%8D%AE%E5%BA%93/">云数据库</a><span class="article-meta__link">-</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/%E5%BC%80%E6%BA%90%E6%95%B0%E6%8D%AE%E5%BA%93/">开源数据库</a></span><div class="content"><h1 id="NewSQL主流数据库对比——GIS篇"><a href="#NewSQL主流数据库对比——GIS篇" class="headerlink" title="NewSQL主流数据库对比——GIS篇"></a>NewSQL主流数据库对比——GIS篇</h1><p>[TOC]</p>
+<h2 id="NewSQL-简介"><a href="#NewSQL-简介" class="headerlink" title="NewSQL 简介"></a>NewSQL 简介</h2><p>NewSQL 是一种新方式关系数据库，意在整合 RDBMS 所提供的ACID事务特性，以及 NoSQL 提供的横向可扩展性。</p>
+<p>大多数 NewSQL 数据库做了全新的设计，或是主要聚焦于 OLTP，或是采用了 OLTP/OLAP 的混合架构载的全新设计。</p>
+<ul>
+<li>一致性：相对于可用性而言，NewSQL 更重视一致性，即侧重 CAP 中的 C 和 P。</li>
+<li>内存数据库：一些 NewSQL 解决方案使用内存（RAM）作为存储介质。</li>
+<li>HTAP：HTAP（混合事务 / 分析处理，Hybrid Transactional/Analytical Processing）</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/1166059074.png" alt="1166059074"></p>
+<h2 id="！！！对比分析"><a href="#！！！对比分析" class="headerlink" title="！！！对比分析"></a>！！！对比分析</h2><table>
+<thead>
+<tr>
+<th>NewSQL</th>
+<th>开发商</th>
+<th>是否开源</th>
+<th>特性</th>
+<th>分布式</th>
+<th>空间支持</th>
+<th>社区活跃度</th>
+<th>拓展</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Spanner</td>
+<td>谷歌</td>
+<td>×</td>
+<td>存储的数据是Key-value</td>
+<td>水平扩展</td>
+<td>×</td>
+<td>Google社区</td>
+<td></td>
+</tr>
+<tr>
+<td>OceanBase</td>
+<td>阿里</td>
+<td>开源</td>
+<td>MySQL/ORACLE兼容、增量数据放在内存、基线数据放在SSD盘、读写分</td>
+<td>线性扩展</td>
+<td>×</td>
+<td>阿里社区、博客</td>
+<td></td>
+</tr>
+<tr>
+<td>TDSQL</td>
+<td>腾讯</td>
+<td>×</td>
+<td>提供两种版本MySQL和PostgreSQL</td>
+<td>水平扩展</td>
+<td>PostGIS</td>
+<td>腾讯社区</td>
+<td></td>
+</tr>
+<tr>
+<td>Azure Cosmos DB</td>
+<td>微软</td>
+<td>商业（2RMB/月）</td>
+<td>支持键值、列存储、文档和图数据库，并支持通过 SQL 和 NoSQL API 提供数据。</td>
+<td>水平扩展</td>
+<td>支持</td>
+<td>微软社区</td>
+<td></td>
+</tr>
+<tr>
+<td>TiDB</td>
+<td>PingCAP</td>
+<td>开源</td>
+<td>兼容 MySQL、TiDB、TiKV计算层与存储层的分离解耦架构</td>
+<td>水平扩展</td>
+<td>×</td>
+<td>社区、博客</td>
+<td>TiSpark</td>
+</tr>
+<tr>
+<td>SequoiaDB巨杉数据库</td>
+<td>巨杉数据库</td>
+<td>开源</td>
+<td>国产、金融级分布式关系型数据库</td>
+<td>集群</td>
+<td>×</td>
+<td>社区、博客</td>
+<td></td>
+</tr>
+<tr>
+<td>CockroachDB蟑螂数据库</td>
+<td>蟑螂实验室</td>
+<td>商业来源许可证（BSL）</td>
+<td>支持PostgreSQL、去中心化架构、支持kuberneter编排</td>
+<td>水平扩展</td>
+<td>部分兼容PostGIS</td>
+<td>Cockroach Labs 博客</td>
+<td></td>
+</tr>
+<tr>
+<td>Citus</td>
+<td>微软并购</td>
+<td>GPL v3</td>
+<td>开源 PostgreSQL <strong>扩展</strong>、并行处理、微软云、简单易用</td>
+<td>支持分布式 PostgreSQL</td>
+<td>PostGIS</td>
+<td>论坛、博客</td>
+<td></td>
+</tr>
+<tr>
+<td>ClustrixDB</td>
+<td>MariaDB 2018年收购</td>
+<td>收费</td>
+<td>类MYSQL</td>
+<td>分布式</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>MemSQL/SingleStore</td>
+<td>前 Facebook 工程师创办</td>
+<td>开源的社区版</td>
+<td><strong>内存数据库</strong>、兼容MySQL、MySQL InnoDB</td>
+<td>分布式</td>
+<td>地理空间和全文搜索</td>
+<td><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210704154249267.png" alt="image-20210704154249267">社区论坛</td>
+<td></td>
+</tr>
+<tr>
+<td>VoltDB</td>
+<td>Postgres和Ingres联合</td>
+<td>GPLv3、AGPL</td>
+<td><strong>内存数据库</strong>、采用类MPP架构、并行的单线程处理方式确保数据一致性</td>
+<td>水平扩展</td>
+<td>仅支持简单空间查询</td>
+<td>博客</td>
+<td></td>
+</tr>
+<tr>
+<td>Vitess</td>
+<td>CNCF</td>
+<td>开源</td>
+<td>部署，扩展和管理MySQL实例、支持kuberneter编排</td>
+<td>无限水平扩展</td>
+<td>MySQL Spatial</td>
+<td>博客、社区</td>
+<td></td>
+</tr>
+<tr>
+<td>NuoDB</td>
+<td>NuoDB</td>
+<td>×</td>
+<td>去集中化、唯一一个具有专利的、弹性可伸缩的SQL关系数据库</td>
+<td></td>
+<td></td>
+<td>文档都是视频</td>
+<td></td>
+</tr>
+<tr>
+<td>Altibase</td>
+<td></td>
+<td></td>
+<td>Hybrid DBMS</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>YugabyteDB</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>GenieDB</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ScaleDB</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="Azure-Cosmos-DB"><a href="#Azure-Cosmos-DB" class="headerlink" title="Azure Cosmos DB"></a><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/cosmos-db/use-cases">Azure Cosmos DB</a></h3><blockquote>
+<p>Azure Cosmos DB 是一种用于现代应用开发的完全托管式 NoSQL 数据库服务。 获得有保证的个位数毫秒级响应时间和 由 SLA 支持的 99.999% 可用性、 自动、即时的可伸缩性 ，以及用于 MongoDB 和 Cassandra 的开放源代码 API。</p>
+<p>使用 Azure Synapse Link for Azure Cosmos DB 通过非 ETL 分析从实时数据中获取见解。</p>
+</blockquote>
+<h4 id="NoSQL-数据库与关系数据库之间的差别"><a href="#NoSQL-数据库与关系数据库之间的差别" class="headerlink" title="NoSQL 数据库与关系数据库之间的差别"></a>NoSQL 数据库与关系数据库之间的差别</h4><ul>
+<li>SQL API</li>
+<li>Cassandra API<ul>
+<li>Azure Cosmos DB Cassandra API 可以充当为 Apache Cassandra 编写的应用的<strong>列族数据存储</strong>。</li>
+<li>通过 Cassandra API 可以使用 Cassandra 查询语言 (CQL)、基于 Cassandra 的工具（如 cqlsh）和熟悉的 Cassandra 客户端驱动程序与 Azure Cosmos DB 中存储的数据进行交互。</li>
+</ul>
+</li>
+<li>Gremlin API<ul>
+<li>Azure Cosmos DB 通过 Gremlin API 在为任何规模设计的完全托管数据库服务中提供<strong>图形数据库</strong>服务。</li>
+<li> 使用 Gremlin 查询语言。</li>
+</ul>
+</li>
+<li>表 API<ul>
+<li>类似于CloudTable。</li>
+<li>Azure Table Storage  提供的表 API 适用于为 Azure <strong>表存储</strong>。</li>
+<li>表 API 包含可用于 .NET、Java、Python 和 Node.js 的客户端 SDK。</li>
+</ul>
+</li>
+<li>Azure Cosmos DB API for MongoDB<ul>
+<li>通过用于 MongoDB 的 Azure Cosmos DB API，可以轻松使用 Cosmos DB，就像它是 MongoDB <strong>文档数据库</strong>一样。 </li>
+</ul>
+</li>
+</ul>
+<h4 id="Azure-Cosmos-DB-中的地理空间和-GeoJSON-位置数据"><a href="#Azure-Cosmos-DB-中的地理空间和-GeoJSON-位置数据" class="headerlink" title="Azure Cosmos DB 中的地理空间和 GeoJSON 位置数据"></a>Azure Cosmos DB 中的地理空间和 GeoJSON 位置数据</h4><ul>
+<li><p>支持两种空间数据类型：geometry 数据类型和 geography 数据类型 。</p>
+<ul>
+<li>geometry 类型在欧几里得（平面）坐标系统中表示数据</li>
+<li><strong>Geography</strong> 类型表示圆形地球坐标系中的数据。</li>
+</ul>
+</li>
+<li><p>支持的空间数据类型</p>
+<ul>
+<li>Point</li>
+<li>LineString</li>
+<li>Polygon</li>
+<li>MultiPolygon</li>
+</ul>
+</li>
+<li><p>地理空间数据查询</p>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210704152452747.png" alt="image-20210704152452747"></p>
+</li>
+<li><p>地理空间数据编制索引</p>
+<ul>
+<li>简单来说，测地坐标的几何图形会投影在 2D 平面上，并使用 <strong>四叉树</strong> 以渐进方式划分成单元格。 这些单元格会根据 <strong>Hilbert 空间填充曲线</strong> 内的单元格位置映射到 1D，并保留点的位置。 </li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/cosmos-db/sql-query-geospatial-intro">https://docs.microsoft.com/zh-cn/azure/cosmos-db/sql-query-geospatial-intro</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/cosmos-db/sql-query-geospatial-query">https://docs.microsoft.com/zh-cn/azure/cosmos-db/sql-query-geospatial-query</a></p>
+</li>
+</ul>
+<h3 id="Altibase（商用收费）"><a href="#Altibase（商用收费）" class="headerlink" title="Altibase（商用收费）"></a><a target="_blank" rel="noopener" href="http://cn.altibase.com/">Altibase（商用收费）</a></h3><h3 id="CockroachDB"><a href="#CockroachDB" class="headerlink" title="CockroachDB"></a><a target="_blank" rel="noopener" href="https://www.cockroachlabs.com/">CockroachDB</a></h3><blockquote>
+<p>CockroachDB（<a target="_blank" rel="noopener" href="https://www.cockroachlabs.com)是google备受瞩目的spanner的开源模仿,承诺提供一种高存活性、强一致性,可横向扩展的sql数据库.主要的设计目标是全球一致性和可靠性,从蟑螂(cockroach)的命名上是就能看出这点/">https://www.cockroachlabs.com）是Google备受瞩目的Spanner的开源模仿，承诺提供一种高存活性、强一致性，可横向扩展的SQL数据库。主要的设计目标是全球一致性和可靠性，从蟑螂（cockroach）的命名上是就能看出这点</a> [ 打不死的小强：) ]。Cockroach节点是均衡的，其设计目标是同质部署（只有一个二进制包）且最小配置。CockroachDB的扩展非常容易，只要一行命令，秒级进行。</p>
+</blockquote>
+<ul>
+<li>PostgreSQL生态中的很多工具、程序和应用能够适用于CockroachDB(不用修改或少量修改)。</li>
+<li>虽然CockroachDB支持PostgreSQL语法和驱动程序，但它不是完全兼容PostgreSQL。</li>
+<li>2020年的20.2版本开始支持<a target="_blank" rel="noopener" href="https://www.cockroachlabs.com/blog/spatial-data/">geospatial</a>，但未完全兼容PostGIS。</li>
+<li>采用分层架构，最顶层是SQL层。SQL层构建于分布式KV存储之上</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/20190413215412940.png" alt="img"></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_34924156/article/details/89236693">https://blog.csdn.net/qq_34924156/article/details/89236693</a></p>
+<ul>
+<li>用户手册：<a target="_blank" rel="noopener" href="http://doc.cockroachchina.baidu.com/">http://doc.cockroachchina.baidu.com/</a></li>
+<li>社区：<a target="_blank" rel="noopener" href="https://www.cockroachlabs.com/blog/">https://www.cockroachlabs.com/blog/</a></li>
+</ul>
+<h3 id="Citus"><a href="#Citus" class="headerlink" title="Citus"></a><a target="_blank" rel="noopener" href="http://citusdb.cn/">Citus</a></h3><blockquote>
+<p>CitusDB采用PostgreSQL的插件形式(not a fork)，即享受PostgreSQL的强大支持，又同时拥有分布式数据库能力</p>
+<p>CitusDB 与 HDFS 的分布式非常相似，在 Master 上存储元数据，Work 节点存储分片，同时 1 个分片至少要存储在 2 个 Work 节点（可配置更多）上保障其可用性。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210703221436470.png" alt="image-20210703221436470"></p>
+<ul>
+<li>苏宁citus分布式数据库应用实践</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://itdks.su.bcebos.com/844d50a9b73f4d8283d746cbff23b5e9.pdf">https://itdks.su.bcebos.com/844d50a9b73f4d8283d746cbff23b5e9.pdf</a></p>
+<ul>
+<li>利用 citus 支持地理大数据。全世界的点状POI，数据量级已达亿级别，存储在单一的PostgreSQL数据表中，若查询涉及到全表扫描，性能会差很多</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.giserdqy.com/secdev/openlayers/21870/">https://www.giserdqy.com/secdev/openlayers/21870/</a></p>
+<ul>
+<li><code>Citus</code>是一个PostgreSQL的扩展，类似于PostGIS、pgRouting，它主要的作用是将一张大表进行水平分表，每个分表称为“分片（Shard）”，按照一定的规则分布(?)到多台机器上，并且将查询分布到不同节点并行执行，最后汇总结果。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/TUIK%7ES14Z%606A_I%60E%7BFPYT6L.png" alt="img"></p>
+<ul>
+<li>论坛：<a target="_blank" rel="noopener" href="http://citusdb.cn/?post_type=forum">http://citusdb.cn/?post_type=forum</a></li>
+<li>博客：<a target="_blank" rel="noopener" href="http://citusdb.cn/?cat=13">http://citusdb.cn/?cat=13</a></li>
+<li>手册：<a target="_blank" rel="noopener" href="http://docs.citusdata.com/en/v10.0/">http://docs.citusdata.com/en/v10.0/</a></li>
+</ul>
+<h3 id="ClustrixDB-收费"><a href="#ClustrixDB-收费" class="headerlink" title="ClustrixDB(收费)"></a><a target="_blank" rel="noopener" href="https://mariadb.com/products/clustrixdb/">ClustrixDB(收费)</a></h3><h3 id="MemSQL"><a href="#MemSQL" class="headerlink" title="MemSQL"></a><a target="_blank" rel="noopener" href="https://www.memsql.com/software/">MemSQL</a></h3><blockquote>
+<p>由前 Facebook 工程师创办的 MemSQL，号称世界上最快的分布式关系型数据库，兼容 MySQL 但快30倍，能实现每秒 150 万次事务。原理是仅用内存并将 SQL 预编译为C++。</p>
+</blockquote>
+<ul>
+<li>MemSQL is Now SingleStore</li>
+<li>2018年，MemSQL 搞了个炸裂消息，<a href="https://link.zhihu.com/?target=https://www.memsql.com/blog/memsql67/">宣布</a> MemSQL 6.7 可以免费用于生产环境，没有功能限制，磁盘容量无限制，只限制整个 MemSQL 集群总内存使用不得超过 128 GB，如果做双机备份，那么就是每台机器 64 GB，已经很够用了。</li>
+<li>使用ACID事务每秒接收数百万个事件，同时以关系SQL、JSON、地理空间和全文搜索格式分析数十亿行数据。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210704150733553.png" alt="image-20210704150733553"></p>
+<ul>
+<li><p>地理空间支持</p>
+<ul>
+<li><p>SingleStore使用了一个类似于googleearth的球形模型。它假设一个半径为6367444.66米的完美球形地球。</p>
+</li>
+<li><p>地理数据类型</p>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210704151619023.png" alt="image-20210704151619023"></p>
+</li>
+<li><p>空间查询</p>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210704151741992.png" alt="image-20210704151741992"></p>
+</li>
+<li><p>GEOJSON。SingleStore 没有本机 GeoJSON 支持。但是，我们有通用的 JSON 支持以及计算列。结合这些功能，您可以使用 SingleStore 的内置 JSON 类型和 GEOGRAPHYPOINT 类型导入 GeoJSON 数据的子集。</p>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210704151949000.png" alt="image-20210704151949000"></p>
+</li>
+</ul>
+</li>
+<li><p>社区网址：<a target="_blank" rel="noopener" href="https://www.singlestore.com/community-hub/">https://www.singlestore.com/community-hub/</a></p>
+</li>
+<li><p>资源手册：<a target="_blank" rel="noopener" href="https://www.singlestore.com/resources/">https://www.singlestore.com/resources/</a></p>
+</li>
+</ul>
+<h3 id="NuoDB"><a href="#NuoDB" class="headerlink" title="NuoDB"></a><a target="_blank" rel="noopener" href="https://nuodb.com/">NuoDB</a></h3><blockquote>
+<p>NuoDB 是newsql数据库的典型代表之一，同时也是世界上首个也是唯一一个具有专利的、弹性可伸缩的SQL关系数据库，主要用于去集中化的计算资源。</p>
+</blockquote>
+<h3 id="OceanBase"><a href="#OceanBase" class="headerlink" title="OceanBase"></a><a target="_blank" rel="noopener" href="https://open.oceanbase.com/">OceanBase</a></h3><blockquote>
+<p>OceanBase 社区版是一款开源分布式 HTAP（Hybrid Transactional/Analytical Processing）数据库管理系统，具有原生分布式架构，支持金融级高可用、透明水平扩展、分布式事务、多租户和语法兼容等企业级特性。</p>
+</blockquote>
+<blockquote>
+<p>2020 年 5 月，OceanBase 以 7.07亿 tpmC 的在线事务处理性能，打破了 OceanBase 自己在 2019 年创造的 6088万 tpmC 的 TPC-C 世界纪录。截止至目前，OceanBase是第一个也是唯一一个上榜的中国数据库。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210704164251964.png" alt="image-20210704164251964"></p>
+<ul>
+<li><p>版本选择</p>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210704164312198.png" alt="image-20210704164312198"></p>
+</li>
+<li><p>产品优势</p>
+<ul>
+<li><strong>高性能</strong>：OceanBase采用了读写分离的架构，把数据分为基线数据和增量数据。其中增量数据放在内存里（MemTable），基线数据放在SSD盘（SSTable）。对数据的修改都是增量数据，只写内存。所以DML是完全的内存操作，性能非常高。</li>
+<li><strong>低成本</strong>：OceanBase通过数据编码压缩技术实现高压缩。数据编码是基于数据库关系表中不同字段的值域和类型信息，所产生的一系列的编码方式，它比通用的压缩算法更懂数据，从而能够实现更高的压缩效率。</li>
+<li><strong>高兼容</strong>：兼容常用MySQL/ORACLE功能及MySQL/ORACLE前后台协议，业务零修改或少量修改即可从MySQL/ORACLE迁移至OceanBase。</li>
+<li><strong>高可用</strong>：数据采用多副本存储，少数副本故障不影响数据可用性。通过“三地五中心”部署实现城市级故障自动无损容灾。</li>
+</ul>
+</li>
+<li><p>定价</p>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210704164141515.png" alt="image-20210704164141515"></p>
+</li>
+<li><p>社区：<a target="_blank" rel="noopener" href="https://open.oceanbase.com/community/contribution">https://open.oceanbase.com/community/contribution</a></p>
+</li>
+<li><p>博客：<a target="_blank" rel="noopener" href="https://open.oceanbase.com/articles">https://open.oceanbase.com/articles</a></p>
+</li>
+<li><p>文档：<a target="_blank" rel="noopener" href="https://open.oceanbase.com/docs">https://open.oceanbase.com/docs</a></p>
+</li>
+</ul>
+<h3 id="SequoiaDB"><a href="#SequoiaDB" class="headerlink" title="SequoiaDB"></a>SequoiaDB</h3><h3 id="TDSQL"><a href="#TDSQL" class="headerlink" title="TDSQL"></a><a target="_blank" rel="noopener" href="https://intl.cloud.tencent.com/zh/product/dcdb">TDSQL</a></h3><blockquote>
+<p>分布式数据库（Tencent Distributed SQL，以下简称 TDSQL）是腾讯打造的一款企业级数据库产品，具备强一致高可用、全球部署架构、高 SQL 兼容度、分布式水平扩展、高性能、完整的分布式事务支持、企业级安全等特性，同时提供智能 DBA、自动化运营、监控告警等配套设施，为客户提供完整的分布式数据库解决方案。</p>
+<p>稳定、安全、高性能的分布式数据库，兼容 PostgreSQL 和 MySQL。</p>
+</blockquote>
+<ol>
+<li><p>MySQL 版</p>
+<p>高度兼容 MySQL，支持水平拆分（分表）的高性能数据库。部署在腾讯云上的一种支持自动水平拆分、Shared Nothing 架构的分布式数据库。TDSQL MySQL版 默认部署主备架构，提供容灾、备份、恢复、监控、迁移等全套解决方案，适用于 TB 或 PB 级的海量数据库场景。</p>
+</li>
+</ol>
+<ol start="2">
+<li><p>PostgreSQL 版 （原 TBase）</p>
+<p>稳定、安全、高性能的分布式数据库服务，满足您海量 HTAP 场景。集高扩展性、高SQL兼容度、完整的分布式事务支持、多级容灾能力以及多维度资源隔离等能力于一身。TDSQL PostgreSQL 版采用无共享的集群架构，为用户提供容灾、备份、恢复、监控、安全、审计等全套解决方案，适用于GB～PB级的海量 HTAP 场景。  </p>
+<p> 具有丰富的周边生态：</p>
+<ul>
+<li>支持强大的地理信息系统（GIS）。通过集群化的 PostGis 插件，支持存储空间地理数据，使 TDSQL PostgreSQL版 成为一个空间数据库，能够通过 SQL 语言高效的进行空间数据管理、数量测量和几何拓扑分析。</li>
+<li>TDSQL PostgreSQL版 不仅是一个分布式关系型数据库系统，同时还支持非关系数据类型 JSON。</li>
+<li>支持 Foreign Data Wrappers（FDW）功能，该功能实现了部分的 SQL/MED 规定，允许用户使用普通 SQL 查询来访问位于 PostgreSQL 之外的数据。<br>FDW 功能提供一套编程接口，用户可进行插件式的二次开发，建立外部数据源和数据库间的数据通道。大多数情况下用户可用 oracle_fdw、mysql_fdw、postgres_fdw，非关系型数据库的 redis_fdw、mongodb_fdw，以及大数据的 hive_fdw、hdfs_fdw 等。基于 FDW 功能和已有插件，TDSQL PostgreSQL版 提供强大的数据库联邦能力，通过 TDSQL PostgreSQL版 能够访问已有的多个数据源的数据。</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210704180213145.png" alt="image-20210704180213145"></p>
+<ul>
+<li><p>价格</p>
+<p>​    <img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210704180327148.png" alt="image-20210704180327148"></p>
+</li>
+</ul>
+<h3 id="TiDB"><a href="#TiDB" class="headerlink" title="TiDB "></a><a target="_blank" rel="noopener" href="https://pingcap.com/">TiDB </a></h3><h3 id="VoltDB"><a href="#VoltDB" class="headerlink" title="VoltDB"></a><a target="_blank" rel="noopener" href="https://www.voltdb.com/">VoltDB</a></h3><h3 id="Vitess"><a href="#Vitess" class="headerlink" title="Vitess"></a><a target="_blank" rel="noopener" href="https://vitess.io/zh/">Vitess</a></h3><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210703213038339.png" alt="image-20210703213038339"></p>
+<ul>
+<li><p>Vitess包括使用与本机查询协议兼容的JDBC和Go数据库驱动。自2011年以来，Vitess一直为YouTube所有的数据库提供服务，现在已被许多企业采用并应用于实际生产。</p>
+</li>
+<li><p>Vitess是一个用于部署、扩展和管理大型MySQL实例集群的数据库解决方案。Vitess集Mysql数据库的很多重要特性和NoSQL数据库的可扩展性于一体。它的架构设计使得您可以像在物理机上一样在公共云或私有云架构中有效运行。它结合并扩展了许多重要的MySQL功能，同时兼具NoSQL数据库的可扩展性。</p>
+</li>
+<li><p>一种云原生技术 Cloud-native</p>
+<ul>
+<li>容器化（Containerized）：每个部分（应用程序，进程等）都封装在自己的容器中。这有助于重复性，透明度和资源隔离。</li>
+<li>动态编排（Dynamically orchestrated）：动态的调度和管理容器以优化资源利用。</li>
+<li>面向微服务（Microservices oriented）：应用程序基于微服务架构，显著提高架构演进的灵活性和可维护性。</li>
+</ul>
+</li>
+</ul>
+<p><strong>CNCF案例研究：京东如何使用Vitess管理超大规模数据库</strong></p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1548244">https://cloud.tencent.com/developer/article/1548244</a></p>
+<h1 id="NewSQL，NoSQL与OldSQL的混合部署"><a href="#NewSQL，NoSQL与OldSQL的混合部署" class="headerlink" title="NewSQL，NoSQL与OldSQL的混合部署"></a>NewSQL，NoSQL与OldSQL的混合部署</h1><ul>
+<li>OldSQL+NewSQL</li>
+<li>OldSQL+NoSQL</li>
+<li>NewSQL+NoSQL</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://supmarket.net/xy/771126462">https://supmarket.net/xy/771126462</a></p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2021/06/27/landsat%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3/">Landsat卫星数据管理接口设计文档</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-06-27</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E7%B1%BB%E6%B5%8B%E8%AF%95/">分类测试</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/jQuery/">jQuery</a><span class="article-meta__link">-</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/%E8%A1%A8%E6%A0%BC/">表格</a><span class="article-meta__link">-</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/">表单验证</a></span><div class="content"><h1 id="Landsat卫星数据管理接口设计文档"><a href="#Landsat卫星数据管理接口设计文档" class="headerlink" title="Landsat卫星数据管理接口设计文档"></a>Landsat卫星数据管理接口设计文档</h1><h2 id="1-0-基本设计"><a href="#1-0-基本设计" class="headerlink" title="1.0 基本设计"></a>1.0 基本设计</h2><h3 id="在分支branch-landsat上进行开发"><a href="#在分支branch-landsat上进行开发" class="headerlink" title="在分支branch-landsat上进行开发"></a>在分支branch-landsat上进行开发</h3><p><a target="_blank" rel="noopener" href="https://e.coding.net/Maoshengyan/fuxi.git">https://e.coding.net/Maoshengyan/fuxi.git</a></p>
 <p>以LandsatController为入口，参考TanSatController。</p>
 <h3 id="ElasticSearch-和-tansat数据库对比"><a href="#ElasticSearch-和-tansat数据库对比" class="headerlink" title="ElasticSearch 和 tansat数据库对比"></a>ElasticSearch 和 tansat数据库对比</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">ES中landsat和gf共有属性（标*为共有字段）:</span><br><span class="line">    *id: String，UUID 唯一标识符</span><br><span class="line">    *boundary: String，geojson或者wkt（es的geo_shpae类型只支持这两种格式）</span><br><span class="line">    *satellite: String，卫星种类</span><br><span class="line">    *sensor: String，传感器种类</span><br><span class="line">    *level: String，数据级别</span><br><span class="line">    *cloud: Integer，云量</span><br><span class="line">    *resolution: Integer，空间分辨率</span><br><span class="line">    *provider: String，提供方</span><br><span class="line">    *quick-look: String，影像缩略图</span><br><span class="line">    *start-time: Long，毫秒时间戳，timestamp</span><br><span class="line">    *end-time: Long，毫秒时间戳，timestamp</span><br><span class="line"></span><br><span class="line">landsat特有属性：</span><br><span class="line">	center-point: String，geojson或者wkt（es的geo_shpae类型只支持这两种格式）</span><br><span class="line"></span><br><span class="line">gf特有属性：</span><br><span class="line">    bandCount: 为空</span><br><span class="line">    temporalResolution: 为空</span><br><span class="line">    productMode: 为空</span><br><span class="line">    productType: 为空</span><br><span class="line"></span><br><span class="line">----------------------------------------------------------------------------------------------</span><br><span class="line">fx_tansat数据库字段（标*表示 和fx_ecology共有字段）：</span><br><span class="line">	*id</span><br><span class="line">    satellite</span><br><span class="line">    sensor</span><br><span class="line">    productmode</span><br><span class="line">    level</span><br><span class="line">    spatial_resolution</span><br><span class="line">    temporal_resolution</span><br><span class="line">    producttype</span><br><span class="line">    *name_chn</span><br><span class="line">    *name_en</span><br><span class="line">    *description</span><br><span class="line">    *starttime</span><br><span class="line">    *endtime</span><br><span class="line">    minx</span><br><span class="line">    maxx</span><br><span class="line">    miny</span><br><span class="line">    maxy</span><br><span class="line">    boundary</span><br><span class="line">    *quicklook</span><br><span class="line">    *md5</span><br><span class="line">    *filepath</span><br><span class="line">    *size</span><br><span class="line">    *filename</span><br><span class="line">    *filetype</span><br><span class="line">    *privilege: 私有 or 共有。</span><br><span class="line">    *loaderinfo</span><br><span class="line">    *usedeclaration</span><br><span class="line">    *createtime</span><br><span class="line">    *updatetime</span><br><span class="line">    *owner</span><br><span class="line">    provider</span><br><span class="line">    *other_properties</span><br><span class="line">    geom</span><br><span class="line">    bandcount</span><br></pre></td></tr></table></figure>
 
