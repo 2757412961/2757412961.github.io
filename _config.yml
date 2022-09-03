@@ -10,7 +10,7 @@
 # author  您的名字
 # language  网站使用的语言。对于简体中文用户来说，使用不同的主题可能需要设置成不同的值，请参考你的主题的文档自行设置，常见的有 zh-Hans和 zh-CN。
 # timezone  网站时区。Hexo 默认使用您电脑的时区。请参考 时区列表 进行设置，如 America/New_York, Japan, 和 UTC 。一般的，对于中国大陆地区可以使用 Asia/Shanghai。
-title: Zany' Blog
+title: Zany's Blog
 subtitle: ''
 description: ''
 keywords:
@@ -26,6 +26,18 @@ permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
   trailing_html: true # Set to false to remove trailing '.html' from permalinks
+
+# Menu
+# menu:
+#   home: / || fa fa-home
+#   # about: /about/ || fa fa-user
+#   tags: /tags/ || fa fa-tags
+#   categories: /categories/ || fa fa-th
+#   archives: /archives/ || fa fa-archive
+#   # schedule: /schedule/ || fa fa-calendar
+#   # sitemap: /sitemap.xml || fa fa-sitemap
+#   # commonweal: /404/ || fa fa-heartbeat
+
 
 # Directory
 # source_dir  资源文件夹，这个文件夹用来存放内容。  source
