@@ -1,0 +1,711 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content=""><meta name="keywords" content=""><meta name="author" content="ZJH"><meta name="copyright" content="ZJH"><title>Zany's Blog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  hexoVersion: '5.4.0'
+} </script><meta name="generator" content="Hexo 5.4.0"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">ZJH</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">4</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">7</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">3</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Zany's Blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Zany's Blog</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2021/11/10/%E8%B0%83%E7%A0%94/%E4%BA%91%E5%8E%9F%E7%94%9F-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%A0%94/">云原生概念和技术路线</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-11-10</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/%E8%B0%83%E7%A0%94/">调研</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/">云原生</a><span class="article-meta__link">-</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/%E5%8F%91%E5%B1%95%E8%B6%8B%E5%8A%BF/">发展趋势</a></span><div class="content"><h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><p><a href="#_Toc78190625">目录    1</a><br><a href="#_Toc78190626">一、    调研方向    2</a><br><a href="#_Toc78190627">二、    云原生的概念    3</a><br><a href="#_Toc78190630">2.1    云原生的诞生    3</a><br><a href="#_Toc78190631">2.2    云原生的发展历程    3</a><br><a href="#_Toc78190632">2.3    Pivotal的云原生定义    4</a><br><a href="#_Toc78190633">2.4    Gartner的云原生定义    5</a><br><a href="#_Toc78190634">2.5    CNCF的云原生定义    5</a><br><a href="#_Toc78190635">2.6    云原生定义概括    5</a><br><a href="#_Toc78190636">三、    CNCF    7</a><br><a href="#_Toc78190638">3.1    云原生计算基金会CNCF    7</a><br><a href="#_Toc78190639">3.2    CNCF云原生路线图（Trail Map）    7</a><br><a href="#_Toc78190640">3.3    CNCF云原生全景图（Trail Map）    8</a><br><a href="#_Toc78190641">四、    相关技术及发展趋势    10</a><br><a href="#_Toc78190644">4.1    CNCF云原生全景图详解    10</a><br><a href="#_Toc78190645"><strong>4.1.1</strong>    <strong>供应层 （Provisioning）</strong>    10</a><br><a href="#_Toc78190646"><strong>4.1.2</strong>    <strong>运行时层（Runtime）</strong>    10</a><br><a href="#_Toc78190647"><strong>4.1.3</strong>    <strong>编排和管理层（Orchestration and Management）</strong>    10</a><br><a href="#_Toc78190648"><strong>4.1.4</strong>    <strong>应用定义和开发层 （Application Definition and Developement)</strong>    11</a><br><a href="#_Toc78190649">4.1.5    贯穿所有层的工具    11</a><br><a href="#_Toc78190650"><strong>4.1.6</strong>    <strong>可观察性和分析（Observability and Analysis）</strong>    12</a><br><a href="#_Toc78190651"><strong>4.1.7</strong>    <strong>平台类（Platform）</strong>    12</a><br><a href="#_Toc78190652"><strong>4.1.8</strong>    <strong>小结</strong>    12</a><br><a href="#_Toc78190653">4.2    云原生核心概念    12</a><br><a href="#_Toc78190654">4.2.1    DevOps与CI/CD    13</a><br><a href="#_Toc78190655">4.2.2    微服务、API管理与集成    14</a><br><a href="#_Toc78190656">4.2.3    容器与Docker    14</a><br><a href="#_Toc78190657">4.2.4    Kubernetes与容器编排之战    15</a><br><a href="#_Toc78190658">4.3    发展趋势和未来展望    15</a><br><a href="#_Toc78190659">4.3.1    机遇和挑战    15</a><br><a href="#_Toc78190660">4.3.2    云原生2.0（华为）    18</a><br><a href="#_Toc78190661">4.3.3    未来发展趋势    18</a><br><a href="#_Toc78190662">五、    参考链接    20</a></p>
+<h1 id="1-调研方向"><a href="#1-调研方向" class="headerlink" title="1 调研方向"></a>1 调研方向</h1><p><strong>梳理云原生的概念及相关技术和发展趋势。</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/22069292/1627293312483-b1fe9a40-7739-4fe9-b0ba-95bd5097721a.png#"><br><a target="_blank" rel="noopener" href="https://landscape.cncf.io/">https://landscape.cncf.io/</a><br>图 一.1CNCF云原生全景图（详）</p>
+<h1 id="2-云原生的概念"><a href="#2-云原生的概念" class="headerlink" title="2 云原生的概念"></a>2 云原生的概念</h1><ol>
+<li></li>
+<li><h2 id="2-1-云原生的诞生"><a href="#2-1-云原生的诞生" class="headerlink" title="2.1 云原生的诞生"></a>2.1 云原生的诞生</h2>随着虚拟化技术的成熟和分布式框架的普及，在容器技术、可持续交付、编排系统等开源社区的推动下，以及微服务等开发理念的带动下，应用上云已经是不可逆转的趋势。<br><img src="https://cdn.nlark.com/yuque/0/2021/png/22069292/1627293312952-24b4c269-ad7c-4d09-b4ba-3560ce116dde.png#"><br>图 二.1云原生的发展史，来自CNCF基金会执行董事Dan Kohn<br>云计算的3层划分，即基础设施即服务(IaaS)、平台即服务(PaaS)、软件即服务(SaaS)为云原生提供了技术基础和方向指引，真正的云化不仅仅是基础设施和平台的变化，应用也需要做出改变，<strong>摈弃传统的土方法，在架构设计、开发方式、部署维护等各个阶段和方面都基于云的特点，重新设计，从而建设全新的云化的应用，即云原生应用</strong>。</li>
+</ol>
+<h2 id="2-2-云原生的发展历程"><a href="#2-2-云原生的发展历程" class="headerlink" title="2.2 云原生的发展历程"></a>2.2 云原生的发展历程</h2><p>云原生（Cloud Native）最初来描述云上应用的典型架构与特性，随着容器、kubernetes、Serverless、FaaS技术的演进，<strong>CNCF（Cloud Native Computing Foundation ，云原生计算基金会）</strong>把云原生的概念更广泛地定义为“让应用更有弹性、容错性、观测性的基础技术，让应用更容易部署、管理的基础软件、让应用更容易编写、编排的运行框架等”，希望能够让开发者最好的利用云的资源、产品和交付能力。<br>下边大致梳理一下云原生的发展过程。</p>
+<ul>
+<li>2004 年 ~ 2007 年，Google 已在内部大规模地使用像 Cgroups 这样的容器技术；</li>
+<li>2008 年，Google 将 Cgroups 合并进入了 Linux 内核主干。</li>
+<li>2013 年，Docker 项目正式发布。</li>
+<li>2014 年，Kubernetes 项目也正式发布。</li>
+<li>2015 年，CNCF （Cloud Native Computing Foundation）云原生基金会成立，CNCF 是目前云计算领域最成功的开源基金会之一，是 Kubernetes、 etcd、Envoy 等知名开源项目的托管基金会。</li>
+<li>2017 年，CNCF 达到 170 个成员和 14 个基金项目。</li>
+<li>2018 年，CNCF 成立三周年有了 195 个成员，19 个基金会项目和 11 个孵化项目，如此之快的发展速度在整个云计算领域都是非常罕见的。</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/22069292/1627293313305-f9446b43-e3d3-4f41-be97-be7c5dc122fc.png#"></p>
+<h2 id="2-3-Pivotal的云原生定义"><a href="#2-3-Pivotal的云原生定义" class="headerlink" title="2.3 Pivotal的云原生定义"></a>2.3 Pivotal的云原生定义</h2><p>云原生（Cloud Native）这个概念，是由Pivotal的Matt Stine于2013年首次提出，他还在2015年出版了《Migrating to Cloud-Native Application Architectures（迁移到云原生架构）》一书。<br><strong>Pivotal作为云原生（Cloud Native）应用架构中先驱者和探路者</strong>，于2015年提出了云原生应用。同一年Google主导成立了云原生计算基金会（CNCF），起初CNCF对云原生的定义包含三个方面：应用容器化、面向微服务架构、应用支持容器的编排调度。<br>随着科技的发展，CNCF基金会对云原生进行了重新定义：云原生的代表技术包括<strong>容器、服务网格、微服务、不可变基础设施和声明式API</strong>。<br>上面提到云原生的代表技术包括容器、服务网格（Service Mesh）、微服务、不可变基础设施和声明式API。另外一种比较主流的说法是云原生=微服务+DevOps+持续交付+容器化<br><strong>Pivotal最新官网对云原生概括为4个要点：DevOps+持续交付+微服务+容器。</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/jpeg/22069292/1627293313678-41e6055a-aa27-4b52-9f8d-9f5a657a697b.jpeg#"></p>
+<h2 id="2-4-Gartner的云原生定义"><a href="#2-4-Gartner的云原生定义" class="headerlink" title="2.4 Gartner的云原生定义"></a>2.4 Gartner的云原生定义</h2><p>2019年，Gartner曾经发布报告表示云原生时代已经到来，在未来三年中将有75%的全球化企业将在生产中使用容器化的应用。<br>但Gartner提到云原生的定义尚不明确，却含义丰富。云原生对于不同的人和组织来讲，有着不同的理解。众多顶级技术的铸造者、Matt Stine的东家Pivotal<a href="https://link.zhihu.com/?target=https://tanzu.vmware.com/de/cloud-native">如此</a>定义云原生。<br><strong>“Cloud native is an approach to building and running applications that fully exploit the advantages of the cloud computing model.”–云原生是一种构建和运行充分利用云计算模型优势的应用程序的方法。</strong></p>
+<h2 id="2-5-CNCF的云原生定义"><a href="#2-5-CNCF的云原生定义" class="headerlink" title="2.5 CNCF的云原生定义"></a>2.5 CNCF的云原生定义</h2><p>CNCF云原生计算基金会<a href="https://link.zhihu.com/?target=https://github.com/cncf/toc/blob/master/DEFINITION.md%25EF%25BC%2589">如此</a>定义云原生：<br><strong>“云原生技术有利于各组织在公有云、私有云和混合云等新型动态环境中，构建和运行可弹性扩展的应用。云原生的代表技术包括<strong><strong>容器、服务网格（Service Mesh）、微服务、不可变基础设施和声明式API</strong></strong>。这些技术能够构建容错性好、易于管理和便于观察的松耦合系统。结合可靠的自动化手段，云原生技术使工程师能够轻松地对系统作出频繁和可预测的重大变更。”</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/jpeg/22069292/1627293314003-b21794bd-9807-4fb2-a4ad-5f25193e9b00.jpeg#"></p>
+<h2 id="2-6-云原生定义概括"><a href="#2-6-云原生定义概括" class="headerlink" title="2.6 云原生定义概括"></a>2.6 云原生定义概括</h2><p>云原生是指从云的原生应用角度出发，一整套设计、开发、部署、运行、维护的流程、技术栈以及背后文化理念的统称。<br><strong>云原生简单来说，摈弃传统的土方法，在架构设计、开发方式、部署维护等各个阶段和方面都基于云的特点，重新设计，从而建设全新的云化的应用，即云原生应用</strong>。</p>
+<h1 id="3-CNCF"><a href="#3-CNCF" class="headerlink" title="3 CNCF"></a>3 CNCF</h1><ol>
+<li><h2 id="3-1-云原生计算基金会CNCF"><a href="#3-1-云原生计算基金会CNCF" class="headerlink" title="3.1 云原生计算基金会CNCF"></a>3.1 云原生计算基金会CNCF</h2>提到云原生，就不能不介绍云原生计算基金会CNCF（Cloud Native Computing Foundation）。CNCF于2015 年7月<strong>由Google 牵头成立，隶属于 Linux 基金会，初衷是围绕云原生服务云计算，致力于培育和维护一个厂商中立的开源生态系统</strong>，维护和集成开源技术，支持编排容器化微服务架构应用，通过将最前沿的模式民主化，让这些创新为大众所用。<br>CNCF的使命包括以下三点：<br>• 容器化包装<br>• 通过中心编排系统的动态资源管理<br>• 面向微服务<br>全球主流的科技企业和云计算厂商绝大部分都是CNCF会员，其中不乏多家来自中国的科技巨头。<br><img src="https://cdn.nlark.com/yuque/0/2021/jpeg/22069292/1627293314250-21eebf4a-5c45-4560-8e75-f7a2f17a0c79.jpeg#"><br>图 二.2 CNCF黄金、白金会员<h2 id="3-2-CNCF云原生路线图（Trail-Map）"><a href="#3-2-CNCF云原生路线图（Trail-Map）" class="headerlink" title="3.2 CNCF云原生路线图（Trail Map）"></a>3.2 CNCF云原生路线图（Trail Map）</h2>对于企业在复杂的基础架构之上如何推动云原生应用的更好落地，从而更好地适应环境与业务的发展，CNCF给出了<strong>路线图（Trail Map）</strong>用于对用户在整体上给出指导建议，<strong>共分成十个步骤（容器化；CI/CD；应用定义及编排；监控及分析；服务代理、发现和网格；网络、策略及安全；分布式数据库及存储；流与消息；镜像库与运行时；软件分发）</strong>进行实施，而在不同的步骤都可以结合CNCF全景图（Landscape）中列出的产品或服务进行选择。<br><img src="https://cdn.nlark.com/yuque/0/2021/png/22069292/1627293314859-633d3653-eca0-4841-979b-a935bc00f32f.png#"><h2 id="3-3-CNCF云原生全景图（Trail-Map）"><a href="#3-3-CNCF云原生全景图（Trail-Map）" class="headerlink" title="3.3 CNCF云原生全景图（Trail Map）"></a>3.3 CNCF云原生全景图（Trail Map）</h2><a href="https://link.zhihu.com/?target=https://www.cncf.io/"><strong>CNCF全景图</strong></a><strong>则列举了和云原生相关的产品及服务的完整名单</strong>，这1381个项目共同构成了恢弘庞大的云原生世界。<strong>整个全景图按照功能分为29个模块，分别归属于9种大的类别（应用定义与开发、编排与管理、运行时、配置、平台、可观察性与分析、Serverless、会员和其它）</strong>。值得注意的是其中专门有一种分类是<a href="https://link.zhihu.com/?target=https://landscape.cncf.io/format=card-mode&grouping=headquarters&headquarters=china,hong-kong,taiwan">Cards from China</a>，列举了来自中国的145个项目，其中不乏许多大家耳熟能详的知名项目。<br>从CNCF的理念及野心来看，基于云原生的基础设施正在壮大和蚕食非云的市场，未来极有可能成为整个IT生态事实上的意见领袖和领导者。<br><img src="https://cdn.nlark.com/yuque/0/2021/png/22069292/1627293315531-db288421-d207-441f-a4cc-927b5594b786.png#"></li>
+</ol>
+<h1 id="4-相关技术及发展趋势"><a href="#4-相关技术及发展趋势" class="headerlink" title="4 相关技术及发展趋势"></a>4 相关技术及发展趋势</h1><ol>
+<li></li>
+<li><h2 id="4-1-CNCF云原生全景图详解"><a href="#4-1-CNCF云原生全景图详解" class="headerlink" title="4.1  CNCF云原生全景图详解"></a>4.1  CNCF云原生全景图详解</h2>首先，我们剥离掉所有单个的技术，仅查看类别（如下图）。图中有不同的“行”，像建筑的不同层，每层都有自己的子类别。最底层提供了构建云原生基础设施的工具。往上，你可以开始添加运行和管理应用程序所需的工具，比如运行时和调度层。在最上层，有定义和开发应用程序的工具，比如数据库、镜像构建和 CI/CD 工具（我们将在后文讨论）。<br>云原生全景图始于基础设施，往上的每一层都更接近实际的应用程序。这就是每层代表的意思（后面我们会讨论上图右边的两“列”）。下面我们就从最底层开始，逐层进行解析。<br><img src="https://cdn.nlark.com/yuque/0/2021/png/22069292/1627293315921-c62033a6-4333-4a16-b4e4-da1dc66a5d21.png#"><h3 id="4-1-1-供应层-（Provisioning）"><a href="#4-1-1-供应层-（Provisioning）" class="headerlink" title="4.1.1 供应层 （Provisioning）"></a>4.1.1 <strong>供应层 （Provisioning）</strong></h3></li>
+</ol>
+<p><strong>供应指的是为云原生应用准备标准基础环境所涉及的工具。</strong>它包含了基础设施的创建、管理、配置流程的自动化，以及容器镜像的扫描、签名和存储等。供应层通过提供设置和实施策略，在应用程序和平台中构建身份验证和授权，以及处理密钥分发等等的工具，也拓展到了安全领域。</p>
+<ul>
+<li><p>自动化和部署工具：帮助工程师在无需人工干预情况下即可构建计算环境；</p>
+</li>
+<li><p>容器注册表：存储应用程序的可执行文件；</p>
+</li>
+<li><p>不同安全领域的安全和合规框架；密钥管理解决方案：通过加密确保只有授权的用户才能访问特定的应用程序。</p>
+</li>
+<li><p>这些工具使工程师可以编写基础设施参数，使系统可以按需搭建新环境，确保了一致性和安全性。</p>
+<h3 id="4-1-2-运行时层（Runtime）"><a href="#4-1-2-运行时层（Runtime）" class="headerlink" title="4.1.2 运行时层（Runtime）"></a>4.1.2 <strong>运行时层（Runtime）</strong></h3><p>像很多 IT 术语一样，运行时没有严格的定义，且可以根据语境有不同的用法。狭义上讲，<strong>运行时是特定机器上准备运行应用程序的沙盒——也就是保障应用程序正常运行所需的最低配置</strong>。广义上讲，运行时是运行一个应用程序所需的所有工具。在 CNCF 云原生全景图中，运行时保障了容器化应用程序组件的运行和通信。</p>
+</li>
+<li><p>云原生存储：为容器化应用提供虚拟磁盘或持久化存储；</p>
+</li>
+<li><p>容器运行时：为容器提供隔离、资源和安全；</p>
+</li>
+<li><p>云网络：分布式系统的节点（机器或进程）通过其连接和通信。</p>
+<h3 id="4-1-3-编排和管理层（Orchestration-and-Management）"><a href="#4-1-3-编排和管理层（Orchestration-and-Management）" class="headerlink" title="4.1.3 编排和管理层（Orchestration and Management）"></a>4.1.3 <strong>编排和管理层（Orchestration and Management）</strong></h3><p>一旦按照安全和合规性标准（供应层）自动化基础设施供应，并安装了应用程序运行所需的工具（运行时层），工程师就需要弄清楚如何编排和管理应用程序。<strong>编排和管理层将所有容器化服务（应用程序组件）作为一个群组管理</strong>。这些容器化服务需要相互识别和通信，并需要进行协调。这一层可为云原生应用提供自动化和弹性能力，使云原生应用天然具有可扩展性。</p>
+</li>
+<li><p>编排和调度：部署和管理容器集群，确保它们具有<a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/as?from=10680">弹性伸缩</a>能力，相互之间低耦合，并且可扩展。事实上，编排工具（绝大多数情况下就是 Kubernetes）通过管理容器和操作环境构成了集群；</p>
+</li>
+<li><p>协调和服务发现：使得服务（应用程序组件）之间可以相互定位和通信；</p>
+</li>
+<li><p>远程进程调用（RPC）：使跨节点服务间通信的技术；</p>
+</li>
+<li><p>服务代理：服务间通信的中介。服务代理的唯一目的就是对服务之间的通信进行更多控制，而不会对通信本身添加任何内容。服务代理对下面将提到的服务网格（Service Mesh）至关重要。</p>
+</li>
+<li><p>API 网关：一个抽象层，外部应用可通过 API 网关进行通信；</p>
+</li>
+<li><p>Service Mesh：某种程度上类似于 API 网关，它是应用程序进行通信的专用基础架构层，提供基于策略的内部服务间通信。此外，它还可能包含流量加密、服务发现、应用程序监控等内容。</p>
+<h3 id="4-1-4-应用定义和开发层-（Application-Definition-and-Developement"><a href="#4-1-4-应用定义和开发层-（Application-Definition-and-Developement" class="headerlink" title="4.1.4 应用定义和开发层 （Application Definition and Developement)"></a>4.1.4 <strong>应用定义和开发层 （Application Definition and Developement)</strong></h3><p>我们来到了<strong>最顶层</strong>。应用定义和开发层，顾名思义，聚集了让工程师构建和运行应用程序的工具。上述所有内容都是关于构建可靠、安全的环境，以及提供全部所需的应用程序依赖。</p>
+</li>
+<li><p>数据库：使应用程序能以有序的方式收集数据；</p>
+</li>
+<li><p>流和消息传递：使应用程序能发送和接收消息（事件和流）。它不是网络层，而是让消息成为队列并处理消息的工具；</p>
+</li>
+<li><p>应用程序定义和镜像构建：用于配置、维护和运行容器镜像（应用程序的可执行文件）的服务；</p>
+</li>
+<li><p>持续集成和持续交付（CI/CD）：使开发者可自动测试代码是否与代码库（应用程序的其余部分）兼容。如果团队足够成熟，甚至可以自动部署代码到生产环境。</p>
+<h3 id="4-1-5-贯穿所有层的工具"><a href="#4-1-5-贯穿所有层的工具" class="headerlink" title="4.1.5 贯穿所有层的工具"></a>4.1.5 贯穿所有层的工具</h3><p>接下来我们将进入到云原生全景图右侧贯穿所有层的两列。<strong>可观察性和分析（Observability&amp;analysis）</strong>是监控各层的工具，<strong>平台（Platforms）</strong>则将各层中不同的技术捆绑为一个解决方案。<br><img src="https://cdn.nlark.com/yuque/0/2021/png/22069292/1627293316220-2ac7bde6-6ebf-425e-ba5f-09dfc9ab5202.png#"></p>
+<h3 id="4-1-6-可观察性和分析（Observability-and-Analysis）"><a href="#4-1-6-可观察性和分析（Observability-and-Analysis）" class="headerlink" title="4.1.6 可观察性和分析（Observability and Analysis）"></a>4.1.6 <strong>可观察性和分析（Observability and Analysis）</strong></h3><p>为了限制服务中断并降低解决问题的平均时间（MRRT），你需要监控和分析应用层序的方方面面，以便在出现异常时可立即发现并纠正。复杂环境中容易出现故障，这些工具可快速识别并解决故障，从而降低故障带来的影响。由于这一类别<strong>贯穿并监控各层</strong>，因此它在侧面，而不是嵌入到某一层中。</p>
+</li>
+<li><p>日志工具：收集事件日志（有关进程的信息）；</p>
+</li>
+<li><p>监控方案：收集指标（以数字表示的系统参数，例如 RAM 可用性）；</p>
+</li>
+<li><p>追踪工具：追踪比监控更进了一步，它们监控用户请求的传播，与服务网格相关。</p>
+</li>
+<li><p>混沌工程（Chaos Engineering）：在生产环境中测试软件的工具，可识别缺陷并进行修复，减少其对服务交付的影响。</p>
+<h3 id="4-1-7-平台类（Platform）"><a href="#4-1-7-平台类（Platform）" class="headerlink" title="4.1.7 平台类（Platform）"></a>4.1.7 <strong>平台类（Platform）</strong></h3><p>仅有存储并不能提供应用程序所需的全部功能。你还需要编排工具，容器运行时，服务发现，网络，API 网关等等。平台覆盖多层，将不同的工具组合在一起，以解决更大的问题。<br>配置和微调不同的模块使其安全可靠，并确保它利用的技术都能及时更新、所有漏洞都打了补丁，这并不是一件容易的事情。使用平台时，用户不用额外担心这些细节问题。<br>你可能会注意到，<strong>所有的类别都围绕着 Kubernetes 展开。这是因为 Kubernetes 虽然只是云原生景观图这张拼图中的一块，但它却是云原生技术栈的核心。</strong>顺便说一下，CNCF 刚创建时，Kubernetes 就是其中的第一个种子项目，后来才有了其他项目。</p>
+</li>
+<li><p>Kubernetes 发行版：采用未经修改的开放源代码（尽管有人对其进行了修改），并根据市场需要增加了其他功能；</p>
+</li>
+<li><p>托管的 Kubernetes：类似于 Kubernetes 发行版，但是由提供商托管；</p>
+</li>
+<li><p>Kubernetes 安装程序：自动执行 Kubernetes 的安装和配置过程；</p>
+</li>
+<li><p>PaaS/<a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/tke?from=10680">容器服务</a>：类似于托管的 Kubernetes，但是包含了一套更广泛的应用部署工具（通常是来自云原生景观图）。</p>
+<h3 id="4-1-8-小结"><a href="#4-1-8-小结" class="headerlink" title="4.1.8 小结"></a>4.1.8 <strong>小结</strong></h3></li>
+</ul>
+<p><strong>在每个类别中，针对相同或相似的问题，都有不同的工具可选择。有一些是适用于新现实的预云原生技术，还有一些则是全新的。区别在于它们的实现和设计方法。没有完美的技术符合你的所有需求。大多数情况下，技术受设计和架构选择的限制——始终需要权衡取舍。</strong><br>在选择技术栈时，工程师必须仔细考虑每种能力和需要权衡取舍的地方，以确定最合适的选项。虽然这样会让情况变得更复杂，但在选择应用程序所需的最适合的数据存储、基础设施管理、消息系统等方案时，这样做是最可行的办法。现在，构建一个系统比云原生之前的时代容易多了。如果构建恰当，云原生技术将提供更强大的灵活性。在现如今快速变化的技术生态中，这可能是最重要的能力之一。<br>详细介绍云原生全景图的每一层，见 <a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1851558">https://cloud.tencent.com/developer/article/1851558</a></p>
+<h2 id="4-2-云原生核心概念"><a href="#4-2-云原生核心概念" class="headerlink" title="4.2 云原生核心概念"></a>4.2 云原生核心概念</h2><p>下面的表格里代表性的列举了云原生技术层的几个领域及相关项目。<br><img src="https://cdn.nlark.com/yuque/0/2021/jpeg/22069292/1627293316551-62a4bbc5-2ea4-40ad-b61c-11dab4af559d.jpeg#"></p>
+<h3 id="4-2-1-DevOps与CI-CD"><a href="#4-2-1-DevOps与CI-CD" class="headerlink" title="4.2.1 DevOps与CI/CD"></a>4.2.1 DevOps与CI/CD</h3><p><strong>DevOps</strong><br>DevOps（Development &amp; Operations，开发和运维）是09年提出来的概念，但一直没有太火。直到14年，容器与微服务架构的提出，DevOps才得到了快速的发展。DevOps不单是一个实现自动化的工具链，而是组织、流程与技术的结合。组织上强调全栈团队、团队特性专一、团队自治；技术上打通开发与运维；流程上强调端到端、可视化、灰度升级、A/B测试等。<br><strong>持续集成</strong><br>持续集成（CONTINUOUS INTEGRATION，CI）指的是开发人员频繁的（一天多次的）将所有开发者的工作合并到主干上。这些新提交在最终合并到主线之前，都需要通过编译和自动化测试流进行验证，以保障所有的提交在合并主干之后的质量问题，对可能出现的一些问题进行预警。持续集成的核心在于确保新增的代码能够与原先代码正确的集成。<br><strong>持续交付</strong><br>与持续集成相比，持续交付（CONTINUOUS DELIVERY，CD）的侧重点在于交付，其核心对象不在于代码，而在于可交付的产物。由于持续集成仅仅针对于新旧代码的集成过程执行了一定的测试，其变动到持续交付后还需要一些额外的流程。与持续集成相比较，持续交付添加了测试Test-&gt;模拟Staging-&gt;生产Production的流程，也就是为新增的代码添加了一个保证：确保新增的代码在生产环境中是可用的。<br><strong>持续部署</strong><br>持续部署（CONTINUOUS DEPLOYMENT）指的是通过自动化部署的手段将软件功能频繁的进行交付。与持续交付以及持续集成相比，持续部署强调了通过自动部署的手段，对新的软件功能进行集成。同持续交付相比持续集成的区别体现在对生产的自动化。从开发人员提交代码到编译、测试、部署的全流程不需要人工的干预，完全通过自动化的方式执行。这一策略加快了代码提交到功能上线的速度，保证新的功能能够第一时间部署到生产环境并被使用。</p>
+<h3 id="4-2-2-微服务、API管理与集成"><a href="#4-2-2-微服务、API管理与集成" class="headerlink" title="4.2.2 微服务、API管理与集成"></a>4.2.2 微服务、API管理与集成</h3><p><strong>微服务</strong><br>微服务（Microservice）概念最早出现于2012年，2015年以后受到越来越多的关注，并且逐渐开始流行开来。其中著名技术大神Martin Fowler功不可没，他于2014年发表的一篇博客《Microservices: a definition of this new architectural term》（微服务：新技术架构的定义）清晰的定义和阐述了微服务概念。<br>微服务架构将单体应用，按照业务领域拆分为多个高内聚低耦合的小型服务，每个服务运行在独立进程，由不同的团队开发和维护，服务间采用轻量级通信机制，如HTTP RESTful API，独立自动部署，可以采用不同的语言及存储方式。微服务体现去中心化、天然分布式，是中台战略落地到IT系统的具体实现方式的技术架构，用来解决企业业务快速发展与创新时面临的系统弹性可扩展、敏捷迭代、技术驱动业务创新等难题。<br><strong>API管理与API集成</strong><br>微服务相关的两个具体领域，API管理与API集成。</p>
+<ul>
+<li>全生命周期API管理</li>
+<li>API网关：微服务基础设施</li>
+<li>Kong：API网关独角兽</li>
+<li>RapidAPI：全球最大API市场</li>
+<li>Mulesoft：API集成/iPaaS/API管理领头羊</li>
+</ul>
+<p><strong>微服务2.0：服务网格与Serverless</strong><br>微服务2.0的服务网格（Service Mesh）应运而生。服务网格这个词最早由著名开源服务网格项目Linkerd所在的Buoyant公司CEO William Morgan所提出。按照他的定义，服务网格是一个软件基础设施层，用于控制和监视微服务应用程序中的内部、服务到服务的流量。<br>Serverless是一种构建和管理基于微服务架构的完整流程，它与传统架构的不同之处在于，完全由第三方管理，由事件触发，存在于无状态、暂存的计算容器内。Serverless相关的重要概念包括FaaS（Functions as a Service，函数即服务）。开发者把函数上传到云厂商的FaaS平台，函数只在被请求时才实例化运行，然后被销毁，其它时候不占用任何服务器资源，完全实现按需使用，大幅度降低了服务器占用和成本。</p>
+<h3 id="4-2-3-容器与Docker"><a href="#4-2-3-容器与Docker" class="headerlink" title="4.2.3 容器与Docker"></a>4.2.3 容器与Docker</h3><p><strong>虚拟化与容器</strong><br>虚拟机虽然可以隔离出很多“子电脑”，但占用空间大，启动慢，虚拟机软件可能还要花钱（例如VMware）。而容器技术恰好没有这些缺点，它不需要虚拟出整个操作系统，只需要虚拟一个小规模的环境（类似“沙箱”），启动时间很快，几秒钟就能完成。而且，它对资源的利用率很高（一台主机可以同时运行几千个Docker容器）。此外它占的空间很小，虚拟机一般要几GB到几十GB的空间，而容器只需要MB级甚至KB级。虚拟机和以Docker为代表的容器都是虚拟化技术，不过容器属于轻量级的虚拟化。<br><strong>Docker</strong><br>而Docker与传统的Linux容器也并不完全一致。Docker技术最初是建立在LXC技术之上的，大多数人都把LXC技术与传统的Linux容器联系在一起，尽管后来它已经摆脱了这种依赖性。LXC作为轻量级虚拟化很有用，但它没有很好的开发人员或用户体验。Docker技术带来的不仅仅是运行容器的能力，它还简化了创建和构建容器、加载镜像和镜像版本控制等过程。传统的Linux容器使用可以管理多个进程的init系统，这意味着整个应用可以作为一个整体运行。Docker鼓励将应用程序分解为它们各自的进程，并提供了实现这一点的工具，这种粒度有不少优点。</p>
+<h3 id="4-2-4-Kubernetes与容器编排之战"><a href="#4-2-4-Kubernetes与容器编排之战" class="headerlink" title="4.2.4 Kubernetes与容器编排之战"></a>4.2.4 Kubernetes与容器编排之战</h3><p><strong>容器编排与Kubernetes</strong><br>在单机上运行容器，无法发挥它的最大效能，只有形成集群，才能最大程度发挥容器的良好隔离、资源分配与编排管理的优势。所以企业需要一套管理系统，对Docker及容器进行更高级更灵活的管理，按照用户的意愿和整个系统的规则，完全自动化的处理好容器之间的各种关系，这叫做编排（Orchestration）。<br>Kubernetes是基于Docker的开源容器集群管理系统，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等整一套功能，因为容器本身可移植，所以Kubernetes容器集群能跑在私有云、公有云或者混合云上。</p>
+<h2 id="4-3-发展趋势和未来展望"><a href="#4-3-发展趋势和未来展望" class="headerlink" title="4.3 发展趋势和未来展望"></a>4.3 发展趋势和未来展望</h2><h3 id="4-3-1-机遇和挑战"><a href="#4-3-1-机遇和挑战" class="headerlink" title="4.3.1 机遇和挑战"></a>4.3.1 机遇和挑战</h3><p><strong>机遇</strong><br>每一次IT产业架构的变革都会带来巨大的机遇和行业洗牌的挑战。过去的三四十年间，IT业经历了多次重大的变革，包括20世纪七八十年代从大型机向小型机的转移、九十年代C/S架构的普及，以及21世纪初互联网的兴起，先后造就了IBM、思科、惠普、Oracle、EMC、SAP等巨头企业。<br>历次IT技术革命还有个共同特点：无论原有的基础软硬件公司此前有多么牢不可破的垄断地位，一旦不能符合新的IT技术变革的趋势，洗牌在所难免。<br>而云原生是一种理念和架构，用于以针对云环境优化的方式组装上述所有基于云的组件。因此云原生也是一个目的地：对于那些希望实现基础设施和流程现代化，甚至组织文化现代化的企业来说，最终的目标是仔细选择最适合其具体情况的云技术。<br><strong>发展趋势</strong><br><strong>从统计数据和发展趋势来看，云原生被接受的程度和普及速度正在大大加快</strong>，例如下图显示，自从2016年以来容器的使用量每年都在快速上升。IDC预计，到2022年90%的应用程序将采用微服务架构和第三方代码，35%的生产应用程序将诞生于云端。由于容器和敏捷方法的采用，预计2018-2023年间将诞生5亿个新应用程序。由数字化转型，以及接受和采用新技术的需求驱动，云原生将更深入地渗透到大型企业组织中。这意味着云原生技术和方法可能会遵循敏捷和DevOps的模式，越来越多地吸引更多的利益相关者，包括管理者和业务线领导人，在未来几年内覆盖一半或更多的组织。<br><img src="https://cdn.nlark.com/yuque/0/2021/png/22069292/1627293316953-800bd837-c741-4c82-9c91-214b63f33740.png#"><br>    <strong>云原生安全领域</strong><br>据CNCF统计，采用容器技术的挑战中，开发团队面临的文化挑战、安全性、复杂性、就绪性和监控分别排在前五位。<br><img src="https://cdn.nlark.com/yuque/0/2021/jpeg/22069292/1627293317288-dfbe013f-8814-470e-8181-ea9c4ba02ae8.jpeg#"><br>在云原生架构中，安全问题显得尤其突出的原因有以下几点：<br>1、快速迁移到云原生架构对企业安全状况和运营产生了深远的影响。在容器、微服务和编排框架的世界中，以持久“状态”运行在“服务器”上的“应用程序”的概念已经过时。现在，该应用程序或服务是一个分布式系统，由多个组件组成，这些组件运行在数量可变的节点上，处于几乎恒定的变化状态。依赖于机器隔离和可预测的系统状态的传统安全控制是无效的。对服务到服务的通信视而不见的安全策略以及缺乏水平可扩展的控件，根本无法跟上当今微服务应用程序的步伐。<br>2、随着企业将工作负载从数据中心转移到AWS、Google Cloud Platform和Microsoft Azure，它们已经改变了购买安全性的方式。他们需要独立于平台的安全工具，这样就不会被绑定到特定的云平台中。<br>3、复杂系统可以创建大量的警报和事件日志，这会是一项惊人的任务。安全项目被堆积如山的繁忙工作所淹没，分析师们疲惫不堪。随着分析师对惊人的数据量变得不敏感，真正的问题就从他们的手指间溜走了。<br>4、DevOps是一种协作方法，它将开发人员和IT操作统一起来，以加快应用程序的构建、测试和部署，它也影响了IT安全。当开发人员可以直接将他们的应用程序部署到生产服务器上，因为业务敏捷性需要它时，他们就不能停下来找出安全问题。DevOps提供了一种完全不同的安全方式，安全自动化有很多机会。<br><strong>和云原生安全相关的初创企业</strong><br><strong>1、Capsule8（B轮）</strong><br><strong>2、Aqua Security（C轮）</strong><br><strong>3、Twistlock（被收购）</strong></p>
+<h3 id="4-3-2-云原生2-0（华为）"><a href="#4-3-2-云原生2-0（华为）" class="headerlink" title="4.3.2 云原生2.0（华为）"></a>4.3.2 云原生2.0（华为）</h3><p><strong>随着云原生技术的成熟和市场需求的升级，云计算的发展已步入新的阶段。云原生2.0时代已经到来</strong><br>从技术角度看，以容器、微服务以及动态编排为代表的云原生技术蓬勃发展，成为赋能业务创新的重要推动力，并已经应用到企业核心业务。从市场角度看，云原生技术已在金融、制造、互联网等多个行业得到广泛验证，支持的业务场景也愈加丰富，行业生态日渐繁荣。<br><strong>云原生2.0，企业云化从“ON Cloud”走向“IN Cloud“，生于云、长于云且立而不破</strong><br>企业新生能力基于云原生构建，使其生于云；应用、数据和AI的全生命周期云上完成，使其长于云；同时，既有能力通过立而不破的方式继承下来，并与新生能力有机协同。<br><strong>智能升级新阶段，赋能“新云原生企业”</strong><br>云原生2.0是企业智能升级的新阶段，企业云化从“ON Cloud”走向“IN Cloud“，成为”新云原生企业“。新生能力与既有能力立而不破、有机协同，实现资源高效、应用敏捷、业务智能，安全可信。<br><strong>云原生 IN 基础设施</strong><br>华为云基于“云原生 IN 基础设施”的理念，打造了以应用为中心的云原生基础设施。<br>目前，华为云云原生基础设施包含了云容器引擎CCE、云容器实例CCI、容器镜像服务SWR、智能边缘平台IEF、多云容器平台MCP、应用编排服务AOS等8大核心容器产品，并以此为基础构建了云原生裸金属、云原生高性能计算、云原生混合云、云原生边缘计算四大解决方案，满足企业业务智能升级过程中，对高性能基础设施、分布式业务架构、完善的云原生应用生态的诉求。<br><img src="https://cdn.nlark.com/yuque/0/2021/png/22069292/1627293317693-db100538-f8a6-4676-9b8f-68eaf25b8f20.png#"></p>
+<h3 id="4-3-3-未来发展趋势"><a href="#4-3-3-未来发展趋势" class="headerlink" title="4.3.3 未来发展趋势"></a>4.3.3 未来发展趋势</h3><p><strong>1、运维继续下沉，服务网格将成为主流，Serverless逐步推广</strong><br>云计算的一个发展方向就是运维下沉，将和业务无关的管理功能和运维工作尽量下沉到基础设施中，应用可以聚焦在业务能力的开发和运营。这个趋势演化的过程，影响了云计算的发展方向。从一开始的虚拟化，到IaaS，到PaaS都是将应用系统的部分运维职责交给平台运维的过程。<br><strong>2、软硬结合，解决虚拟化性能问题的利器</strong><br>随着云计算的发展，虚拟化技术越来越多的被使用，从计算虚拟化到存储虚拟化到网络虚拟化。虚拟化技术带来了很多的好处，虚拟化是基础设施服务化的基础，通过虚拟化，可以实现基础设施即代码，大大提升了资源的可管理性和自动化程度。但是虚拟化带来了另外一个问题，就是性能的损耗和软件进程之间的相互影响问题。<br>为了解决这两个问题，目前一个解决思路就是软硬结合，讲云平台的管理进程，如调度管理，网络的虚拟交换机，存储的虚拟存储网关从操作系统进程中剥离出来，让这些进程跑在专门设计的服务器板卡上，这些板卡专门设计的，通常含有定制化的芯片（FPGA），可以进行编程，从而可以保持虚拟化话的优势的同时，使的管理进程和业务进程隔离，避免相互影响；同时由于通过定制芯片（如FPGA）来处理，性能会有很大提升，大大降低了虚拟化的损耗。<br><strong>3、容器虚拟机进一步融合</strong><br>容器和虚拟机的优势和劣势，从容器技术诞生的那天起就一直在争论。容器轻量化，良好的封装能力和部署简便的特点，特别是在Kubernetes出现后，大有取代虚拟机的气势。但是在处理重应用（如关系型数据库，大数据等）的这点上，容器技术显得有些力不从心。在这种情况下，如何实现容器技术和虚拟化技术的融合，发挥两者的长处，成为云计算的一个发展课题。目前的技术主要有三种，一种是容器虚拟机的混布；一种是轻量级虚拟机；最后是安全容器。<br><strong>4、运维：可编程的Linux内核</strong><br>由于引入了可扩展的Berkeley数据包过滤器（Extended Berkeley Packet Filter，eBPF），Linux内核在<a target="_blank" rel="noopener" href="https://thenewstack.io/how-ebpf-turns-linux-into-a-programmable-kernel/">使用方式上有了重大变化</a>。<br><strong>5、开发：Rust逐渐替代C++</strong><br>数十年来，我们的操作系统和其他重要的基础架构软件一直使用C或C ++编写，但是，如今，越来越多的系统架构师得出的结论是，由于用不安全的方式来处理内存和其他因素，要完全安全地保护用这些语言编写的程序从根本上来说是困难的。<br>所以最近，越来越多的拥护者选择了新的语言<a target="_blank" rel="noopener" href="https://www.rust-lang.org/">Rust</a>，它不仅具有C/C ++的速度，而且还具有编写安全的应用程序所必需的组件。在2020年的AllThingsOpen虚拟会议上，<a target="_blank" rel="noopener" href="https://www.microsoft.com/">微软</a>云开发倡导者Ryan Levick <a target="_blank" rel="noopener" href="https://youtu.be/NQBVUjdkLAA">解释了</a>为什么Microsoft逐渐改用Rust来构建其基础结构软件，而不再使用C/C ++。并鼓励其他软件行业巨头也考虑相同的问题。</p>
+<h1 id="5-参考链接"><a href="#5-参考链接" class="headerlink" title="5 参考链接"></a>5 参考链接</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/722745">https://developer.aliyun.com/article/722745</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/150190166">https://zhuanlan.zhihu.com/p/150190166</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/390567373">https://zhuanlan.zhihu.com/p/390567373</a></li>
+<li><a target="_blank" rel="noopener" href="https://support.huaweicloud.com/productdesc-cce/cce_productdesc_0009.html">https://support.huaweicloud.com/productdesc-cce/cce_productdesc_0009.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://landscape.cncf.io/">https://landscape.cncf.io/</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/722745">https://developer.aliyun.com/article/722745</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/149658062">https://zhuanlan.zhihu.com/p/149658062</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1851558">https://cloud.tencent.com/developer/article/1851558</a></li>
+<li></li>
+</ol>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2021/08/08/%E6%95%B0%E6%8D%AE%E5%BA%93/NewSQL%E4%B8%BB%E6%B5%81%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AF%B9%E6%AF%94-GIS%E7%AF%87/">NewSQL主流数据库对比——GIS篇</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-08-08</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/GIS/">GIS</a><span class="article-meta__link">-</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/NewSQL/">NewSQL</a></span><div class="content"><h1 id="NewSQL主流数据库对比——GIS篇"><a href="#NewSQL主流数据库对比——GIS篇" class="headerlink" title="NewSQL主流数据库对比——GIS篇"></a>NewSQL主流数据库对比——GIS篇</h1><p>[TOC]</p>
+<h2 id="NewSQL-简介"><a href="#NewSQL-简介" class="headerlink" title="NewSQL 简介"></a>NewSQL 简介</h2><p>NewSQL 是一种新方式关系数据库，意在整合 RDBMS 所提供的ACID事务特性，以及 NoSQL 提供的横向可扩展性。</p>
+<p>大多数 NewSQL 数据库做了全新的设计，或是主要聚焦于 OLTP，或是采用了 OLTP/OLAP 的混合架构载的全新设计。</p>
+<ul>
+<li>一致性：相对于可用性而言，NewSQL 更重视一致性，即侧重 CAP 中的 C 和 P。</li>
+<li>内存数据库：一些 NewSQL 解决方案使用内存（RAM）作为存储介质。</li>
+<li>HTAP：HTAP（混合事务 / 分析处理，Hybrid Transactional/Analytical Processing）</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/1166059074.png" alt="1166059074"></p>
+<h2 id="！！！对比分析"><a href="#！！！对比分析" class="headerlink" title="！！！对比分析"></a>！！！对比分析</h2><table>
+<thead>
+<tr>
+<th>NewSQL</th>
+<th>开发商</th>
+<th>是否开源</th>
+<th>特性</th>
+<th>分布式</th>
+<th>空间支持</th>
+<th>社区活跃度</th>
+<th>拓展</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Spanner</td>
+<td>谷歌</td>
+<td>×</td>
+<td>存储的数据是Key-value</td>
+<td>水平扩展</td>
+<td>×</td>
+<td>Google社区</td>
+<td></td>
+</tr>
+<tr>
+<td>OceanBase</td>
+<td>阿里</td>
+<td>开源</td>
+<td>MySQL/ORACLE兼容、增量数据放在内存、基线数据放在SSD盘、读写分</td>
+<td>线性扩展</td>
+<td>×</td>
+<td>阿里社区、博客</td>
+<td></td>
+</tr>
+<tr>
+<td>TDSQL</td>
+<td>腾讯</td>
+<td>×</td>
+<td>提供两种版本MySQL和PostgreSQL</td>
+<td>水平扩展</td>
+<td>PostGIS</td>
+<td>腾讯社区</td>
+<td></td>
+</tr>
+<tr>
+<td>Azure Cosmos DB</td>
+<td>微软</td>
+<td>商业（2RMB/月）</td>
+<td>支持键值、列存储、文档和图数据库，并支持通过 SQL 和 NoSQL API 提供数据。</td>
+<td>水平扩展</td>
+<td>支持</td>
+<td>微软社区</td>
+<td></td>
+</tr>
+<tr>
+<td>TiDB</td>
+<td>PingCAP</td>
+<td>开源</td>
+<td>兼容 MySQL、TiDB、TiKV计算层与存储层的分离解耦架构</td>
+<td>水平扩展</td>
+<td>×</td>
+<td>社区、博客</td>
+<td>TiSpark</td>
+</tr>
+<tr>
+<td>SequoiaDB巨杉数据库</td>
+<td>巨杉数据库</td>
+<td>开源</td>
+<td>国产、金融级分布式关系型数据库</td>
+<td>集群</td>
+<td>×</td>
+<td>社区、博客</td>
+<td></td>
+</tr>
+<tr>
+<td>CockroachDB蟑螂数据库</td>
+<td>蟑螂实验室</td>
+<td>商业来源许可证（BSL）</td>
+<td>支持PostgreSQL、去中心化架构、支持kuberneter编排</td>
+<td>水平扩展</td>
+<td>部分兼容PostGIS</td>
+<td>Cockroach Labs 博客</td>
+<td></td>
+</tr>
+<tr>
+<td>Citus</td>
+<td>微软并购</td>
+<td>GPL v3</td>
+<td>开源 PostgreSQL <strong>扩展</strong>、并行处理、微软云、简单易用</td>
+<td>支持分布式 PostgreSQL</td>
+<td>PostGIS</td>
+<td>论坛、博客</td>
+<td></td>
+</tr>
+<tr>
+<td>ClustrixDB</td>
+<td>MariaDB 2018年收购</td>
+<td>收费</td>
+<td>类MYSQL</td>
+<td>分布式</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>MemSQL/SingleStore</td>
+<td>前 Facebook 工程师创办</td>
+<td>开源的社区版</td>
+<td><strong>内存数据库</strong>、兼容MySQL、MySQL InnoDB</td>
+<td>分布式</td>
+<td>地理空间和全文搜索</td>
+<td><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210704154249267.png" alt="image-20210704154249267">社区论坛</td>
+<td></td>
+</tr>
+<tr>
+<td>VoltDB</td>
+<td>Postgres和Ingres联合</td>
+<td>GPLv3、AGPL</td>
+<td><strong>内存数据库</strong>、采用类MPP架构、并行的单线程处理方式确保数据一致性</td>
+<td>水平扩展</td>
+<td>仅支持简单空间查询</td>
+<td>博客</td>
+<td></td>
+</tr>
+<tr>
+<td>Vitess</td>
+<td>CNCF</td>
+<td>开源</td>
+<td>部署，扩展和管理MySQL实例、支持kuberneter编排</td>
+<td>无限水平扩展</td>
+<td>MySQL Spatial</td>
+<td>博客、社区</td>
+<td></td>
+</tr>
+<tr>
+<td>NuoDB</td>
+<td>NuoDB</td>
+<td>×</td>
+<td>去集中化、唯一一个具有专利的、弹性可伸缩的SQL关系数据库</td>
+<td></td>
+<td></td>
+<td>文档都是视频</td>
+<td></td>
+</tr>
+<tr>
+<td>Altibase</td>
+<td></td>
+<td></td>
+<td>Hybrid DBMS</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>YugabyteDB</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>GenieDB</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ScaleDB</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="Azure-Cosmos-DB"><a href="#Azure-Cosmos-DB" class="headerlink" title="Azure Cosmos DB"></a><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/cosmos-db/use-cases">Azure Cosmos DB</a></h3><blockquote>
+<p>Azure Cosmos DB 是一种用于现代应用开发的完全托管式 NoSQL 数据库服务。 获得有保证的个位数毫秒级响应时间和 由 SLA 支持的 99.999% 可用性、 自动、即时的可伸缩性 ，以及用于 MongoDB 和 Cassandra 的开放源代码 API。</p>
+<p>使用 Azure Synapse Link for Azure Cosmos DB 通过非 ETL 分析从实时数据中获取见解。</p>
+</blockquote>
+<h4 id="NoSQL-数据库与关系数据库之间的差别"><a href="#NoSQL-数据库与关系数据库之间的差别" class="headerlink" title="NoSQL 数据库与关系数据库之间的差别"></a>NoSQL 数据库与关系数据库之间的差别</h4><ul>
+<li>SQL API</li>
+<li>Cassandra API<ul>
+<li>Azure Cosmos DB Cassandra API 可以充当为 Apache Cassandra 编写的应用的<strong>列族数据存储</strong>。</li>
+<li>通过 Cassandra API 可以使用 Cassandra 查询语言 (CQL)、基于 Cassandra 的工具（如 cqlsh）和熟悉的 Cassandra 客户端驱动程序与 Azure Cosmos DB 中存储的数据进行交互。</li>
+</ul>
+</li>
+<li>Gremlin API<ul>
+<li>Azure Cosmos DB 通过 Gremlin API 在为任何规模设计的完全托管数据库服务中提供<strong>图形数据库</strong>服务。</li>
+<li> 使用 Gremlin 查询语言。</li>
+</ul>
+</li>
+<li>表 API<ul>
+<li>类似于CloudTable。</li>
+<li>Azure Table Storage  提供的表 API 适用于为 Azure <strong>表存储</strong>。</li>
+<li>表 API 包含可用于 .NET、Java、Python 和 Node.js 的客户端 SDK。</li>
+</ul>
+</li>
+<li>Azure Cosmos DB API for MongoDB<ul>
+<li>通过用于 MongoDB 的 Azure Cosmos DB API，可以轻松使用 Cosmos DB，就像它是 MongoDB <strong>文档数据库</strong>一样。 </li>
+</ul>
+</li>
+</ul>
+<h4 id="Azure-Cosmos-DB-中的地理空间和-GeoJSON-位置数据"><a href="#Azure-Cosmos-DB-中的地理空间和-GeoJSON-位置数据" class="headerlink" title="Azure Cosmos DB 中的地理空间和 GeoJSON 位置数据"></a>Azure Cosmos DB 中的地理空间和 GeoJSON 位置数据</h4><ul>
+<li><p>支持两种空间数据类型：geometry 数据类型和 geography 数据类型 。</p>
+<ul>
+<li>geometry 类型在欧几里得（平面）坐标系统中表示数据</li>
+<li><strong>Geography</strong> 类型表示圆形地球坐标系中的数据。</li>
+</ul>
+</li>
+<li><p>支持的空间数据类型</p>
+<ul>
+<li>Point</li>
+<li>LineString</li>
+<li>Polygon</li>
+<li>MultiPolygon</li>
+</ul>
+</li>
+<li><p>地理空间数据查询</p>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210704152452747.png" alt="image-20210704152452747"></p>
+</li>
+<li><p>地理空间数据编制索引</p>
+<ul>
+<li>简单来说，测地坐标的几何图形会投影在 2D 平面上，并使用 <strong>四叉树</strong> 以渐进方式划分成单元格。 这些单元格会根据 <strong>Hilbert 空间填充曲线</strong> 内的单元格位置映射到 1D，并保留点的位置。 </li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/cosmos-db/sql-query-geospatial-intro">https://docs.microsoft.com/zh-cn/azure/cosmos-db/sql-query-geospatial-intro</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/cosmos-db/sql-query-geospatial-query">https://docs.microsoft.com/zh-cn/azure/cosmos-db/sql-query-geospatial-query</a></p>
+</li>
+</ul>
+<h3 id="Altibase（商用收费）"><a href="#Altibase（商用收费）" class="headerlink" title="Altibase（商用收费）"></a><a target="_blank" rel="noopener" href="http://cn.altibase.com/">Altibase（商用收费）</a></h3><h3 id="CockroachDB"><a href="#CockroachDB" class="headerlink" title="CockroachDB"></a><a target="_blank" rel="noopener" href="https://www.cockroachlabs.com/">CockroachDB</a></h3><blockquote>
+<p>CockroachDB（<a target="_blank" rel="noopener" href="https://www.cockroachlabs.com)是google备受瞩目的spanner的开源模仿,承诺提供一种高存活性、强一致性,可横向扩展的sql数据库.主要的设计目标是全球一致性和可靠性,从蟑螂(cockroach)的命名上是就能看出这点/">https://www.cockroachlabs.com）是Google备受瞩目的Spanner的开源模仿，承诺提供一种高存活性、强一致性，可横向扩展的SQL数据库。主要的设计目标是全球一致性和可靠性，从蟑螂（cockroach）的命名上是就能看出这点</a> [ 打不死的小强：) ]。Cockroach节点是均衡的，其设计目标是同质部署（只有一个二进制包）且最小配置。CockroachDB的扩展非常容易，只要一行命令，秒级进行。</p>
+</blockquote>
+<ul>
+<li>PostgreSQL生态中的很多工具、程序和应用能够适用于CockroachDB(不用修改或少量修改)。</li>
+<li>虽然CockroachDB支持PostgreSQL语法和驱动程序，但它不是完全兼容PostgreSQL。</li>
+<li>2020年的20.2版本开始支持<a target="_blank" rel="noopener" href="https://www.cockroachlabs.com/blog/spatial-data/">geospatial</a>，但未完全兼容PostGIS。</li>
+<li>采用分层架构，最顶层是SQL层。SQL层构建于分布式KV存储之上</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/20190413215412940.png" alt="img"></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_34924156/article/details/89236693">https://blog.csdn.net/qq_34924156/article/details/89236693</a></p>
+<ul>
+<li>用户手册：<a target="_blank" rel="noopener" href="http://doc.cockroachchina.baidu.com/">http://doc.cockroachchina.baidu.com/</a></li>
+<li>社区：<a target="_blank" rel="noopener" href="https://www.cockroachlabs.com/blog/">https://www.cockroachlabs.com/blog/</a></li>
+</ul>
+<h3 id="Citus"><a href="#Citus" class="headerlink" title="Citus"></a><a target="_blank" rel="noopener" href="http://citusdb.cn/">Citus</a></h3><blockquote>
+<p>CitusDB采用PostgreSQL的插件形式(not a fork)，即享受PostgreSQL的强大支持，又同时拥有分布式数据库能力</p>
+<p>CitusDB 与 HDFS 的分布式非常相似，在 Master 上存储元数据，Work 节点存储分片，同时 1 个分片至少要存储在 2 个 Work 节点（可配置更多）上保障其可用性。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210703221436470.png" alt="image-20210703221436470"></p>
+<ul>
+<li>苏宁citus分布式数据库应用实践</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://itdks.su.bcebos.com/844d50a9b73f4d8283d746cbff23b5e9.pdf">https://itdks.su.bcebos.com/844d50a9b73f4d8283d746cbff23b5e9.pdf</a></p>
+<ul>
+<li>利用 citus 支持地理大数据。全世界的点状POI，数据量级已达亿级别，存储在单一的PostgreSQL数据表中，若查询涉及到全表扫描，性能会差很多</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.giserdqy.com/secdev/openlayers/21870/">https://www.giserdqy.com/secdev/openlayers/21870/</a></p>
+<ul>
+<li><code>Citus</code>是一个PostgreSQL的扩展，类似于PostGIS、pgRouting，它主要的作用是将一张大表进行水平分表，每个分表称为“分片（Shard）”，按照一定的规则分布(?)到多台机器上，并且将查询分布到不同节点并行执行，最后汇总结果。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/TUIK%7ES14Z%606A_I%60E%7BFPYT6L.png" alt="img"></p>
+<ul>
+<li>论坛：<a target="_blank" rel="noopener" href="http://citusdb.cn/?post_type=forum">http://citusdb.cn/?post_type=forum</a></li>
+<li>博客：<a target="_blank" rel="noopener" href="http://citusdb.cn/?cat=13">http://citusdb.cn/?cat=13</a></li>
+<li>手册：<a target="_blank" rel="noopener" href="http://docs.citusdata.com/en/v10.0/">http://docs.citusdata.com/en/v10.0/</a></li>
+</ul>
+<h3 id="ClustrixDB-收费"><a href="#ClustrixDB-收费" class="headerlink" title="ClustrixDB(收费)"></a><a target="_blank" rel="noopener" href="https://mariadb.com/products/clustrixdb/">ClustrixDB(收费)</a></h3><h3 id="MemSQL"><a href="#MemSQL" class="headerlink" title="MemSQL"></a><a target="_blank" rel="noopener" href="https://www.memsql.com/software/">MemSQL</a></h3><blockquote>
+<p>由前 Facebook 工程师创办的 MemSQL，号称世界上最快的分布式关系型数据库，兼容 MySQL 但快30倍，能实现每秒 150 万次事务。原理是仅用内存并将 SQL 预编译为C++。</p>
+</blockquote>
+<ul>
+<li>MemSQL is Now SingleStore</li>
+<li>2018年，MemSQL 搞了个炸裂消息，<a href="https://link.zhihu.com/?target=https://www.memsql.com/blog/memsql67/">宣布</a> MemSQL 6.7 可以免费用于生产环境，没有功能限制，磁盘容量无限制，只限制整个 MemSQL 集群总内存使用不得超过 128 GB，如果做双机备份，那么就是每台机器 64 GB，已经很够用了。</li>
+<li>使用ACID事务每秒接收数百万个事件，同时以关系SQL、JSON、地理空间和全文搜索格式分析数十亿行数据。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210704150733553.png" alt="image-20210704150733553"></p>
+<ul>
+<li><p>地理空间支持</p>
+<ul>
+<li><p>SingleStore使用了一个类似于googleearth的球形模型。它假设一个半径为6367444.66米的完美球形地球。</p>
+</li>
+<li><p>地理数据类型</p>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210704151619023.png" alt="image-20210704151619023"></p>
+</li>
+<li><p>空间查询</p>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210704151741992.png" alt="image-20210704151741992"></p>
+</li>
+<li><p>GEOJSON。SingleStore 没有本机 GeoJSON 支持。但是，我们有通用的 JSON 支持以及计算列。结合这些功能，您可以使用 SingleStore 的内置 JSON 类型和 GEOGRAPHYPOINT 类型导入 GeoJSON 数据的子集。</p>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210704151949000.png" alt="image-20210704151949000"></p>
+</li>
+</ul>
+</li>
+<li><p>社区网址：<a target="_blank" rel="noopener" href="https://www.singlestore.com/community-hub/">https://www.singlestore.com/community-hub/</a></p>
+</li>
+<li><p>资源手册：<a target="_blank" rel="noopener" href="https://www.singlestore.com/resources/">https://www.singlestore.com/resources/</a></p>
+</li>
+</ul>
+<h3 id="NuoDB"><a href="#NuoDB" class="headerlink" title="NuoDB"></a><a target="_blank" rel="noopener" href="https://nuodb.com/">NuoDB</a></h3><blockquote>
+<p>NuoDB 是newsql数据库的典型代表之一，同时也是世界上首个也是唯一一个具有专利的、弹性可伸缩的SQL关系数据库，主要用于去集中化的计算资源。</p>
+</blockquote>
+<h3 id="OceanBase"><a href="#OceanBase" class="headerlink" title="OceanBase"></a><a target="_blank" rel="noopener" href="https://open.oceanbase.com/">OceanBase</a></h3><blockquote>
+<p>OceanBase 社区版是一款开源分布式 HTAP（Hybrid Transactional/Analytical Processing）数据库管理系统，具有原生分布式架构，支持金融级高可用、透明水平扩展、分布式事务、多租户和语法兼容等企业级特性。</p>
+</blockquote>
+<blockquote>
+<p>2020 年 5 月，OceanBase 以 7.07亿 tpmC 的在线事务处理性能，打破了 OceanBase 自己在 2019 年创造的 6088万 tpmC 的 TPC-C 世界纪录。截止至目前，OceanBase是第一个也是唯一一个上榜的中国数据库。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210704164251964.png" alt="image-20210704164251964"></p>
+<ul>
+<li><p>版本选择</p>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210704164312198.png" alt="image-20210704164312198"></p>
+</li>
+<li><p>产品优势</p>
+<ul>
+<li><strong>高性能</strong>：OceanBase采用了读写分离的架构，把数据分为基线数据和增量数据。其中增量数据放在内存里（MemTable），基线数据放在SSD盘（SSTable）。对数据的修改都是增量数据，只写内存。所以DML是完全的内存操作，性能非常高。</li>
+<li><strong>低成本</strong>：OceanBase通过数据编码压缩技术实现高压缩。数据编码是基于数据库关系表中不同字段的值域和类型信息，所产生的一系列的编码方式，它比通用的压缩算法更懂数据，从而能够实现更高的压缩效率。</li>
+<li><strong>高兼容</strong>：兼容常用MySQL/ORACLE功能及MySQL/ORACLE前后台协议，业务零修改或少量修改即可从MySQL/ORACLE迁移至OceanBase。</li>
+<li><strong>高可用</strong>：数据采用多副本存储，少数副本故障不影响数据可用性。通过“三地五中心”部署实现城市级故障自动无损容灾。</li>
+</ul>
+</li>
+<li><p>定价</p>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210704164141515.png" alt="image-20210704164141515"></p>
+</li>
+<li><p>社区：<a target="_blank" rel="noopener" href="https://open.oceanbase.com/community/contribution">https://open.oceanbase.com/community/contribution</a></p>
+</li>
+<li><p>博客：<a target="_blank" rel="noopener" href="https://open.oceanbase.com/articles">https://open.oceanbase.com/articles</a></p>
+</li>
+<li><p>文档：<a target="_blank" rel="noopener" href="https://open.oceanbase.com/docs">https://open.oceanbase.com/docs</a></p>
+</li>
+</ul>
+<h3 id="SequoiaDB"><a href="#SequoiaDB" class="headerlink" title="SequoiaDB"></a>SequoiaDB</h3><h3 id="TDSQL"><a href="#TDSQL" class="headerlink" title="TDSQL"></a><a target="_blank" rel="noopener" href="https://intl.cloud.tencent.com/zh/product/dcdb">TDSQL</a></h3><blockquote>
+<p>分布式数据库（Tencent Distributed SQL，以下简称 TDSQL）是腾讯打造的一款企业级数据库产品，具备强一致高可用、全球部署架构、高 SQL 兼容度、分布式水平扩展、高性能、完整的分布式事务支持、企业级安全等特性，同时提供智能 DBA、自动化运营、监控告警等配套设施，为客户提供完整的分布式数据库解决方案。</p>
+<p>稳定、安全、高性能的分布式数据库，兼容 PostgreSQL 和 MySQL。</p>
+</blockquote>
+<ol>
+<li><p>MySQL 版</p>
+<p>高度兼容 MySQL，支持水平拆分（分表）的高性能数据库。部署在腾讯云上的一种支持自动水平拆分、Shared Nothing 架构的分布式数据库。TDSQL MySQL版 默认部署主备架构，提供容灾、备份、恢复、监控、迁移等全套解决方案，适用于 TB 或 PB 级的海量数据库场景。</p>
+</li>
+</ol>
+<ol start="2">
+<li><p>PostgreSQL 版 （原 TBase）</p>
+<p>稳定、安全、高性能的分布式数据库服务，满足您海量 HTAP 场景。集高扩展性、高SQL兼容度、完整的分布式事务支持、多级容灾能力以及多维度资源隔离等能力于一身。TDSQL PostgreSQL 版采用无共享的集群架构，为用户提供容灾、备份、恢复、监控、安全、审计等全套解决方案，适用于GB～PB级的海量 HTAP 场景。  </p>
+<p> 具有丰富的周边生态：</p>
+<ul>
+<li>支持强大的地理信息系统（GIS）。通过集群化的 PostGis 插件，支持存储空间地理数据，使 TDSQL PostgreSQL版 成为一个空间数据库，能够通过 SQL 语言高效的进行空间数据管理、数量测量和几何拓扑分析。</li>
+<li>TDSQL PostgreSQL版 不仅是一个分布式关系型数据库系统，同时还支持非关系数据类型 JSON。</li>
+<li>支持 Foreign Data Wrappers（FDW）功能，该功能实现了部分的 SQL/MED 规定，允许用户使用普通 SQL 查询来访问位于 PostgreSQL 之外的数据。<br>FDW 功能提供一套编程接口，用户可进行插件式的二次开发，建立外部数据源和数据库间的数据通道。大多数情况下用户可用 oracle_fdw、mysql_fdw、postgres_fdw，非关系型数据库的 redis_fdw、mongodb_fdw，以及大数据的 hive_fdw、hdfs_fdw 等。基于 FDW 功能和已有插件，TDSQL PostgreSQL版 提供强大的数据库联邦能力，通过 TDSQL PostgreSQL版 能够访问已有的多个数据源的数据。</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210704180213145.png" alt="image-20210704180213145"></p>
+<ul>
+<li><p>价格</p>
+<p>​    <img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210704180327148.png" alt="image-20210704180327148"></p>
+</li>
+</ul>
+<h3 id="TiDB"><a href="#TiDB" class="headerlink" title="TiDB "></a><a target="_blank" rel="noopener" href="https://pingcap.com/">TiDB </a></h3><h3 id="VoltDB"><a href="#VoltDB" class="headerlink" title="VoltDB"></a><a target="_blank" rel="noopener" href="https://www.voltdb.com/">VoltDB</a></h3><h3 id="Vitess"><a href="#Vitess" class="headerlink" title="Vitess"></a><a target="_blank" rel="noopener" href="https://vitess.io/zh/">Vitess</a></h3><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210703213038339.png" alt="image-20210703213038339"></p>
+<ul>
+<li><p>Vitess包括使用与本机查询协议兼容的JDBC和Go数据库驱动。自2011年以来，Vitess一直为YouTube所有的数据库提供服务，现在已被许多企业采用并应用于实际生产。</p>
+</li>
+<li><p>Vitess是一个用于部署、扩展和管理大型MySQL实例集群的数据库解决方案。Vitess集Mysql数据库的很多重要特性和NoSQL数据库的可扩展性于一体。它的架构设计使得您可以像在物理机上一样在公共云或私有云架构中有效运行。它结合并扩展了许多重要的MySQL功能，同时兼具NoSQL数据库的可扩展性。</p>
+</li>
+<li><p>一种云原生技术 Cloud-native</p>
+<ul>
+<li>容器化（Containerized）：每个部分（应用程序，进程等）都封装在自己的容器中。这有助于重复性，透明度和资源隔离。</li>
+<li>动态编排（Dynamically orchestrated）：动态的调度和管理容器以优化资源利用。</li>
+<li>面向微服务（Microservices oriented）：应用程序基于微服务架构，显著提高架构演进的灵活性和可维护性。</li>
+</ul>
+</li>
+</ul>
+<p><strong>CNCF案例研究：京东如何使用Vitess管理超大规模数据库</strong></p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1548244">https://cloud.tencent.com/developer/article/1548244</a></p>
+<h1 id="NewSQL，NoSQL与OldSQL的混合部署"><a href="#NewSQL，NoSQL与OldSQL的混合部署" class="headerlink" title="NewSQL，NoSQL与OldSQL的混合部署"></a>NewSQL，NoSQL与OldSQL的混合部署</h1><ul>
+<li>OldSQL+NewSQL</li>
+<li>OldSQL+NoSQL</li>
+<li>NewSQL+NoSQL</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://supmarket.net/xy/771126462">https://supmarket.net/xy/771126462</a></p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2021/07/04/%E8%B0%83%E7%A0%94/PostGIS%E8%B0%83%E7%A0%94/">postgis 相关调研</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-07-04</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/%E8%B0%83%E7%A0%94/">调研</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/%E5%9C%B0%E5%9B%BE%E6%9C%8D%E5%8A%A1/">地图服务</a><span class="article-meta__link">-</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/OGC/">OGC</a></span><div class="content"><h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><h2 id="相关标准化组织机构介绍"><a href="#相关标准化组织机构介绍" class="headerlink" title="相关标准化组织机构介绍"></a>相关标准化组织机构介绍</h2><ul>
+<li><p>OGC 表示开放地理空间信息联盟 （Open Geospatial Consortium-OGC） ，致力于提供地理信息行业软件和数据及服务的标准化工作。OGC在1994年到2004年期间机构名为Open GIS Consortium， 后因业务需要更名。</p>
+</li>
+<li><p>IS0/TC 211(国际标准化组织地理信息技术委员会211)</p>
+</li>
+<li><p>W3C(World Wide Web onsortium，万维网联盟)</p>
+</li>
+<li><p>OpenGIS(Open Geodata Interoperation Specification,开放地理数据互操作规范)</p>
+</li>
+<li><p>GML（Geographic Markup Language）由OGC定义的XML（标准通用标记语言的子集）格式，用来表达地理信息要素。</p>
+</li>
+</ul>
+<h2 id="OpenGIS"><a href="#OpenGIS" class="headerlink" title="OpenGIS"></a>OpenGIS</h2><p>要素（Feature）：几何信息和属性信息</p>
+<ul>
+<li>OpenGIS定义了一组基于数据的服务，而数据的基础是要素（Feature)。所谓要素，简单地说就是一个独立的对象，在地图中可能表现为一个多边形建筑物，在数据库中即是一个独立的条目。要素具有两个必要的组成部分——几何信息和属性信息。</li>
+</ul>
+<p>几何信息：点（Point）、边缘（LineString）、面（Polygon）和几何集合（GeometryCollection）</p>
+<ul>
+<li>OpenGIS将几何信息分为点、边缘、面和几何集合四种： 其中这里熟悉的线（LineString)属于边缘的一个子类，而多边形（Polygon)是面的一个子类。也就是说OpenGIS定义的几何类型并不仅仅是我们常见的点、线、多边形三种，它提供了更复杂更详细的定义，增强了未来的可扩展性。另外，几何类型的设计中采用了组合模式（Composite)，将几何集合（GeometryCollection)也定义为一种几何类型。类似地，要素集合（FeatureCollection)也是一种要素。</li>
+</ul>
+<p>属性信息（FeatureType）：</p>
+<ul>
+<li>属性信息没有做太多的限制，可以在实际应用中结合具体的实现进行设置。相同的几何类型、属性类型的组合成为要素类型（FeatureType)，类型相同的要素可以存放在一个数据源中。而一个数据源只能拥有一个要素类型。因此，可以用要素类型来描述一组属性相似的要素。</li>
+</ul>
+<p>在面向对象的模型中，完全可以把要素类型理解为一个类，而要素则是类的实例。通过GIS中间件可以从数据源中取出数据，供WMS服务器和WFS服务器使用。WMS服务器接收请求，根据请求内容的不同，可以返回不同格式的最终数据。例如，WMS可以返回常用图片格式的地图片段供最终用户阅读（类似GoogleMaps)，其中地图是根据一个样式文件(SLD)生成的，它描述了地图的线的宽度、色彩等；WMS也可以返回GeoRSS和KML用来与其他地图服务互通。WFS服务器也可以接收请求，但WFS将返回GML格式的地理信息数据。GML是一种基于XML的数据格式，它可以完整地再现数据，也是OpenGIS数据源的重要形式。也就是说，WFS返回的GML可以继续作为数据源。在WFS请求中，OpenGIS定义了一个Filter标准，用来实现对数据的筛选，使WFS更加灵活。另一方面，WFS还支持通过WFS-t提交客户端对数据的修改。通俗地说，WMS是只读的，而WFS则是可以读写的。</p>
+<h2 id="OGC地图服务标准介绍"><a href="#OGC地图服务标准介绍" class="headerlink" title="OGC地图服务标准介绍"></a>OGC地图服务标准介绍</h2><blockquote>
+<p>OGC1999年开始 WMT1（Web Map Tested）和 WMT2 互操作项目。其中著名的GML来自WMT1的成果。在WMT2中OGC定义了三种地理参考信息模型：Web Map Server(WMS) , Web Feature Server(WFS) ，Web Coverage Server(WCS) .</p>
+<p>OGC 地图服务协议，包括 WMS、WFS、WCS、WMTS、WPS 。其中比较重要的现在用得比较多的标准是GML、WMS和WFS。</p>
+</blockquote>
+<h3 id="网络地图服务（WMS）"><a href="#网络地图服务（WMS）" class="headerlink" title="网络地图服务（WMS）"></a>网络地图服务（WMS）</h3><ul>
+<li><p>Web Map Server（WMS）能够根据用户的请求返回相应的地图（包括PNG，GIF，JPEG等栅格形式或者是SVG和WEB CGM等矢量形式）。</p>
+</li>
+<li><p>WMS支持网络协议HTTP，所支持的操作是由URL定义的。有三个重要操作 <code>GetCapabilities</code> ， <code>GetMap</code> ， <code>GetFeatureinfo</code> 。</p>
+</li>
+</ul>
+<h3 id="网络要素服务（WFS）"><a href="#网络要素服务（WFS）" class="headerlink" title="网络要素服务（WFS）"></a>网络要素服务（WFS）</h3><ul>
+<li><p>Web 要素服务（WFS）支持对地理要素的插入，更新，删除，检索和发现服务。该服务根据HTTP客户请求返回GML数据。</p>
+</li>
+<li><p>其基础接口是：GetCapabilities，DescribeFeatureType，GetFeature　 GetCapabilities同上。</p>
+</li>
+</ul>
+<h3 id="网络覆盖服务（WCS）"><a href="#网络覆盖服务（WCS）" class="headerlink" title="网络覆盖服务（WCS）"></a>网络覆盖服务（WCS）</h3><ul>
+<li><p>Web地理覆盖服务（WCS）：提供的是包含了地理位置信息或属性的空间栅格图层，而不是静态地图的访问。</p>
+</li>
+<li><p>根据HTTP客户端要求发送相应数据，包括影像，多光谱影像和其它科学数据. 有二个重要操作GetCapabilities，GetCoverage GetCapabilities返回一个描述服务和XML文档，从中可获取覆盖的数据集合。</p>
+</li>
+</ul>
+<h3 id="切片地图服务（TMS）"><a href="#切片地图服务（TMS）" class="headerlink" title="切片地图服务（TMS）"></a>切片地图服务（TMS）</h3><ul>
+<li>切片地图服务（TMS）定义了一些操作，这些操作允许用户访问切片地图。WMTS可能是OGC首个支持RESTful访问的服务标准。</li>
+</ul>
+<h3 id="WMS和WNTS区别"><a href="#WMS和WNTS区别" class="headerlink" title="WMS和WNTS区别"></a>WMS和WNTS区别</h3><ul>
+<li>WMTS服务和WMS服务对客户端请求服务的响应不同，比如在接受客户端请求WMTS服务时，返回给客户端是固定大小的瓦片，客户端根据索引号来获取每一张瓦片，而后拼接成地图进行展示，如图1所示；由于瓦片的规则是固定的，服务端可以预先缓存对应的瓦片，客户端需要时直接返回即可，因而WMTS是可缓存的。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/fig-wmts-server.png" alt="img"></p>
+<h1 id="END"><a href="#END" class="headerlink" title="END"></a>END</h1></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2021/04/04/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%82%E8%80%83/">系统架构参考</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-04-04</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/%E5%85%B6%E4%BB%96/">其他</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/">系统架构</a></span><div class="content"><h1 id="系统架构参考"><a href="#系统架构参考" class="headerlink" title="系统架构参考"></a>系统架构参考</h1><h2 id="企业级分布式应用服务EDAS"><a href="#企业级分布式应用服务EDAS" class="headerlink" title="企业级分布式应用服务EDAS"></a>企业级分布式应用服务EDAS</h2><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/p232673.png" alt="img"></p>
+<h2 id="阿里中台架构图"><a href="#阿里中台架构图" class="headerlink" title="阿里中台架构图"></a>阿里中台架构图</h2><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/v2-8623f0835181951bc40bcac5ab8713cf_720w.jpg" alt="img"></p>
+<h2 id="淘宝服务端高并发分布式架构"><a href="#淘宝服务端高并发分布式架构" class="headerlink" title="淘宝服务端高并发分布式架构"></a>淘宝服务端高并发分布式架构</h2><ul>
+<li>架构特点：负载均衡、正向代理和反向代理、分布式、高可用</li>
+<li>MPP数据库</li>
+<li>使用LVS或F5来使多个Nginx负载均衡（可使用keepalived软件模拟出虚拟IP，然后把虚拟IP绑定到多台LVS服务器上）</li>
+<li>通过DNS轮询实现机房间的负载均衡（系统可做到机房级别的水平扩展）</li>
+<li><h5 id="引入NoSQL数据库和搜索引擎等技术"><a href="#引入NoSQL数据库和搜索引擎等技术" class="headerlink" title="引入NoSQL数据库和搜索引擎等技术+"></a>引入NoSQL数据库和搜索引擎等技术+</h5></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/v2-65d4f75b68cd095805bafceb8c2e4a2c_720w.jpg" alt="img"></p>
+<h2 id="JUST-DB"><a href="#JUST-DB" class="headerlink" title="JUST-DB"></a>JUST-DB</h2><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210701102643136.png" alt="image-20210701102643136"></p>
+<h2 id="云原生技术架构"><a href="#云原生技术架构" class="headerlink" title="云原生技术架构"></a>云原生技术架构</h2><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/v2-4df5f78230cda29a2a28bb789562f522_720w.jpg" alt="img"></p>
+<h2 id="全空间混合数据服务引擎"><a href="#全空间混合数据服务引擎" class="headerlink" title="全空间混合数据服务引擎"></a>全空间混合数据服务引擎</h2><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210701144211306.png" alt="image-20210701144211306"></p>
+<h2 id="Ganos"><a href="#Ganos" class="headerlink" title="Ganos"></a>Ganos</h2><p>Ganos是包含SQL + NoSQL云数据库的时空引擎。</p>
+<ul>
+<li>公有云原生架构的空间、时空、遥感一体化NoSQL大数据引擎产品，开箱即用；</li>
+<li>PB级存储、高并发写入、百亿级时空查询秒级响应；</li>
+<li>支持数据冷热分离存储和数据高效压缩算法，海量数据存储成本低；</li>
+<li>与云上Spark无缝集成，快速搭建空间大数据仓库和空间大数据分析平台；</li>
+<li>基于OGC标准设计，便于系统间的集成与互操作；</li>
+<li>基于阿里云HBase、XPack专业运维，全托管方式，提供可靠稳定的服务。</li>
+</ul>
+<h3 id="Ganos中的时空模型"><a href="#Ganos中的时空模型" class="headerlink" title="Ganos中的时空模型"></a>Ganos中的时空模型</h3><p>除了支持传统的几何模型、栅格模型和拓扑网络模型，还扩充支持了网格模型、时空轨迹模型以及点云模型。</p>
+<p><img src="https://ucc.alicdn.com/pic/developer-ecology/6bc55a54abb944289c4ef6d99db99adf.png" alt="image.png"></p>
+<h3 id="PG-Ganos"><a href="#PG-Ganos" class="headerlink" title="PG Ganos"></a>PG Ganos</h3><ol>
+<li><strong>如何管理PB级遥感影像：PostgresSQL + Ganos + OSS</strong></li>
+</ol>
+<p>通过“PostgresSQL + Ganos + OSS”组合，可实现 PB级遥感影像的管理。源数据和部分金字塔数据可以存储在数据库内部，遥感原始数据存放在OOS中，由于OOS存储价格低廉，使得用户的使用成本也有所降低。</p>
+<ol start="2">
+<li><strong>遥感影像注册（入库）</strong></li>
+</ol>
+<p>需要按照insertSQL语句直接写入到数据库，将OSS地址传给createrast接口即可。</p>
+<ol start="3">
+<li><strong>矢量数据入库</strong></li>
+</ol>
+<p>主要依赖空间开源的工具，包括Ogr2ogr、shp2pgsql、QGIS、pg_dump/pg_restore等。</p>
+<ol start="4">
+<li><strong>PG Ganos如何管理轨迹数据</strong></li>
+</ol>
+<p>Ganos管理轨迹数据主要通过轨迹构造、轨迹压缩和轨迹相似性判断。</p>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/d83b6862464d47b3959d224890ab323f.png" alt="image.png"></p>
+<ol start="5">
+<li><strong>Ganos与开源工具</strong></li>
+</ol>
+<p>Ganos无缝对接兼容PostGIS的各类GIS软件，显示和编辑包括GeoServer、QGIS、uDig、OpenJump等，PGAdmin4。</p>
+<h3 id="示例：某位置服务平台"><a href="#示例：某位置服务平台" class="headerlink" title="示例：某位置服务平台"></a>示例：某位置服务平台</h3><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/4594052-c1342ad1e96c0079.png" alt="img"></p>
+<h3 id="示例：遥感大数据管理与智能服务平台"><a href="#示例：遥感大数据管理与智能服务平台" class="headerlink" title="示例：遥感大数据管理与智能服务平台"></a>示例：遥感大数据管理与智能服务平台</h3><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/184a2ace18314d57a5b3b40b15676cac.png" alt="图片 6.png"></p>
+<h2 id="名词解释："><a href="#名词解释：" class="headerlink" title="名词解释："></a>名词解释：</h2><ul>
+<li><p>NoSQL</p>
+<ul>
+<li>\1. 键值数据库：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/crs?from=10680">Redis</a>、Memcached、Riak、Cassandra、LevelDB</li>
+<li>\2. 列族数据库：Bigtable、<a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/hbase?from=10680">HBase</a>、Cassandra、Druid</li>
+<li>\3. 文档数据库：MongoDB、CouchDB、MarkLogic</li>
+<li>\4. 图形数据库：Neo4j（知识图谱）、InfoGrid、ArangoDB</li>
+</ul>
+</li>
+<li><p>MPP (Massively Parallel Processing)大规模并行处理架构。比较流行的有Greenplum、TiDB、Postgresql XC、HAWQ等，商用的如南大通用的GBase、睿帆科技的雪球DB、华为的LibrA</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/148621151">https://zhuanlan.zhihu.com/p/148621151</a></p>
+</li>
+<li><p>LVS(Linux Virtual Server)：本质上是一个软件。是一种集群(Cluster)技术，采用IP负载均衡技术和基于内容请求分发技术。</p>
+<ul>
+<li>VS/NAT 负载均衡策略：</li>
+<li>VS/TUN 负载均衡策略：</li>
+<li>VS/NAT 负载均衡策略：</li>
+<li><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/v2-9a56981b5fe5a218bb41a684d96b5d4f_720w.jpg" alt="img"></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/87109094#:~:text=%E9%A6%96%E5%85%88%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8BLVS%20%28Linux%20Virtual,Server%29%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88%E4%B8%9C%E8%A5%BF%EF%BC%8C%E5%85%B6%E5%AE%9E%E5%AE%83%E6%98%AF%E4%B8%80%E7%A7%8D%E9%9B%86%E7%BE%A4%20%28Cluster%29%E6%8A%80%E6%9C%AF%EF%BC%8C%E9%87%87%E7%94%A8IP%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E6%8A%80%E6%9C%AF%E5%92%8C%E5%9F%BA%E4%BA%8E%E5%86%85%E5%AE%B9%E8%AF%B7%E6%B1%82%E5%88%86%E5%8F%91%E6%8A%80%E6%9C%AF%E3%80%82%20%E8%B0%83%E5%BA%A6%E5%99%A8%E5%85%B7%E6%9C%89%E5%BE%88%E5%A5%BD%E7%9A%84%E5%90%9E%E5%90%90%E7%8E%87%EF%BC%8C%E5%B0%86%E8%AF%B7%E6%B1%82%E5%9D%87%E8%A1%A1%E5%9C%B0%E8%BD%AC%E7%A7%BB%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E6%89%A7%E8%A1%8C%EF%BC%8C%E4%B8%94%E8%B0%83%E5%BA%A6%E5%99%A8%E8%87%AA%E5%8A%A8%E5%B1%8F%E8%94%BD%E6%8E%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%95%85%E9%9A%9C%EF%BC%8C%E4%BB%8E%E8%80%8C%E5%B0%86%E4%B8%80%E7%BB%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%84%E6%88%90%E4%B8%80%E4%B8%AA%E9%AB%98%E6%80%A7%E8%83%BD%E7%9A%84%E3%80%81%E9%AB%98%E5%8F%AF%E7%94%A8%E7%9A%84%E8%99%9A%E6%8B%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%82">链接</a></li>
+</ul>
+</li>
+<li><p>F5是一种负载均衡硬件，与LVS提供的能力类似，性能比LVS更高，但价格昂贵。</p>
+</li>
+<li><p>如对于海量文件存储，可通过分布式文件系统HDFS解决，对于key value类型的数据，可通过HBase和Redis等方案解决，对于全文检索场景，可通过搜索引擎如ElasticSearch解决，对于多维分析场景，可通过Kylin或Druid等方案解决。</p>
+</li>
+<li><p>geoTrellis：处理栅格数据。生成金字塔图层、渲染切片、GeoJson的序列化与反序列化</p>
+</li>
+<li><p>geoMesa：处理矢量数据。由locationtech开源的一套地理大数据处理工具套件。 GeoMesa目前支持的NoSQL数据库包括Accumulo、HBase、Google Bigtable和Cassandra等。</p>
+</li>
+<li><p>DLI：数据湖探索</p>
+</li>
+<li><p>DLA：数据湖分析</p>
+</li>
+<li><p>Apache Kylin™是一个开源的、分布式的分析型数据仓库。提供<code>Hadoop/Spark</code>之上的<code>SQL</code>查询接口及多维分析(<code>OLAP</code>)能力以支持超大规模数据，它能在亚秒内查询巨大的<code>Hive</code>表。其核心是预计算，计算结果存在<code>HBase</code>中。</p>
+<p>作为大数据分析神器，它也需要站在巨人的肩膀上，依赖<code>HDFS</code>、<code>MapReduce/Spark</code>、<code>Hive/Kafka</code>、<code>HBase</code>等服务。</p>
+</li>
+<li><p>Apache Flink并不提供自己的数据存储系统，但为<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Amazon_Web_Services#Analytics">Amazon Kinesis</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Apache_Kafka">Apache Kafka</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Alluxio">Alluxio</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/HDFS">HDFS</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Apache_Cassandra">Apache Cassandra</a>和<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Elasticsearch">Elasticsearch</a>等系统提供了数据源和接收器。</p>
+</li>
+<li><p><strong>Presto</strong>是一种用于大数据的高性能分布式<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/SQL">SQL</a>查询引擎。其架构允许用户查询各种数据源，如Hadoop、AWS S3、Alluxio、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/MySQL">MySQL</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Cassandra">Cassandra</a>、Kafka和MongoDB。</p>
+</li>
+<li><p>Drill：<strong>Drill</strong> is an Apache open-source SQL query engine for Big Data exploration. </p>
+</li>
+<li><p>LSM-tree 最大的特点就是写入速度快，主要利用了磁盘的顺序写，pk掉了需要随机写入的 B-tree。关于磁盘的顺序和随机写可以参考：《硬盘的各种概念》</p>
+</li>
+</ul>
+<h1 id="全时空信息系统架构设计"><a href="#全时空信息系统架构设计" class="headerlink" title="全时空信息系统架构设计"></a>全时空信息系统架构设计</h1><h2 id="数据底层分类"><a href="#数据底层分类" class="headerlink" title="数据底层分类"></a>数据底层分类</h2><h2 id="数据库引擎"><a href="#数据库引擎" class="headerlink" title="数据库引擎"></a>数据库引擎</h2><p>NewSQL 见文档-NewSQL主流数据库对比</p>
+<hr>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/clip_image002.jpg" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/0%7EGT%5D37GOLTO7XQ%5BNKI4%60VQ.png" alt="img"></p>
+<h2 id="检索引擎"><a href="#检索引擎" class="headerlink" title="检索引擎"></a>检索引擎</h2><h2 id="计算引擎"><a href="#计算引擎" class="headerlink" title="计算引擎"></a>计算引擎</h2><h2 id="容器化、微服务、DevOps"><a href="#容器化、微服务、DevOps" class="headerlink" title="容器化、微服务、DevOps"></a>容器化、微服务、DevOps</h2><h2 id="可视化引擎"><a href="#可视化引擎" class="headerlink" title="可视化引擎"></a>可视化引擎</h2><h1 id="参考连接"><a href="#参考连接" class="headerlink" title="参考连接"></a>参考连接</h1><h2 id="1-淘宝服务端高并发分布式架构演进之路"><a href="#1-淘宝服务端高并发分布式架构演进之路" class="headerlink" title="1. 淘宝服务端高并发分布式架构演进之路"></a>1. 淘宝服务端高并发分布式架构演进之路</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/69999325">https://zhuanlan.zhihu.com/p/69999325</a></p>
+<h2 id="2-微服务网关Zuul、Gateway、nginx的区别"><a href="#2-微服务网关Zuul、Gateway、nginx的区别" class="headerlink" title="2. 微服务网关Zuul、Gateway、nginx的区别"></a>2. 微服务网关Zuul、Gateway、nginx的区别</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/8d82c6c2e5ee">https://www.jianshu.com/p/8d82c6c2e5ee</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lizz861109/article/details/103575186">https://blog.csdn.net/lizz861109/article/details/103575186</a></p>
+<h2 id="3-Hive、Hbase、mysql的区别"><a href="#3-Hive、Hbase、mysql的区别" class="headerlink" title="3. Hive、Hbase、mysql的区别"></a>3. Hive、Hbase、mysql的区别</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/137458844">https://zhuanlan.zhihu.com/p/137458844</a></p>
+<h2 id="4-解惑图数据库！你知道什么是图数据库吗？"><a href="#4-解惑图数据库！你知道什么是图数据库吗？" class="headerlink" title="4. 解惑图数据库！你知道什么是图数据库吗？"></a>4. 解惑图数据库！你知道什么是图数据库吗？</h2><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1634337">https://cloud.tencent.com/developer/article/1634337</a></p>
+<h2 id="5-图数据库选型对比：HugeGraph、JanusGraph、Neo4j"><a href="#5-图数据库选型对比：HugeGraph、JanusGraph、Neo4j" class="headerlink" title="5. 图数据库选型对比：HugeGraph、JanusGraph、Neo4j"></a>5. 图数据库选型对比：HugeGraph、JanusGraph、Neo4j</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hellohiworld/article/details/104824764">https://blog.csdn.net/hellohiworld/article/details/104824764</a></p>
+<h2 id="6-JanusGraph-Neo4j-TigerGraph简单对比"><a href="#6-JanusGraph-Neo4j-TigerGraph简单对比" class="headerlink" title="6. JanusGraph/Neo4j/TigerGraph简单对比"></a>6. JanusGraph/Neo4j/TigerGraph简单对比</h2><p>目前TigerGraph的生态不是很全，编程api等能力也有一定限制</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/74424421">https://zhuanlan.zhihu.com/p/74424421</a></p>
+<h2 id="7-全文搜索引擎-ElasticSearch-还是-Solr？"><a href="#7-全文搜索引擎-ElasticSearch-还是-Solr？" class="headerlink" title="7. 全文搜索引擎 ElasticSearch 还是 Solr？"></a>7. 全文搜索引擎 ElasticSearch 还是 Solr？</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jajian/p/9801154.html">https://www.cnblogs.com/jajian/p/9801154.html</a></p>
+<h2 id="8-9个基于Java的搜索引擎框架-转"><a href="#8-9个基于Java的搜索引擎框架-转" class="headerlink" title="8. 9个基于Java的搜索引擎框架 转"></a>8. 9个基于Java的搜索引擎框架 转</h2><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1184216?from=article.detail.1178714">https://cloud.tencent.com/developer/article/1184216?from=article.detail.1178714</a></p>
+<h2 id="9-什么是CIM？究竟和BIM有什么关系？"><a href="#9-什么是CIM？究竟和BIM有什么关系？" class="headerlink" title="9. 什么是CIM？究竟和BIM有什么关系？"></a>9. 什么是CIM？究竟和BIM有什么关系？</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/359816845">https://zhuanlan.zhihu.com/p/359816845</a></p>
+<h2 id="10-BIM-GIS应用的八大挑战"><a href="#10-BIM-GIS应用的八大挑战" class="headerlink" title="10. BIM+GIS应用的八大挑战"></a>10. BIM+GIS应用的八大挑战</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/supermapsupport/article/details/95048023">https://blog.csdn.net/supermapsupport/article/details/95048023</a></p>
+<h2 id="11-HBase-Ganos简介"><a href="#11-HBase-Ganos简介" class="headerlink" title="11. HBase Ganos简介"></a>11. HBase Ganos简介</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/cad5467cc67d">https://www.jianshu.com/p/cad5467cc67d</a></p>
+<h2 id="12-对比五款数据库，告诉你-NewSQL-的独到之处"><a href="#12-对比五款数据库，告诉你-NewSQL-的独到之处" class="headerlink" title="12. 对比五款数据库，告诉你 NewSQL 的独到之处"></a>12. 对比五款数据库，告诉你 NewSQL 的独到之处</h2><p><a target="_blank" rel="noopener" href="https://www.techug.com/post/what-is-new-about-newsql.html">https://www.techug.com/post/what-is-new-about-newsql.html</a></p>
+<h2 id="13-NewSQL究竟新在哪里？"><a href="#13-NewSQL究竟新在哪里？" class="headerlink" title="13. NewSQL究竟新在哪里？"></a>13. NewSQL究竟新在哪里？</h2><p><a target="_blank" rel="noopener" href="http://oserror.com/distributed/newsql/">http://oserror.com/distributed/newsql/</a></p>
+<h2 id="14-分布式-NewSQL-对比"><a href="#14-分布式-NewSQL-对比" class="headerlink" title="14. 分布式 NewSQL 对比"></a>14. 分布式 NewSQL 对比</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/GO-NO-1/p/9935195.html">https://www.cnblogs.com/GO-NO-1/p/9935195.html</a></p>
+</div><hr></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2022 By ZJH</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>
