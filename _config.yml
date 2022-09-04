@@ -27,17 +27,6 @@ pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
   trailing_html: true # Set to false to remove trailing '.html' from permalinks
 
-# Menu
-# menu:
-#   home: / || fa fa-home
-#   # about: /about/ || fa fa-user
-#   tags: /tags/ || fa fa-tags
-#   categories: /categories/ || fa fa-th
-#   archives: /archives/ || fa fa-archive
-#   # schedule: /schedule/ || fa fa-calendar
-#   # sitemap: /sitemap.xml || fa fa-sitemap
-#   # commonweal: /404/ || fa fa-heartbeat
-
 
 # Directory
 # source_dir  资源文件夹，这个文件夹用来存放内容。  source
@@ -56,6 +45,19 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
+
+
+# Menu
+# menu:
+  # home: / || fa fa-home
+  # about: /about/ || fa fa-user
+  # tags: /tags/ || fa fa-tags
+  # categories: /categories/ || fa fa-th
+  # archives: /archives/ || fa fa-archive
+  # # schedule: /schedule/ || fa fa-calendar
+  # # sitemap: /sitemap.xml || fa fa-sitemap
+  # # commonweal: /404/ || fa fa-heartbeat
+
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -124,13 +126,13 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-#theme: landspace
-#theme: volantis
+# theme: landspace
+# theme: volantis
 theme: melody
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/2757412961/2757412961.github.io.git
-  branch: main
+  repo: git@github.com:2757412961/2757412961.github.io.git
+  branch: web
