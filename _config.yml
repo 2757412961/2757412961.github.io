@@ -27,7 +27,6 @@ pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
   trailing_html: true # Set to false to remove trailing '.html' from permalinks
 
-
 # Directory
 # source_dir  资源文件夹，这个文件夹用来存放内容。  source
 # public_dir  公共文件夹，这个文件夹用于存放生成的站点文件。 public
@@ -45,19 +44,6 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
-
-
-# Menu
-# menu:
-  # home: / || fa fa-home
-  # about: /about/ || fa fa-user
-  # tags: /tags/ || fa fa-tags
-  # categories: /categories/ || fa fa-th
-  # archives: /archives/ || fa fa-archive
-  # # schedule: /schedule/ || fa fa-calendar
-  # # sitemap: /sitemap.xml || fa fa-sitemap
-  # # commonweal: /404/ || fa fa-heartbeat
-
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -135,4 +121,4 @@ theme: melody
 deploy:
   type: git
   repo: git@github.com:2757412961/2757412961.github.io.git
-  branch: web
+  branch: main

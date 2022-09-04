@@ -23,6 +23,13 @@ menu:
   Categories: /categories
   #XXX: /xxx
 
+# Deployment
+## Docs: https://hexo.io/docs/one-command-deployment
+deploy:
+  type: git
+  repo: git@github.com:2757412961/2757412961.github.io.git
+  branch: web
+
 # Favicon
 # ---------------
 favicon: /melody-favicon.ico
