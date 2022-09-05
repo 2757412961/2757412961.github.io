@@ -59,6 +59,7 @@ jobs:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY  }}
           user_name: 2757412961
           user_email: 2757412961@qq.com
+          publish_branch: web
           # 获取提交文章源码时的commit message，作为发布web分支的信息
           commit_message: ${{ github.event.head_commit.message }}
           full_commit_message: ${{ github.event.head_commit.message }}
