@@ -1,5 +1,5 @@
 ---
-title: java-动态代理
+title: java 动态代理
 date: 2022-04-08
 categories: 
 - java
