@@ -75,6 +75,226 @@
 
 
 
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/04/08/java/Java%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">java-动态代理</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-04-08</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/java/">java</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">动态代理</a></span><div class="content"><p>[TOC]</p>
+<h1 id="一、代理模式简介"><a href="#一、代理模式简介" class="headerlink" title="一、代理模式简介"></a>一、代理模式简介</h1><h2 id="1-1、代理模式"><a href="#1-1、代理模式" class="headerlink" title="1.1、代理模式"></a>1.1、代理模式</h2><p>提供了间接对目标对象进行访问的方式，即通过代理对象访问目标对象。</p>
+<h2 id="1-2、代理模式的好处"><a href="#1-2、代理模式的好处" class="headerlink" title="1.2、代理模式的好处"></a>1.2、代理模式的好处</h2><p>在实现目标对象功能的基础上，增加额外的功能，扩充目标对象的功能。符合<strong>开闭原则</strong>：即不改变既有代码的前提下，对功能进行扩展。</p>
+<p>例如，需要在所有类的方法执行前后打印日志。</p>
+<h1 id="二、JVM-创建对象"><a href="#二、JVM-创建对象" class="headerlink" title="二、JVM 创建对象"></a>二、JVM 创建对象</h1><h2 id="对象创建过程"><a href="#对象创建过程" class="headerlink" title="对象创建过程"></a>对象创建过程</h2><center>
+<img style="border-radius: 0.3125em;
+box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+src="http://msy-test.oss-cn-hangzhou.aliyuncs.com/share/docs/java/dynamicProxy/Java%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%20fig001.png">
+<br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9;
+display: inline-block;
+color: #999;
+padding: 2px;">对象创建过程</div>
+
+
+<h2 id="关于-Class-对象和实例对象"><a href="#关于-Class-对象和实例对象" class="headerlink" title="关于 Class 对象和实例对象"></a>关于 Class 对象和实例对象</h2><p><strong>Class 对象</strong>：每个类运行时的类型信息由 Class 对象来表示，Class 对象中包含与这个类有关的信息。</p>
+<p><strong>实例对象</strong>：实例对象是由 Class 对象创建的。</p>
+<center>
+<img style="border-radius: 0.3125em;
+box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+src="http://msy-test.oss-cn-hangzhou.aliyuncs.com/share/docs/java/dynamicProxy/Java%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%20fig002.png">
+<br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9;
+display: inline-block;
+color: #999;
+padding: 2px;"> Class 对象和实例对象</div>
+
+<p>Java 程序在开始运行之前并非被完全加载，其各个类都是在必需时才加载的 —— 懒加载</p>
+<h2 id="获取-Class-对象的方式"><a href="#获取-Class-对象的方式" class="headerlink" title="获取 Class 对象的方式"></a>获取 Class 对象的方式</h2><blockquote>
+<p>Class.forName(“类的全限定名”)</p>
+</blockquote>
+<blockquote>
+<p>实例对象.getClass()</p>
+</blockquote>
+<blockquote>
+<p>类名.class —— 类字面常量</p>
+<p>如：</p>
+<p>Class clazz = int.class</p>
+</blockquote>
+<p>如果字段被 <code>static final</code> 修饰，称为“编译时常量”。调用该字段时，不会对类进行初始化。</p>
+<p>因为这个字段在编译期就把结果放入常量池中了。</p>
+<h1 id="三、静态代理"><a href="#三、静态代理" class="headerlink" title="三、静态代理"></a>三、静态代理</h1><p>静态代理的逻辑：</p>
+<center>
+<img style="border-radius: 0.3125em;
+box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+src="http://msy-test.oss-cn-hangzhou.aliyuncs.com/share/docs/java/dynamicProxy/Java%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%20fig003.png">
+<br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9;
+display: inline-block;
+color: #999;
+padding: 2px;">静态代理的逻辑</div>
+
+
+<h2 id="静态代理缺陷"><a href="#静态代理缺陷" class="headerlink" title="静态代理缺陷"></a>静态代理缺陷</h2><p>对于每一个目标类都需要写对应的 XXProxy 代理类，如果目标类很多的话，写成百上千个代理类是不切实际的。</p>
+<h1 id="四、动态代理"><a href="#四、动态代理" class="headerlink" title="四、动态代理"></a>四、动态代理</h1><h2 id="动态代理的思路"><a href="#动态代理的思路" class="headerlink" title="动态代理的思路"></a>动态代理的思路</h2><center>
+<img style="border-radius: 0.3125em;
+box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+src="http://msy-test.oss-cn-hangzhou.aliyuncs.com/share/docs/java/dynamicProxy/Java%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%20fig004.png">
+<br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9;
+display: inline-block;
+color: #999;
+padding: 2px;">动态代理的思路</div>
+
+<h2 id="动态代理的优势"><a href="#动态代理的优势" class="headerlink" title="动态代理的优势"></a>动态代理的优势</h2><p>在程序运行时，JVM 才对被代理对象（目标对象）生成代理对象。涉及到反射。</p>
+<p><em>注意，动态代理的时候目标对象必须得实现接口，否则动态代理无法使用，原因很明显，因为代理对象本身不用实现接口，它用到的是目标对象的引用，所以如果目标对象不实现接口的话，根本没法进行代理。</em></p>
+<p>如何从 interface 创建 Class 对象？</p>
+<p>JDK 提供：<code>java.lang.reflect.InvocationHandler</code>接口 + <code>java.lang.reflect.Proxy</code> 类</p>
+<p>Proxy 类有一个静态方法： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> Class&lt;?&gt; getProxyClass(ClassLoader loader, Class&lt;?&gt;... interfaces)</span><br></pre></td></tr></table></figure>
+
+<p>入参是 ClassLoader 类加载器以及一组接口 Class 对象。出参是 Class 类型，也就是一个 Class 对象，实际就是一个代理 Class，通过这个 Class 可以创建对应入参的代理对象。</p>
+<center>
+<img style="border-radius: 0.3125em;
+box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+src="http://msy-test.oss-cn-hangzhou.aliyuncs.com/share/docs/java/dynamicProxy/Java%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%20fig005.png">
+<br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9;
+display: inline-block;
+color: #999;
+padding: 2px;"> </div>
+
+<h2 id="动态代理的实现"><a href="#动态代理的实现" class="headerlink" title="动态代理的实现"></a>动态代理的实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.reflect.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DynamicProxy</span>  </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">    <span class="comment">// 通过 Dog 接口创建了一个代理 Class</span></span><br><span class="line">    Class proxyClass = Proxy.getProxyClass(Dog.class.getClassLoader(), Dog.class);</span><br><span class="line">    Constructor constructor = proxyClass.getConstructor(InvocationHandler.class);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 用构造器创建代理实例对象，需要传入 InvocationHandler</span></span><br><span class="line">    Dog dog = (Dog)constructor.newInstance(<span class="keyword">new</span> InvocationHandler() &#123;</span><br><span class="line">      </span><br><span class="line">      <span class="comment">// 调用代理对象的方法，都会调用 invoke()</span></span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="comment">// 代理需要目标对象的引用</span></span><br><span class="line">        <span class="comment">// 手动创建目标对象，硬编码，不推荐</span></span><br><span class="line">        <span class="comment">// 推荐的做法是，将目标对象作为参数传进来</span></span><br><span class="line">        WhiteDog whiteDog = <span class="keyword">new</span> WhiteDog();</span><br><span class="line">        Object result = method.invoke(whiteDog, args);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    dog.canRun();</span><br><span class="line">    dog.canBark();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 重构之后</span></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DynamicProxy</span>  </span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">    WhiteDog target = <span class="keyword">new</span> WhiteDog();</span><br><span class="line">    Dog dog = (Dog) getProxy(target);</span><br><span class="line"></span><br><span class="line">    dog.canRun();</span><br><span class="line">    dog.canBark();</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 传入目标对象的引用 target  </span></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Object <span class="title">getProxy</span><span class="params">(<span class="keyword">final</span> Object target)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">    Class proxyClass = Proxy.getProxyClass(Dog.class.getClassLoader(), Dog.class);</span><br><span class="line">    Constructor constructor = proxyClass.getConstructor(InvocationHandler.class);</span><br><span class="line">    <span class="comment">// 入参是目标对象 target， 出参是代理对象 proxy， 类型是 Object </span></span><br><span class="line">    <span class="keyword">return</span> constructor.newInstance(<span class="keyword">new</span> InvocationHandler() &#123;</span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> method.invoke(target, args);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>实际使用的是 <code>Proxy.newProxyInstance()</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 传入目标对象的引用 target  </span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Object <span class="title">getProxy2</span><span class="params">(<span class="keyword">final</span> Object target)</span> <span class="keyword">throws</span> Throwable</span>&#123;</span><br><span class="line"><span class="keyword">return</span> Proxy.newProxyInstance(</span><br><span class="line">        target.getClass().getClassLoader(), <span class="comment">// 类加载器</span></span><br><span class="line">        target.getClass().getInterfaces(),	<span class="comment">// 让代理实例对象和原对象实现同一个接口</span></span><br><span class="line">        <span class="comment">// 这么写其实是 匿名内部类 的写法</span></span><br><span class="line">        <span class="keyword">new</span> InvocationHandler() &#123;			<span class="comment">// 代理对象的方法最终会导向 invoke 方法</span></span><br><span class="line">          <span class="meta">@Override</span></span><br><span class="line">          <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> method.invoke(target,args);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="动态代理逻辑图"><a href="#动态代理逻辑图" class="headerlink" title="动态代理逻辑图"></a>动态代理逻辑图</h2><center>
+<img style="border-radius: 0.3125em;
+box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+src="http://msy-test.oss-cn-hangzhou.aliyuncs.com/share/docs/java/dynamicProxy/Java%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%20fig006.png">
+<br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9;
+display: inline-block;
+color: #999;
+padding: 2px;">动态代理逻辑图</div>
+
+
+<h1 id="五、Cglib-代理"><a href="#五、Cglib-代理" class="headerlink" title="五、Cglib 代理"></a>五、Cglib 代理</h1><h2 id="Cglib-代理的实现"><a href="#Cglib-代理的实现" class="headerlink" title="Cglib 代理的实现"></a>Cglib 代理的实现</h2><p>前面说的动态代理需要目标类实现接口，但是如果某个类根本不实现接口怎么办呢？这时候就需要 Cglib 代理了，也称 <strong>子类代理</strong>。</p>
+<p>逻辑是在内存中构建一个子类对象集成目标对象，实现目标对象的功能扩展。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> net.sf.cglib.proxy.Enhancer;</span><br><span class="line"><span class="keyword">import</span> net.sf.cglib.proxy.MethodInterceptor;</span><br><span class="line"><span class="keyword">import</span> net.sf.cglib.proxy.MethodProxy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CglibProxy</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 目标： 通过 Cglib 代理 BlackDog</span></span><br><span class="line">    Enhancer enhancer = <span class="keyword">new</span> Enhancer();</span><br><span class="line">    enhancer.setSuperclass(BlackDog.class);</span><br><span class="line">    </span><br><span class="line">    enhancer.setCallback(<span class="keyword">new</span> MethodInterceptor() &#123;</span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> Object <span class="title">intercept</span><span class="params">(Object o, Method method, Object[] objects, MethodProxy methodProxy)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="comment">// 此处一定要使用 proxy 的 invokeSuper 方法来调用目标类的方法  </span></span><br><span class="line">        <span class="keyword">return</span> methodProxy.invokeSuper(o, objects);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// 生成代理实例  </span></span><br><span class="line">    BlackDog dog = (BlackDog)enhancer.create();</span><br><span class="line">    dog.canBark();</span><br><span class="line">    dog.canRun();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Cglib-代理总结"><a href="#Cglib-代理总结" class="headerlink" title="Cglib 代理总结"></a>Cglib 代理总结</h2><p>在 Spring 的 AOP 编程中: 面向切面编程</p>
+<p>如果加入容器的目标对象<strong>有实现接口, 用 JDK 的动态代理</strong></p>
+<p>如果目标对象<strong>没有实现接口,用 Cglib 代理</strong>。</p>
+<h1 id="六、参考材料"><a href="#六、参考材料" class="headerlink" title="六、参考材料"></a>六、参考材料</h1><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20794107">Java 动态代理作用是什么？</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jie-y/p/10732347.html">Java中三种代理模式</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/dufufd/article/details/80537638">Java中Class对象详解</a></p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/04/04/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%82%E8%80%83/">系统架构参考</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-04-04</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/%E5%85%B6%E4%BB%96/">其他</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/">系统架构</a></span><div class="content"><h1 id="系统架构参考"><a href="#系统架构参考" class="headerlink" title="系统架构参考"></a>系统架构参考</h1><h2 id="企业级分布式应用服务EDAS"><a href="#企业级分布式应用服务EDAS" class="headerlink" title="企业级分布式应用服务EDAS"></a>企业级分布式应用服务EDAS</h2><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/p232673.png" alt="img"></p>
+<h2 id="阿里中台架构图"><a href="#阿里中台架构图" class="headerlink" title="阿里中台架构图"></a>阿里中台架构图</h2><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/v2-8623f0835181951bc40bcac5ab8713cf_720w.jpg" alt="img"></p>
+<h2 id="淘宝服务端高并发分布式架构"><a href="#淘宝服务端高并发分布式架构" class="headerlink" title="淘宝服务端高并发分布式架构"></a>淘宝服务端高并发分布式架构</h2><ul>
+<li>架构特点：负载均衡、正向代理和反向代理、分布式、高可用</li>
+<li>MPP数据库</li>
+<li>使用LVS或F5来使多个Nginx负载均衡（可使用keepalived软件模拟出虚拟IP，然后把虚拟IP绑定到多台LVS服务器上）</li>
+<li>通过DNS轮询实现机房间的负载均衡（系统可做到机房级别的水平扩展）</li>
+<li><h5 id="引入NoSQL数据库和搜索引擎等技术"><a href="#引入NoSQL数据库和搜索引擎等技术" class="headerlink" title="引入NoSQL数据库和搜索引擎等技术+"></a>引入NoSQL数据库和搜索引擎等技术+</h5></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/v2-65d4f75b68cd095805bafceb8c2e4a2c_720w.jpg" alt="img"></p>
+<h2 id="JUST-DB"><a href="#JUST-DB" class="headerlink" title="JUST-DB"></a>JUST-DB</h2><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210701102643136.png" alt="image-20210701102643136"></p>
+<h2 id="云原生技术架构"><a href="#云原生技术架构" class="headerlink" title="云原生技术架构"></a>云原生技术架构</h2><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/v2-4df5f78230cda29a2a28bb789562f522_720w.jpg" alt="img"></p>
+<h2 id="全空间混合数据服务引擎"><a href="#全空间混合数据服务引擎" class="headerlink" title="全空间混合数据服务引擎"></a>全空间混合数据服务引擎</h2><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210701144211306.png" alt="image-20210701144211306"></p>
+<h2 id="Ganos"><a href="#Ganos" class="headerlink" title="Ganos"></a>Ganos</h2><p>Ganos是包含SQL + NoSQL云数据库的时空引擎。</p>
+<ul>
+<li>公有云原生架构的空间、时空、遥感一体化NoSQL大数据引擎产品，开箱即用；</li>
+<li>PB级存储、高并发写入、百亿级时空查询秒级响应；</li>
+<li>支持数据冷热分离存储和数据高效压缩算法，海量数据存储成本低；</li>
+<li>与云上Spark无缝集成，快速搭建空间大数据仓库和空间大数据分析平台；</li>
+<li>基于OGC标准设计，便于系统间的集成与互操作；</li>
+<li>基于阿里云HBase、XPack专业运维，全托管方式，提供可靠稳定的服务。</li>
+</ul>
+<h3 id="Ganos中的时空模型"><a href="#Ganos中的时空模型" class="headerlink" title="Ganos中的时空模型"></a>Ganos中的时空模型</h3><p>除了支持传统的几何模型、栅格模型和拓扑网络模型，还扩充支持了网格模型、时空轨迹模型以及点云模型。</p>
+<p><img src="https://ucc.alicdn.com/pic/developer-ecology/6bc55a54abb944289c4ef6d99db99adf.png" alt="image.png"></p>
+<h3 id="PG-Ganos"><a href="#PG-Ganos" class="headerlink" title="PG Ganos"></a>PG Ganos</h3><ol>
+<li><strong>如何管理PB级遥感影像：PostgresSQL + Ganos + OSS</strong></li>
+</ol>
+<p>通过“PostgresSQL + Ganos + OSS”组合，可实现 PB级遥感影像的管理。源数据和部分金字塔数据可以存储在数据库内部，遥感原始数据存放在OOS中，由于OOS存储价格低廉，使得用户的使用成本也有所降低。</p>
+<ol start="2">
+<li><strong>遥感影像注册（入库）</strong></li>
+</ol>
+<p>需要按照insertSQL语句直接写入到数据库，将OSS地址传给createrast接口即可。</p>
+<ol start="3">
+<li><strong>矢量数据入库</strong></li>
+</ol>
+<p>主要依赖空间开源的工具，包括Ogr2ogr、shp2pgsql、QGIS、pg_dump/pg_restore等。</p>
+<ol start="4">
+<li><strong>PG Ganos如何管理轨迹数据</strong></li>
+</ol>
+<p>Ganos管理轨迹数据主要通过轨迹构造、轨迹压缩和轨迹相似性判断。</p>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/d83b6862464d47b3959d224890ab323f.png" alt="image.png"></p>
+<ol start="5">
+<li><strong>Ganos与开源工具</strong></li>
+</ol>
+<p>Ganos无缝对接兼容PostGIS的各类GIS软件，显示和编辑包括GeoServer、QGIS、uDig、OpenJump等，PGAdmin4。</p>
+<h3 id="示例：某位置服务平台"><a href="#示例：某位置服务平台" class="headerlink" title="示例：某位置服务平台"></a>示例：某位置服务平台</h3><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/4594052-c1342ad1e96c0079.png" alt="img"></p>
+<h3 id="示例：遥感大数据管理与智能服务平台"><a href="#示例：遥感大数据管理与智能服务平台" class="headerlink" title="示例：遥感大数据管理与智能服务平台"></a>示例：遥感大数据管理与智能服务平台</h3><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/184a2ace18314d57a5b3b40b15676cac.png" alt="图片 6.png"></p>
+<h2 id="名词解释："><a href="#名词解释：" class="headerlink" title="名词解释："></a>名词解释：</h2><ul>
+<li><p>NoSQL</p>
+<ul>
+<li>\1. 键值数据库：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/crs?from=10680">Redis</a>、Memcached、Riak、Cassandra、LevelDB</li>
+<li>\2. 列族数据库：Bigtable、<a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/hbase?from=10680">HBase</a>、Cassandra、Druid</li>
+<li>\3. 文档数据库：MongoDB、CouchDB、MarkLogic</li>
+<li>\4. 图形数据库：Neo4j（知识图谱）、InfoGrid、ArangoDB</li>
+</ul>
+</li>
+<li><p>MPP (Massively Parallel Processing)大规模并行处理架构。比较流行的有Greenplum、TiDB、Postgresql XC、HAWQ等，商用的如南大通用的GBase、睿帆科技的雪球DB、华为的LibrA</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/148621151">https://zhuanlan.zhihu.com/p/148621151</a></p>
+</li>
+<li><p>LVS(Linux Virtual Server)：本质上是一个软件。是一种集群(Cluster)技术，采用IP负载均衡技术和基于内容请求分发技术。</p>
+<ul>
+<li>VS/NAT 负载均衡策略：</li>
+<li>VS/TUN 负载均衡策略：</li>
+<li>VS/NAT 负载均衡策略：</li>
+<li><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/v2-9a56981b5fe5a218bb41a684d96b5d4f_720w.jpg" alt="img"></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/87109094#:~:text=%E9%A6%96%E5%85%88%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8BLVS%20%28Linux%20Virtual,Server%29%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88%E4%B8%9C%E8%A5%BF%EF%BC%8C%E5%85%B6%E5%AE%9E%E5%AE%83%E6%98%AF%E4%B8%80%E7%A7%8D%E9%9B%86%E7%BE%A4%20%28Cluster%29%E6%8A%80%E6%9C%AF%EF%BC%8C%E9%87%87%E7%94%A8IP%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E6%8A%80%E6%9C%AF%E5%92%8C%E5%9F%BA%E4%BA%8E%E5%86%85%E5%AE%B9%E8%AF%B7%E6%B1%82%E5%88%86%E5%8F%91%E6%8A%80%E6%9C%AF%E3%80%82%20%E8%B0%83%E5%BA%A6%E5%99%A8%E5%85%B7%E6%9C%89%E5%BE%88%E5%A5%BD%E7%9A%84%E5%90%9E%E5%90%90%E7%8E%87%EF%BC%8C%E5%B0%86%E8%AF%B7%E6%B1%82%E5%9D%87%E8%A1%A1%E5%9C%B0%E8%BD%AC%E7%A7%BB%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E6%89%A7%E8%A1%8C%EF%BC%8C%E4%B8%94%E8%B0%83%E5%BA%A6%E5%99%A8%E8%87%AA%E5%8A%A8%E5%B1%8F%E8%94%BD%E6%8E%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%95%85%E9%9A%9C%EF%BC%8C%E4%BB%8E%E8%80%8C%E5%B0%86%E4%B8%80%E7%BB%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%84%E6%88%90%E4%B8%80%E4%B8%AA%E9%AB%98%E6%80%A7%E8%83%BD%E7%9A%84%E3%80%81%E9%AB%98%E5%8F%AF%E7%94%A8%E7%9A%84%E8%99%9A%E6%8B%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%82">链接</a></li>
+</ul>
+</li>
+<li><p>F5是一种负载均衡硬件，与LVS提供的能力类似，性能比LVS更高，但价格昂贵。</p>
+</li>
+<li><p>如对于海量文件存储，可通过分布式文件系统HDFS解决，对于key value类型的数据，可通过HBase和Redis等方案解决，对于全文检索场景，可通过搜索引擎如ElasticSearch解决，对于多维分析场景，可通过Kylin或Druid等方案解决。</p>
+</li>
+<li><p>geoTrellis：处理栅格数据。生成金字塔图层、渲染切片、GeoJson的序列化与反序列化</p>
+</li>
+<li><p>geoMesa：处理矢量数据。由locationtech开源的一套地理大数据处理工具套件。 GeoMesa目前支持的NoSQL数据库包括Accumulo、HBase、Google Bigtable和Cassandra等。</p>
+</li>
+<li><p>DLI：数据湖探索</p>
+</li>
+<li><p>DLA：数据湖分析</p>
+</li>
+<li><p>Apache Kylin™是一个开源的、分布式的分析型数据仓库。提供<code>Hadoop/Spark</code>之上的<code>SQL</code>查询接口及多维分析(<code>OLAP</code>)能力以支持超大规模数据，它能在亚秒内查询巨大的<code>Hive</code>表。其核心是预计算，计算结果存在<code>HBase</code>中。</p>
+<p>作为大数据分析神器，它也需要站在巨人的肩膀上，依赖<code>HDFS</code>、<code>MapReduce/Spark</code>、<code>Hive/Kafka</code>、<code>HBase</code>等服务。</p>
+</li>
+<li><p>Apache Flink并不提供自己的数据存储系统，但为<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Amazon_Web_Services#Analytics">Amazon Kinesis</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Apache_Kafka">Apache Kafka</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Alluxio">Alluxio</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/HDFS">HDFS</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Apache_Cassandra">Apache Cassandra</a>和<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Elasticsearch">Elasticsearch</a>等系统提供了数据源和接收器。</p>
+</li>
+<li><p><strong>Presto</strong>是一种用于大数据的高性能分布式<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/SQL">SQL</a>查询引擎。其架构允许用户查询各种数据源，如Hadoop、AWS S3、Alluxio、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/MySQL">MySQL</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Cassandra">Cassandra</a>、Kafka和MongoDB。</p>
+</li>
+<li><p>Drill：<strong>Drill</strong> is an Apache open-source SQL query engine for Big Data exploration. </p>
+</li>
+<li><p>LSM-tree 最大的特点就是写入速度快，主要利用了磁盘的顺序写，pk掉了需要随机写入的 B-tree。关于磁盘的顺序和随机写可以参考：《硬盘的各种概念》</p>
+</li>
+</ul>
+<h1 id="全时空信息系统架构设计"><a href="#全时空信息系统架构设计" class="headerlink" title="全时空信息系统架构设计"></a>全时空信息系统架构设计</h1><h2 id="数据底层分类"><a href="#数据底层分类" class="headerlink" title="数据底层分类"></a>数据底层分类</h2><h2 id="数据库引擎"><a href="#数据库引擎" class="headerlink" title="数据库引擎"></a>数据库引擎</h2><p>NewSQL 见文档-NewSQL主流数据库对比</p>
+<hr>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/clip_image002.jpg" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/0%7EGT%5D37GOLTO7XQ%5BNKI4%60VQ.png" alt="img"></p>
+<h2 id="检索引擎"><a href="#检索引擎" class="headerlink" title="检索引擎"></a>检索引擎</h2><h2 id="计算引擎"><a href="#计算引擎" class="headerlink" title="计算引擎"></a>计算引擎</h2><h2 id="容器化、微服务、DevOps"><a href="#容器化、微服务、DevOps" class="headerlink" title="容器化、微服务、DevOps"></a>容器化、微服务、DevOps</h2><h2 id="可视化引擎"><a href="#可视化引擎" class="headerlink" title="可视化引擎"></a>可视化引擎</h2><h1 id="参考连接"><a href="#参考连接" class="headerlink" title="参考连接"></a>参考连接</h1><h2 id="1-淘宝服务端高并发分布式架构演进之路"><a href="#1-淘宝服务端高并发分布式架构演进之路" class="headerlink" title="1. 淘宝服务端高并发分布式架构演进之路"></a>1. 淘宝服务端高并发分布式架构演进之路</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/69999325">https://zhuanlan.zhihu.com/p/69999325</a></p>
+<h2 id="2-微服务网关Zuul、Gateway、nginx的区别"><a href="#2-微服务网关Zuul、Gateway、nginx的区别" class="headerlink" title="2. 微服务网关Zuul、Gateway、nginx的区别"></a>2. 微服务网关Zuul、Gateway、nginx的区别</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/8d82c6c2e5ee">https://www.jianshu.com/p/8d82c6c2e5ee</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lizz861109/article/details/103575186">https://blog.csdn.net/lizz861109/article/details/103575186</a></p>
+<h2 id="3-Hive、Hbase、mysql的区别"><a href="#3-Hive、Hbase、mysql的区别" class="headerlink" title="3. Hive、Hbase、mysql的区别"></a>3. Hive、Hbase、mysql的区别</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/137458844">https://zhuanlan.zhihu.com/p/137458844</a></p>
+<h2 id="4-解惑图数据库！你知道什么是图数据库吗？"><a href="#4-解惑图数据库！你知道什么是图数据库吗？" class="headerlink" title="4. 解惑图数据库！你知道什么是图数据库吗？"></a>4. 解惑图数据库！你知道什么是图数据库吗？</h2><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1634337">https://cloud.tencent.com/developer/article/1634337</a></p>
+<h2 id="5-图数据库选型对比：HugeGraph、JanusGraph、Neo4j"><a href="#5-图数据库选型对比：HugeGraph、JanusGraph、Neo4j" class="headerlink" title="5. 图数据库选型对比：HugeGraph、JanusGraph、Neo4j"></a>5. 图数据库选型对比：HugeGraph、JanusGraph、Neo4j</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hellohiworld/article/details/104824764">https://blog.csdn.net/hellohiworld/article/details/104824764</a></p>
+<h2 id="6-JanusGraph-Neo4j-TigerGraph简单对比"><a href="#6-JanusGraph-Neo4j-TigerGraph简单对比" class="headerlink" title="6. JanusGraph/Neo4j/TigerGraph简单对比"></a>6. JanusGraph/Neo4j/TigerGraph简单对比</h2><p>目前TigerGraph的生态不是很全，编程api等能力也有一定限制</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/74424421">https://zhuanlan.zhihu.com/p/74424421</a></p>
+<h2 id="7-全文搜索引擎-ElasticSearch-还是-Solr？"><a href="#7-全文搜索引擎-ElasticSearch-还是-Solr？" class="headerlink" title="7. 全文搜索引擎 ElasticSearch 还是 Solr？"></a>7. 全文搜索引擎 ElasticSearch 还是 Solr？</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jajian/p/9801154.html">https://www.cnblogs.com/jajian/p/9801154.html</a></p>
+<h2 id="8-9个基于Java的搜索引擎框架-转"><a href="#8-9个基于Java的搜索引擎框架-转" class="headerlink" title="8. 9个基于Java的搜索引擎框架 转"></a>8. 9个基于Java的搜索引擎框架 转</h2><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1184216?from=article.detail.1178714">https://cloud.tencent.com/developer/article/1184216?from=article.detail.1178714</a></p>
+<h2 id="9-什么是CIM？究竟和BIM有什么关系？"><a href="#9-什么是CIM？究竟和BIM有什么关系？" class="headerlink" title="9. 什么是CIM？究竟和BIM有什么关系？"></a>9. 什么是CIM？究竟和BIM有什么关系？</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/359816845">https://zhuanlan.zhihu.com/p/359816845</a></p>
+<h2 id="10-BIM-GIS应用的八大挑战"><a href="#10-BIM-GIS应用的八大挑战" class="headerlink" title="10. BIM+GIS应用的八大挑战"></a>10. BIM+GIS应用的八大挑战</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/supermapsupport/article/details/95048023">https://blog.csdn.net/supermapsupport/article/details/95048023</a></p>
+<h2 id="11-HBase-Ganos简介"><a href="#11-HBase-Ganos简介" class="headerlink" title="11. HBase Ganos简介"></a>11. HBase Ganos简介</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/cad5467cc67d">https://www.jianshu.com/p/cad5467cc67d</a></p>
+<h2 id="12-对比五款数据库，告诉你-NewSQL-的独到之处"><a href="#12-对比五款数据库，告诉你-NewSQL-的独到之处" class="headerlink" title="12. 对比五款数据库，告诉你 NewSQL 的独到之处"></a>12. 对比五款数据库，告诉你 NewSQL 的独到之处</h2><p><a target="_blank" rel="noopener" href="https://www.techug.com/post/what-is-new-about-newsql.html">https://www.techug.com/post/what-is-new-about-newsql.html</a></p>
+<h2 id="13-NewSQL究竟新在哪里？"><a href="#13-NewSQL究竟新在哪里？" class="headerlink" title="13. NewSQL究竟新在哪里？"></a>13. NewSQL究竟新在哪里？</h2><p><a target="_blank" rel="noopener" href="http://oserror.com/distributed/newsql/">http://oserror.com/distributed/newsql/</a></p>
+<h2 id="14-分布式-NewSQL-对比"><a href="#14-分布式-NewSQL-对比" class="headerlink" title="14. 分布式 NewSQL 对比"></a>14. 分布式 NewSQL 对比</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/GO-NO-1/p/9935195.html">https://www.cnblogs.com/GO-NO-1/p/9935195.html</a></p>
 </div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2021/11/10/%E8%B0%83%E7%A0%94/%E4%BA%91%E5%8E%9F%E7%94%9F-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%A0%94/">云原生概念和技术路线</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-11-10</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/%E8%B0%83%E7%A0%94/">调研</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/">云原生</a><span class="article-meta__link">-</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/%E5%8F%91%E5%B1%95%E8%B6%8B%E5%8A%BF/">发展趋势</a></span><div class="content"><h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><p><a href="#_Toc78190625">目录    1</a><br><a href="#_Toc78190626">一、    调研方向    2</a><br><a href="#_Toc78190627">二、    云原生的概念    3</a><br><a href="#_Toc78190630">2.1    云原生的诞生    3</a><br><a href="#_Toc78190631">2.2    云原生的发展历程    3</a><br><a href="#_Toc78190632">2.3    Pivotal的云原生定义    4</a><br><a href="#_Toc78190633">2.4    Gartner的云原生定义    5</a><br><a href="#_Toc78190634">2.5    CNCF的云原生定义    5</a><br><a href="#_Toc78190635">2.6    云原生定义概括    5</a><br><a href="#_Toc78190636">三、    CNCF    7</a><br><a href="#_Toc78190638">3.1    云原生计算基金会CNCF    7</a><br><a href="#_Toc78190639">3.2    CNCF云原生路线图（Trail Map）    7</a><br><a href="#_Toc78190640">3.3    CNCF云原生全景图（Trail Map）    8</a><br><a href="#_Toc78190641">四、    相关技术及发展趋势    10</a><br><a href="#_Toc78190644">4.1    CNCF云原生全景图详解    10</a><br><a href="#_Toc78190645"><strong>4.1.1</strong>    <strong>供应层 （Provisioning）</strong>    10</a><br><a href="#_Toc78190646"><strong>4.1.2</strong>    <strong>运行时层（Runtime）</strong>    10</a><br><a href="#_Toc78190647"><strong>4.1.3</strong>    <strong>编排和管理层（Orchestration and Management）</strong>    10</a><br><a href="#_Toc78190648"><strong>4.1.4</strong>    <strong>应用定义和开发层 （Application Definition and Developement)</strong>    11</a><br><a href="#_Toc78190649">4.1.5    贯穿所有层的工具    11</a><br><a href="#_Toc78190650"><strong>4.1.6</strong>    <strong>可观察性和分析（Observability and Analysis）</strong>    12</a><br><a href="#_Toc78190651"><strong>4.1.7</strong>    <strong>平台类（Platform）</strong>    12</a><br><a href="#_Toc78190652"><strong>4.1.8</strong>    <strong>小结</strong>    12</a><br><a href="#_Toc78190653">4.2    云原生核心概念    12</a><br><a href="#_Toc78190654">4.2.1    DevOps与CI/CD    13</a><br><a href="#_Toc78190655">4.2.2    微服务、API管理与集成    14</a><br><a href="#_Toc78190656">4.2.3    容器与Docker    14</a><br><a href="#_Toc78190657">4.2.4    Kubernetes与容器编排之战    15</a><br><a href="#_Toc78190658">4.3    发展趋势和未来展望    15</a><br><a href="#_Toc78190659">4.3.1    机遇和挑战    15</a><br><a href="#_Toc78190660">4.3.2    云原生2.0（华为）    18</a><br><a href="#_Toc78190661">4.3.3    未来发展趋势    18</a><br><a href="#_Toc78190662">五、    参考链接    20</a></p>
 <h1 id="1-调研方向"><a href="#1-调研方向" class="headerlink" title="1 调研方向"></a>1 调研方向</h1><p><strong>梳理云原生的概念及相关技术和发展趋势。</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/22069292/1627293312483-b1fe9a40-7739-4fe9-b0ba-95bd5097721a.png#"><br><a target="_blank" rel="noopener" href="https://landscape.cncf.io/">https://landscape.cncf.io/</a><br>图 一.1CNCF云原生全景图（详）</p>
 <h1 id="2-云原生的概念"><a href="#2-云原生的概念" class="headerlink" title="2 云原生的概念"></a>2 云原生的概念</h1><ol>
@@ -659,227 +879,7 @@
 <li>WMTS服务和WMS服务对客户端请求服务的响应不同，比如在接受客户端请求WMTS服务时，返回给客户端是固定大小的瓦片，客户端根据索引号来获取每一张瓦片，而后拼接成地图进行展示，如图1所示；由于瓦片的规则是固定的，服务端可以预先缓存对应的瓦片，客户端需要时直接返回即可，因而WMTS是可缓存的。</li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/fig-wmts-server.png" alt="img"></p>
-<h1 id="END"><a href="#END" class="headerlink" title="END"></a>END</h1></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2021/04/08/java/Java%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">java-动态代理</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-04-08</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/java/">java</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">动态代理</a></span><div class="content"><p>[TOC]</p>
-<h1 id="一、代理模式简介"><a href="#一、代理模式简介" class="headerlink" title="一、代理模式简介"></a>一、代理模式简介</h1><h2 id="1-1、代理模式"><a href="#1-1、代理模式" class="headerlink" title="1.1、代理模式"></a>1.1、代理模式</h2><p>提供了间接对目标对象进行访问的方式，即通过代理对象访问目标对象。</p>
-<h2 id="1-2、代理模式的好处"><a href="#1-2、代理模式的好处" class="headerlink" title="1.2、代理模式的好处"></a>1.2、代理模式的好处</h2><p>在实现目标对象功能的基础上，增加额外的功能，扩充目标对象的功能。符合<strong>开闭原则</strong>：即不改变既有代码的前提下，对功能进行扩展。</p>
-<p>例如，需要在所有类的方法执行前后打印日志。</p>
-<h1 id="二、JVM-创建对象"><a href="#二、JVM-创建对象" class="headerlink" title="二、JVM 创建对象"></a>二、JVM 创建对象</h1><h2 id="对象创建过程"><a href="#对象创建过程" class="headerlink" title="对象创建过程"></a>对象创建过程</h2><center>
-<img style="border-radius: 0.3125em;
-box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-src="http://msy-test.oss-cn-hangzhou.aliyuncs.com/share/docs/java/dynamicProxy/Java%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%20fig001.png">
-<br>
-<div style="color:orange; border-bottom: 1px solid #d9d9d9;
-display: inline-block;
-color: #999;
-padding: 2px;">对象创建过程</div>
-
-
-<h2 id="关于-Class-对象和实例对象"><a href="#关于-Class-对象和实例对象" class="headerlink" title="关于 Class 对象和实例对象"></a>关于 Class 对象和实例对象</h2><p><strong>Class 对象</strong>：每个类运行时的类型信息由 Class 对象来表示，Class 对象中包含与这个类有关的信息。</p>
-<p><strong>实例对象</strong>：实例对象是由 Class 对象创建的。</p>
-<center>
-<img style="border-radius: 0.3125em;
-box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-src="http://msy-test.oss-cn-hangzhou.aliyuncs.com/share/docs/java/dynamicProxy/Java%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%20fig002.png">
-<br>
-<div style="color:orange; border-bottom: 1px solid #d9d9d9;
-display: inline-block;
-color: #999;
-padding: 2px;"> Class 对象和实例对象</div>
-
-<p>Java 程序在开始运行之前并非被完全加载，其各个类都是在必需时才加载的 —— 懒加载</p>
-<h2 id="获取-Class-对象的方式"><a href="#获取-Class-对象的方式" class="headerlink" title="获取 Class 对象的方式"></a>获取 Class 对象的方式</h2><blockquote>
-<p>Class.forName(“类的全限定名”)</p>
-</blockquote>
-<blockquote>
-<p>实例对象.getClass()</p>
-</blockquote>
-<blockquote>
-<p>类名.class —— 类字面常量</p>
-<p>如：</p>
-<p>Class clazz = int.class</p>
-</blockquote>
-<p>如果字段被 <code>static final</code> 修饰，称为“编译时常量”。调用该字段时，不会对类进行初始化。</p>
-<p>因为这个字段在编译期就把结果放入常量池中了。</p>
-<h1 id="三、静态代理"><a href="#三、静态代理" class="headerlink" title="三、静态代理"></a>三、静态代理</h1><p>静态代理的逻辑：</p>
-<center>
-<img style="border-radius: 0.3125em;
-box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-src="http://msy-test.oss-cn-hangzhou.aliyuncs.com/share/docs/java/dynamicProxy/Java%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%20fig003.png">
-<br>
-<div style="color:orange; border-bottom: 1px solid #d9d9d9;
-display: inline-block;
-color: #999;
-padding: 2px;">静态代理的逻辑</div>
-
-
-<h2 id="静态代理缺陷"><a href="#静态代理缺陷" class="headerlink" title="静态代理缺陷"></a>静态代理缺陷</h2><p>对于每一个目标类都需要写对应的 XXProxy 代理类，如果目标类很多的话，写成百上千个代理类是不切实际的。</p>
-<h1 id="四、动态代理"><a href="#四、动态代理" class="headerlink" title="四、动态代理"></a>四、动态代理</h1><h2 id="动态代理的思路"><a href="#动态代理的思路" class="headerlink" title="动态代理的思路"></a>动态代理的思路</h2><center>
-<img style="border-radius: 0.3125em;
-box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-src="http://msy-test.oss-cn-hangzhou.aliyuncs.com/share/docs/java/dynamicProxy/Java%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%20fig004.png">
-<br>
-<div style="color:orange; border-bottom: 1px solid #d9d9d9;
-display: inline-block;
-color: #999;
-padding: 2px;">动态代理的思路</div>
-
-<h2 id="动态代理的优势"><a href="#动态代理的优势" class="headerlink" title="动态代理的优势"></a>动态代理的优势</h2><p>在程序运行时，JVM 才对被代理对象（目标对象）生成代理对象。涉及到反射。</p>
-<p><em>注意，动态代理的时候目标对象必须得实现接口，否则动态代理无法使用，原因很明显，因为代理对象本身不用实现接口，它用到的是目标对象的引用，所以如果目标对象不实现接口的话，根本没法进行代理。</em></p>
-<p>如何从 interface 创建 Class 对象？</p>
-<p>JDK 提供：<code>java.lang.reflect.InvocationHandler</code>接口 + <code>java.lang.reflect.Proxy</code> 类</p>
-<p>Proxy 类有一个静态方法： </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> Class&lt;?&gt; getProxyClass(ClassLoader loader, Class&lt;?&gt;... interfaces)</span><br></pre></td></tr></table></figure>
-
-<p>入参是 ClassLoader 类加载器以及一组接口 Class 对象。出参是 Class 类型，也就是一个 Class 对象，实际就是一个代理 Class，通过这个 Class 可以创建对应入参的代理对象。</p>
-<center>
-<img style="border-radius: 0.3125em;
-box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-src="http://msy-test.oss-cn-hangzhou.aliyuncs.com/share/docs/java/dynamicProxy/Java%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%20fig005.png">
-<br>
-<div style="color:orange; border-bottom: 1px solid #d9d9d9;
-display: inline-block;
-color: #999;
-padding: 2px;"> </div>
-
-<h2 id="动态代理的实现"><a href="#动态代理的实现" class="headerlink" title="动态代理的实现"></a>动态代理的实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.reflect.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DynamicProxy</span>  </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">    <span class="comment">// 通过 Dog 接口创建了一个代理 Class</span></span><br><span class="line">    Class proxyClass = Proxy.getProxyClass(Dog.class.getClassLoader(), Dog.class);</span><br><span class="line">    Constructor constructor = proxyClass.getConstructor(InvocationHandler.class);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 用构造器创建代理实例对象，需要传入 InvocationHandler</span></span><br><span class="line">    Dog dog = (Dog)constructor.newInstance(<span class="keyword">new</span> InvocationHandler() &#123;</span><br><span class="line">      </span><br><span class="line">      <span class="comment">// 调用代理对象的方法，都会调用 invoke()</span></span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="comment">// 代理需要目标对象的引用</span></span><br><span class="line">        <span class="comment">// 手动创建目标对象，硬编码，不推荐</span></span><br><span class="line">        <span class="comment">// 推荐的做法是，将目标对象作为参数传进来</span></span><br><span class="line">        WhiteDog whiteDog = <span class="keyword">new</span> WhiteDog();</span><br><span class="line">        Object result = method.invoke(whiteDog, args);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    dog.canRun();</span><br><span class="line">    dog.canBark();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 重构之后</span></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DynamicProxy</span>  </span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">    WhiteDog target = <span class="keyword">new</span> WhiteDog();</span><br><span class="line">    Dog dog = (Dog) getProxy(target);</span><br><span class="line"></span><br><span class="line">    dog.canRun();</span><br><span class="line">    dog.canBark();</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 传入目标对象的引用 target  </span></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Object <span class="title">getProxy</span><span class="params">(<span class="keyword">final</span> Object target)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">    Class proxyClass = Proxy.getProxyClass(Dog.class.getClassLoader(), Dog.class);</span><br><span class="line">    Constructor constructor = proxyClass.getConstructor(InvocationHandler.class);</span><br><span class="line">    <span class="comment">// 入参是目标对象 target， 出参是代理对象 proxy， 类型是 Object </span></span><br><span class="line">    <span class="keyword">return</span> constructor.newInstance(<span class="keyword">new</span> InvocationHandler() &#123;</span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> method.invoke(target, args);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>实际使用的是 <code>Proxy.newProxyInstance()</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 传入目标对象的引用 target  </span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Object <span class="title">getProxy2</span><span class="params">(<span class="keyword">final</span> Object target)</span> <span class="keyword">throws</span> Throwable</span>&#123;</span><br><span class="line"><span class="keyword">return</span> Proxy.newProxyInstance(</span><br><span class="line">        target.getClass().getClassLoader(), <span class="comment">// 类加载器</span></span><br><span class="line">        target.getClass().getInterfaces(),	<span class="comment">// 让代理实例对象和原对象实现同一个接口</span></span><br><span class="line">        <span class="comment">// 这么写其实是 匿名内部类 的写法</span></span><br><span class="line">        <span class="keyword">new</span> InvocationHandler() &#123;			<span class="comment">// 代理对象的方法最终会导向 invoke 方法</span></span><br><span class="line">          <span class="meta">@Override</span></span><br><span class="line">          <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> method.invoke(target,args);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="动态代理逻辑图"><a href="#动态代理逻辑图" class="headerlink" title="动态代理逻辑图"></a>动态代理逻辑图</h2><center>
-<img style="border-radius: 0.3125em;
-box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-src="http://msy-test.oss-cn-hangzhou.aliyuncs.com/share/docs/java/dynamicProxy/Java%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%20fig006.png">
-<br>
-<div style="color:orange; border-bottom: 1px solid #d9d9d9;
-display: inline-block;
-color: #999;
-padding: 2px;">动态代理逻辑图</div>
-
-
-<h1 id="五、Cglib-代理"><a href="#五、Cglib-代理" class="headerlink" title="五、Cglib 代理"></a>五、Cglib 代理</h1><h2 id="Cglib-代理的实现"><a href="#Cglib-代理的实现" class="headerlink" title="Cglib 代理的实现"></a>Cglib 代理的实现</h2><p>前面说的动态代理需要目标类实现接口，但是如果某个类根本不实现接口怎么办呢？这时候就需要 Cglib 代理了，也称 <strong>子类代理</strong>。</p>
-<p>逻辑是在内存中构建一个子类对象集成目标对象，实现目标对象的功能扩展。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> net.sf.cglib.proxy.Enhancer;</span><br><span class="line"><span class="keyword">import</span> net.sf.cglib.proxy.MethodInterceptor;</span><br><span class="line"><span class="keyword">import</span> net.sf.cglib.proxy.MethodProxy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CglibProxy</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 目标： 通过 Cglib 代理 BlackDog</span></span><br><span class="line">    Enhancer enhancer = <span class="keyword">new</span> Enhancer();</span><br><span class="line">    enhancer.setSuperclass(BlackDog.class);</span><br><span class="line">    </span><br><span class="line">    enhancer.setCallback(<span class="keyword">new</span> MethodInterceptor() &#123;</span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> Object <span class="title">intercept</span><span class="params">(Object o, Method method, Object[] objects, MethodProxy methodProxy)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="comment">// 此处一定要使用 proxy 的 invokeSuper 方法来调用目标类的方法  </span></span><br><span class="line">        <span class="keyword">return</span> methodProxy.invokeSuper(o, objects);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// 生成代理实例  </span></span><br><span class="line">    BlackDog dog = (BlackDog)enhancer.create();</span><br><span class="line">    dog.canBark();</span><br><span class="line">    dog.canRun();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Cglib-代理总结"><a href="#Cglib-代理总结" class="headerlink" title="Cglib 代理总结"></a>Cglib 代理总结</h2><p>在 Spring 的 AOP 编程中: 面向切面编程</p>
-<p>如果加入容器的目标对象<strong>有实现接口, 用 JDK 的动态代理</strong></p>
-<p>如果目标对象<strong>没有实现接口,用 Cglib 代理</strong>。</p>
-<h1 id="六、参考材料"><a href="#六、参考材料" class="headerlink" title="六、参考材料"></a>六、参考材料</h1><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20794107">Java 动态代理作用是什么？</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jie-y/p/10732347.html">Java中三种代理模式</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/dufufd/article/details/80537638">Java中Class对象详解</a></p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2021/04/04/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%82%E8%80%83/">系统架构参考</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-04-04</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/%E5%85%B6%E4%BB%96/">其他</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/">系统架构</a></span><div class="content"><h1 id="系统架构参考"><a href="#系统架构参考" class="headerlink" title="系统架构参考"></a>系统架构参考</h1><h2 id="企业级分布式应用服务EDAS"><a href="#企业级分布式应用服务EDAS" class="headerlink" title="企业级分布式应用服务EDAS"></a>企业级分布式应用服务EDAS</h2><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/p232673.png" alt="img"></p>
-<h2 id="阿里中台架构图"><a href="#阿里中台架构图" class="headerlink" title="阿里中台架构图"></a>阿里中台架构图</h2><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/v2-8623f0835181951bc40bcac5ab8713cf_720w.jpg" alt="img"></p>
-<h2 id="淘宝服务端高并发分布式架构"><a href="#淘宝服务端高并发分布式架构" class="headerlink" title="淘宝服务端高并发分布式架构"></a>淘宝服务端高并发分布式架构</h2><ul>
-<li>架构特点：负载均衡、正向代理和反向代理、分布式、高可用</li>
-<li>MPP数据库</li>
-<li>使用LVS或F5来使多个Nginx负载均衡（可使用keepalived软件模拟出虚拟IP，然后把虚拟IP绑定到多台LVS服务器上）</li>
-<li>通过DNS轮询实现机房间的负载均衡（系统可做到机房级别的水平扩展）</li>
-<li><h5 id="引入NoSQL数据库和搜索引擎等技术"><a href="#引入NoSQL数据库和搜索引擎等技术" class="headerlink" title="引入NoSQL数据库和搜索引擎等技术+"></a>引入NoSQL数据库和搜索引擎等技术+</h5></li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/v2-65d4f75b68cd095805bafceb8c2e4a2c_720w.jpg" alt="img"></p>
-<h2 id="JUST-DB"><a href="#JUST-DB" class="headerlink" title="JUST-DB"></a>JUST-DB</h2><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210701102643136.png" alt="image-20210701102643136"></p>
-<h2 id="云原生技术架构"><a href="#云原生技术架构" class="headerlink" title="云原生技术架构"></a>云原生技术架构</h2><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/v2-4df5f78230cda29a2a28bb789562f522_720w.jpg" alt="img"></p>
-<h2 id="全空间混合数据服务引擎"><a href="#全空间混合数据服务引擎" class="headerlink" title="全空间混合数据服务引擎"></a>全空间混合数据服务引擎</h2><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210701144211306.png" alt="image-20210701144211306"></p>
-<h2 id="Ganos"><a href="#Ganos" class="headerlink" title="Ganos"></a>Ganos</h2><p>Ganos是包含SQL + NoSQL云数据库的时空引擎。</p>
-<ul>
-<li>公有云原生架构的空间、时空、遥感一体化NoSQL大数据引擎产品，开箱即用；</li>
-<li>PB级存储、高并发写入、百亿级时空查询秒级响应；</li>
-<li>支持数据冷热分离存储和数据高效压缩算法，海量数据存储成本低；</li>
-<li>与云上Spark无缝集成，快速搭建空间大数据仓库和空间大数据分析平台；</li>
-<li>基于OGC标准设计，便于系统间的集成与互操作；</li>
-<li>基于阿里云HBase、XPack专业运维，全托管方式，提供可靠稳定的服务。</li>
-</ul>
-<h3 id="Ganos中的时空模型"><a href="#Ganos中的时空模型" class="headerlink" title="Ganos中的时空模型"></a>Ganos中的时空模型</h3><p>除了支持传统的几何模型、栅格模型和拓扑网络模型，还扩充支持了网格模型、时空轨迹模型以及点云模型。</p>
-<p><img src="https://ucc.alicdn.com/pic/developer-ecology/6bc55a54abb944289c4ef6d99db99adf.png" alt="image.png"></p>
-<h3 id="PG-Ganos"><a href="#PG-Ganos" class="headerlink" title="PG Ganos"></a>PG Ganos</h3><ol>
-<li><strong>如何管理PB级遥感影像：PostgresSQL + Ganos + OSS</strong></li>
-</ol>
-<p>通过“PostgresSQL + Ganos + OSS”组合，可实现 PB级遥感影像的管理。源数据和部分金字塔数据可以存储在数据库内部，遥感原始数据存放在OOS中，由于OOS存储价格低廉，使得用户的使用成本也有所降低。</p>
-<ol start="2">
-<li><strong>遥感影像注册（入库）</strong></li>
-</ol>
-<p>需要按照insertSQL语句直接写入到数据库，将OSS地址传给createrast接口即可。</p>
-<ol start="3">
-<li><strong>矢量数据入库</strong></li>
-</ol>
-<p>主要依赖空间开源的工具，包括Ogr2ogr、shp2pgsql、QGIS、pg_dump/pg_restore等。</p>
-<ol start="4">
-<li><strong>PG Ganos如何管理轨迹数据</strong></li>
-</ol>
-<p>Ganos管理轨迹数据主要通过轨迹构造、轨迹压缩和轨迹相似性判断。</p>
-<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/d83b6862464d47b3959d224890ab323f.png" alt="image.png"></p>
-<ol start="5">
-<li><strong>Ganos与开源工具</strong></li>
-</ol>
-<p>Ganos无缝对接兼容PostGIS的各类GIS软件，显示和编辑包括GeoServer、QGIS、uDig、OpenJump等，PGAdmin4。</p>
-<h3 id="示例：某位置服务平台"><a href="#示例：某位置服务平台" class="headerlink" title="示例：某位置服务平台"></a>示例：某位置服务平台</h3><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/4594052-c1342ad1e96c0079.png" alt="img"></p>
-<h3 id="示例：遥感大数据管理与智能服务平台"><a href="#示例：遥感大数据管理与智能服务平台" class="headerlink" title="示例：遥感大数据管理与智能服务平台"></a>示例：遥感大数据管理与智能服务平台</h3><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/184a2ace18314d57a5b3b40b15676cac.png" alt="图片 6.png"></p>
-<h2 id="名词解释："><a href="#名词解释：" class="headerlink" title="名词解释："></a>名词解释：</h2><ul>
-<li><p>NoSQL</p>
-<ul>
-<li>\1. 键值数据库：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/crs?from=10680">Redis</a>、Memcached、Riak、Cassandra、LevelDB</li>
-<li>\2. 列族数据库：Bigtable、<a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/hbase?from=10680">HBase</a>、Cassandra、Druid</li>
-<li>\3. 文档数据库：MongoDB、CouchDB、MarkLogic</li>
-<li>\4. 图形数据库：Neo4j（知识图谱）、InfoGrid、ArangoDB</li>
-</ul>
-</li>
-<li><p>MPP (Massively Parallel Processing)大规模并行处理架构。比较流行的有Greenplum、TiDB、Postgresql XC、HAWQ等，商用的如南大通用的GBase、睿帆科技的雪球DB、华为的LibrA</p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/148621151">https://zhuanlan.zhihu.com/p/148621151</a></p>
-</li>
-<li><p>LVS(Linux Virtual Server)：本质上是一个软件。是一种集群(Cluster)技术，采用IP负载均衡技术和基于内容请求分发技术。</p>
-<ul>
-<li>VS/NAT 负载均衡策略：</li>
-<li>VS/TUN 负载均衡策略：</li>
-<li>VS/NAT 负载均衡策略：</li>
-<li><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/v2-9a56981b5fe5a218bb41a684d96b5d4f_720w.jpg" alt="img"></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/87109094#:~:text=%E9%A6%96%E5%85%88%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8BLVS%20%28Linux%20Virtual,Server%29%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88%E4%B8%9C%E8%A5%BF%EF%BC%8C%E5%85%B6%E5%AE%9E%E5%AE%83%E6%98%AF%E4%B8%80%E7%A7%8D%E9%9B%86%E7%BE%A4%20%28Cluster%29%E6%8A%80%E6%9C%AF%EF%BC%8C%E9%87%87%E7%94%A8IP%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E6%8A%80%E6%9C%AF%E5%92%8C%E5%9F%BA%E4%BA%8E%E5%86%85%E5%AE%B9%E8%AF%B7%E6%B1%82%E5%88%86%E5%8F%91%E6%8A%80%E6%9C%AF%E3%80%82%20%E8%B0%83%E5%BA%A6%E5%99%A8%E5%85%B7%E6%9C%89%E5%BE%88%E5%A5%BD%E7%9A%84%E5%90%9E%E5%90%90%E7%8E%87%EF%BC%8C%E5%B0%86%E8%AF%B7%E6%B1%82%E5%9D%87%E8%A1%A1%E5%9C%B0%E8%BD%AC%E7%A7%BB%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E6%89%A7%E8%A1%8C%EF%BC%8C%E4%B8%94%E8%B0%83%E5%BA%A6%E5%99%A8%E8%87%AA%E5%8A%A8%E5%B1%8F%E8%94%BD%E6%8E%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%95%85%E9%9A%9C%EF%BC%8C%E4%BB%8E%E8%80%8C%E5%B0%86%E4%B8%80%E7%BB%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%84%E6%88%90%E4%B8%80%E4%B8%AA%E9%AB%98%E6%80%A7%E8%83%BD%E7%9A%84%E3%80%81%E9%AB%98%E5%8F%AF%E7%94%A8%E7%9A%84%E8%99%9A%E6%8B%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%82">链接</a></li>
-</ul>
-</li>
-<li><p>F5是一种负载均衡硬件，与LVS提供的能力类似，性能比LVS更高，但价格昂贵。</p>
-</li>
-<li><p>如对于海量文件存储，可通过分布式文件系统HDFS解决，对于key value类型的数据，可通过HBase和Redis等方案解决，对于全文检索场景，可通过搜索引擎如ElasticSearch解决，对于多维分析场景，可通过Kylin或Druid等方案解决。</p>
-</li>
-<li><p>geoTrellis：处理栅格数据。生成金字塔图层、渲染切片、GeoJson的序列化与反序列化</p>
-</li>
-<li><p>geoMesa：处理矢量数据。由locationtech开源的一套地理大数据处理工具套件。 GeoMesa目前支持的NoSQL数据库包括Accumulo、HBase、Google Bigtable和Cassandra等。</p>
-</li>
-<li><p>DLI：数据湖探索</p>
-</li>
-<li><p>DLA：数据湖分析</p>
-</li>
-<li><p>Apache Kylin™是一个开源的、分布式的分析型数据仓库。提供<code>Hadoop/Spark</code>之上的<code>SQL</code>查询接口及多维分析(<code>OLAP</code>)能力以支持超大规模数据，它能在亚秒内查询巨大的<code>Hive</code>表。其核心是预计算，计算结果存在<code>HBase</code>中。</p>
-<p>作为大数据分析神器，它也需要站在巨人的肩膀上，依赖<code>HDFS</code>、<code>MapReduce/Spark</code>、<code>Hive/Kafka</code>、<code>HBase</code>等服务。</p>
-</li>
-<li><p>Apache Flink并不提供自己的数据存储系统，但为<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Amazon_Web_Services#Analytics">Amazon Kinesis</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Apache_Kafka">Apache Kafka</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Alluxio">Alluxio</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/HDFS">HDFS</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Apache_Cassandra">Apache Cassandra</a>和<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Elasticsearch">Elasticsearch</a>等系统提供了数据源和接收器。</p>
-</li>
-<li><p><strong>Presto</strong>是一种用于大数据的高性能分布式<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/SQL">SQL</a>查询引擎。其架构允许用户查询各种数据源，如Hadoop、AWS S3、Alluxio、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/MySQL">MySQL</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Cassandra">Cassandra</a>、Kafka和MongoDB。</p>
-</li>
-<li><p>Drill：<strong>Drill</strong> is an Apache open-source SQL query engine for Big Data exploration. </p>
-</li>
-<li><p>LSM-tree 最大的特点就是写入速度快，主要利用了磁盘的顺序写，pk掉了需要随机写入的 B-tree。关于磁盘的顺序和随机写可以参考：《硬盘的各种概念》</p>
-</li>
-</ul>
-<h1 id="全时空信息系统架构设计"><a href="#全时空信息系统架构设计" class="headerlink" title="全时空信息系统架构设计"></a>全时空信息系统架构设计</h1><h2 id="数据底层分类"><a href="#数据底层分类" class="headerlink" title="数据底层分类"></a>数据底层分类</h2><h2 id="数据库引擎"><a href="#数据库引擎" class="headerlink" title="数据库引擎"></a>数据库引擎</h2><p>NewSQL 见文档-NewSQL主流数据库对比</p>
-<hr>
-<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/clip_image002.jpg" alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/0%7EGT%5D37GOLTO7XQ%5BNKI4%60VQ.png" alt="img"></p>
-<h2 id="检索引擎"><a href="#检索引擎" class="headerlink" title="检索引擎"></a>检索引擎</h2><h2 id="计算引擎"><a href="#计算引擎" class="headerlink" title="计算引擎"></a>计算引擎</h2><h2 id="容器化、微服务、DevOps"><a href="#容器化、微服务、DevOps" class="headerlink" title="容器化、微服务、DevOps"></a>容器化、微服务、DevOps</h2><h2 id="可视化引擎"><a href="#可视化引擎" class="headerlink" title="可视化引擎"></a>可视化引擎</h2><h1 id="参考连接"><a href="#参考连接" class="headerlink" title="参考连接"></a>参考连接</h1><h2 id="1-淘宝服务端高并发分布式架构演进之路"><a href="#1-淘宝服务端高并发分布式架构演进之路" class="headerlink" title="1. 淘宝服务端高并发分布式架构演进之路"></a>1. 淘宝服务端高并发分布式架构演进之路</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/69999325">https://zhuanlan.zhihu.com/p/69999325</a></p>
-<h2 id="2-微服务网关Zuul、Gateway、nginx的区别"><a href="#2-微服务网关Zuul、Gateway、nginx的区别" class="headerlink" title="2. 微服务网关Zuul、Gateway、nginx的区别"></a>2. 微服务网关Zuul、Gateway、nginx的区别</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/8d82c6c2e5ee">https://www.jianshu.com/p/8d82c6c2e5ee</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lizz861109/article/details/103575186">https://blog.csdn.net/lizz861109/article/details/103575186</a></p>
-<h2 id="3-Hive、Hbase、mysql的区别"><a href="#3-Hive、Hbase、mysql的区别" class="headerlink" title="3. Hive、Hbase、mysql的区别"></a>3. Hive、Hbase、mysql的区别</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/137458844">https://zhuanlan.zhihu.com/p/137458844</a></p>
-<h2 id="4-解惑图数据库！你知道什么是图数据库吗？"><a href="#4-解惑图数据库！你知道什么是图数据库吗？" class="headerlink" title="4. 解惑图数据库！你知道什么是图数据库吗？"></a>4. 解惑图数据库！你知道什么是图数据库吗？</h2><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1634337">https://cloud.tencent.com/developer/article/1634337</a></p>
-<h2 id="5-图数据库选型对比：HugeGraph、JanusGraph、Neo4j"><a href="#5-图数据库选型对比：HugeGraph、JanusGraph、Neo4j" class="headerlink" title="5. 图数据库选型对比：HugeGraph、JanusGraph、Neo4j"></a>5. 图数据库选型对比：HugeGraph、JanusGraph、Neo4j</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hellohiworld/article/details/104824764">https://blog.csdn.net/hellohiworld/article/details/104824764</a></p>
-<h2 id="6-JanusGraph-Neo4j-TigerGraph简单对比"><a href="#6-JanusGraph-Neo4j-TigerGraph简单对比" class="headerlink" title="6. JanusGraph/Neo4j/TigerGraph简单对比"></a>6. JanusGraph/Neo4j/TigerGraph简单对比</h2><p>目前TigerGraph的生态不是很全，编程api等能力也有一定限制</p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/74424421">https://zhuanlan.zhihu.com/p/74424421</a></p>
-<h2 id="7-全文搜索引擎-ElasticSearch-还是-Solr？"><a href="#7-全文搜索引擎-ElasticSearch-还是-Solr？" class="headerlink" title="7. 全文搜索引擎 ElasticSearch 还是 Solr？"></a>7. 全文搜索引擎 ElasticSearch 还是 Solr？</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jajian/p/9801154.html">https://www.cnblogs.com/jajian/p/9801154.html</a></p>
-<h2 id="8-9个基于Java的搜索引擎框架-转"><a href="#8-9个基于Java的搜索引擎框架-转" class="headerlink" title="8. 9个基于Java的搜索引擎框架 转"></a>8. 9个基于Java的搜索引擎框架 转</h2><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1184216?from=article.detail.1178714">https://cloud.tencent.com/developer/article/1184216?from=article.detail.1178714</a></p>
-<h2 id="9-什么是CIM？究竟和BIM有什么关系？"><a href="#9-什么是CIM？究竟和BIM有什么关系？" class="headerlink" title="9. 什么是CIM？究竟和BIM有什么关系？"></a>9. 什么是CIM？究竟和BIM有什么关系？</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/359816845">https://zhuanlan.zhihu.com/p/359816845</a></p>
-<h2 id="10-BIM-GIS应用的八大挑战"><a href="#10-BIM-GIS应用的八大挑战" class="headerlink" title="10. BIM+GIS应用的八大挑战"></a>10. BIM+GIS应用的八大挑战</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/supermapsupport/article/details/95048023">https://blog.csdn.net/supermapsupport/article/details/95048023</a></p>
-<h2 id="11-HBase-Ganos简介"><a href="#11-HBase-Ganos简介" class="headerlink" title="11. HBase Ganos简介"></a>11. HBase Ganos简介</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/cad5467cc67d">https://www.jianshu.com/p/cad5467cc67d</a></p>
-<h2 id="12-对比五款数据库，告诉你-NewSQL-的独到之处"><a href="#12-对比五款数据库，告诉你-NewSQL-的独到之处" class="headerlink" title="12. 对比五款数据库，告诉你 NewSQL 的独到之处"></a>12. 对比五款数据库，告诉你 NewSQL 的独到之处</h2><p><a target="_blank" rel="noopener" href="https://www.techug.com/post/what-is-new-about-newsql.html">https://www.techug.com/post/what-is-new-about-newsql.html</a></p>
-<h2 id="13-NewSQL究竟新在哪里？"><a href="#13-NewSQL究竟新在哪里？" class="headerlink" title="13. NewSQL究竟新在哪里？"></a>13. NewSQL究竟新在哪里？</h2><p><a target="_blank" rel="noopener" href="http://oserror.com/distributed/newsql/">http://oserror.com/distributed/newsql/</a></p>
-<h2 id="14-分布式-NewSQL-对比"><a href="#14-分布式-NewSQL-对比" class="headerlink" title="14. 分布式 NewSQL 对比"></a>14. 分布式 NewSQL 对比</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/GO-NO-1/p/9935195.html">https://www.cnblogs.com/GO-NO-1/p/9935195.html</a></p>
-</div><hr></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2022 By ZJH</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/lib/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.1"></script><script src="/js/fancybox.js?version=1.9.1"></script><script src="/js/sidebar.js?version=1.9.1"></script><script src="/js/copy.js?version=1.9.1"></script><script src="/js/fireworks.js?version=1.9.1"></script><script src="/js/transition.js?version=1.9.1"></script><script src="/js/scroll.js?version=1.9.1"></script><script src="/js/head.js?version=1.9.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+<h1 id="END"><a href="#END" class="headerlink" title="END"></a>END</h1></div><hr></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2022 By ZJH</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/lib/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.1"></script><script src="/js/fancybox.js?version=1.9.1"></script><script src="/js/sidebar.js?version=1.9.1"></script><script src="/js/copy.js?version=1.9.1"></script><script src="/js/fireworks.js?version=1.9.1"></script><script src="/js/transition.js?version=1.9.1"></script><script src="/js/scroll.js?version=1.9.1"></script><script src="/js/head.js?version=1.9.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
   $('#nav').addClass('is-mobile')
   $('footer').addClass('is-mobile')
   $('#top-container').addClass('is-mobile')
