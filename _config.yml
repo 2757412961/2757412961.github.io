@@ -110,7 +110,10 @@ pagination_dir: page
 # Include / Exclude file(s)
 ## include:/exclude: options only apply to the 'source/' folder
 include:
+# 不要用 exclude 来忽略 'source/_posts/' 中的文件。你应该使用 'skip_render'，或者在要忽略的文件的文件名之前加一个下划线 '_'
+# 在这里配置一个 - "_posts/hello-world.md" 是没有用的。
 exclude:
+  - '*.js'
 ignore:
 
 # Extensions
