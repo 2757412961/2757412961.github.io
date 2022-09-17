@@ -44,6 +44,7 @@ const PACKAGE_ID_PUSHDEER = "com.pushdeer.os"               // Push Deer
 const LOWER_BOUND = 1 * 60 * 1000 // 最小等待时间：1min
 const UPPER_BOUND = 5 * 60 * 1000 // 最大等待时间：5min
 const ONE_MIN = 1 * 60 * 1000 // 等待时间：1min
+const HALF_AN_HOUR = 30 * 60 * 1000 // 等待时间：0.5h
 const AN_HOUR = 1 * 60 * 60 * 1000 // 等待时间：1h
 
 // 执行时的屏幕亮度（0-255）, 需要"修改系统设置"权限
@@ -73,7 +74,7 @@ const WEEK_DAY = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","S
 var currentDate = new Date()
 
 // 是否暂停循环打卡
-var recursiveCard = true
+var recursiveCard = false
 
 // 是否暂停定时打卡
 var suspend = false
@@ -127,24 +128,31 @@ toastLog("监听中, 请在日志中查看记录的通知及其内容")
 // =================== ↑↑↑ 主线程：监听通知 ↑↑↑ =====================
 
 
-// =================== ↑↑↑ 主线程：循环打卡 ↑↑↑ =====================
-while(recursiveCard){
-    var hour = 0
-    // 直到 早八晚十 启动钉钉
-    while(hour != 8 && hour != 22){
-        console.warn("睡眠 5 分钟")
-        sleep(UPPER_BOUND)
-        hour = new Date().getHours()
-    }
+// =================== ↑↑↑ 副线程：循环打卡 ↑↑↑ =====================
+startRecursiveCard();
 
-    var randomTime = random(ONE_MIN, AN_HOUR)
-    toastLog(Math.floor(randomTime / 1000) + "秒后启动钉钉...")
-    sleep(randomTime)
-    doClock()
-    console.warn("一小时后恢复循环打卡")
-    sleep(AN_HOUR)
-};
-// =================== ↑↑↑ 主线程：循环打卡 ↑↑↑ =====================
+function startRecursiveCard(){
+    while(recursiveCard){
+        var hour = new Date().getHours()
+        // 直到 早八晚十 启动钉钉
+        while(recursiveCard && hour != 8 && hour != 22){
+            var randomTime = random(ONE_MIN, HALF_AN_HOUR)
+            console.log("未到时间点，进行" + Math.floor(randomTime / 1000) + "秒随机睡眠...")
+            // toastLog("未到时间点，进行" + Math.floor(randomTime / 1000) + "秒随机睡眠...")
+            sleep(randomTime)
+            hour = new Date().getHours()
+        }
+    
+        doClock()
+        if(DEFAULT_MESSAGE_DELIVER == PUSH_METHOD.QQ){
+            sendQQMsg(new Date() + " 打卡成功")
+        }
+    
+        console.warn("一小时后恢复循环打卡")
+        sleep(AN_HOUR)
+    };
+}
+// =================== ↑↑↑ 副线程：循环打卡 ↑↑↑ =====================
 
 /**
  * @description 处理通知
@@ -258,18 +266,19 @@ function notificationHandler(n) {
             threads.start(function(){
                 switch(DEFAULT_MESSAGE_DELIVER) {
                     case PUSH_METHOD.QQ:
-                        sendQQMsg("开启每天循环打卡功能")
+                        sendQQMsg("开启每天循环打卡功能（早八晚十）")
                        break;
                     case PUSH_METHOD.Email:
-                        sendEmail("开启每天循环打卡功能", null)
+                        sendEmail("开启每天循环打卡功能（早八晚十）", null)
                        break;
                     case PUSH_METHOD.ServerChan:
-                        sendServerChan("开启每天循环打卡功能")
+                        sendServerChan("开启每天循环打卡功能（早八晚十）")
                        break;
                     case PUSH_METHOD.PushDeer:
-                        sendPushDeer("开启每天循环打卡功能")
+                        sendPushDeer("开启每天循环打卡功能（早八晚十）")
                        break;
                 }
+                startRecursiveCard();
             })
             break;
         
