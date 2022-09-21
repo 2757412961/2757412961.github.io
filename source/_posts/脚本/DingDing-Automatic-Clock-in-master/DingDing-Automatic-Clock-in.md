@@ -23,6 +23,8 @@ tags:
 
 - 发送 “开启循环” 开启定时功能
 - 发送 “关闭循环” 关闭定时功能
+- 修正 “日志” 功能BUG，发送日志文件到邮箱中
+- 添加 “连接” 功能，实现远程连接电脑 AutoJs Server
 
 ```javascript
 /*
@@ -37,8 +39,8 @@ const ACCOUNT = "15868141080"
 const PASSWORD = ""
 
 const QQ =              "2757412961"
-const EMAILL_ADDRESS =  "用于接收打卡结果的邮箱地址"
-const SERVER_CHAN =     "Server酱发送密钥"
+const EMAILL_ADDRESS =  "2757412961@qq.com"
+const SERVER_CHAN =     "SCT171904TfSMLDvHz2oGuB8NU9NdMg1W0"
 const PUSH_DEER =       "PushDeer发送密钥"
 
 const PUSH_METHOD = {QQ: 1, Email: 2, ServerChan: 3, PushDeer: 4}
@@ -51,7 +53,8 @@ const PUSH_METHOD = {QQ: 1, Email: 2, ServerChan: 3, PushDeer: 4}
 var DEFAULT_MESSAGE_DELIVER = PUSH_METHOD.QQ;
 
 const PACKAGE_ID_QQ = "com.tencent.mobileqq"                // QQ
-const PACKAGE_ID_DD = "com.alibaba.android.rimet"           // 钉钉
+// const PACKAGE_ID_DD = "com.alibaba.android.rimet"           // 钉钉
+const PACKAGE_ID_DD = "com.alibaba.android.rimet.zju"           // 浙大钉
 const PACKAGE_ID_XMSF = "com.xiaomi.xmsf"                   // 小米推送服务
 const PACKAGE_ID_TASKER = "net.dinglisch.android.taskerm"   // Tasker
 const PACKAGE_ID_MAIL_163 = "com.netease.mail"              // 网易邮箱大师
@@ -61,6 +64,7 @@ const PACKAGE_ID_PUSHDEER = "com.pushdeer.os"               // Push Deer
 const LOWER_BOUND = 1 * 60 * 1000 // 最小等待时间：1min
 const UPPER_BOUND = 5 * 60 * 1000 // 最大等待时间：5min
 const ONE_MIN = 1 * 60 * 1000 // 等待时间：1min
+const FIF_MIN = 15 * 60 * 1000 // 等待时间：0.5h
 const HALF_AN_HOUR = 30 * 60 * 1000 // 等待时间：0.5h
 const AN_HOUR = 1 * 60 * 60 * 1000 // 等待时间：1h
 
@@ -92,12 +96,13 @@ var currentDate = new Date()
 
 // 是否暂停循环打卡
 var recursiveCard = false
+var timeAnchorPoints = [8,11,13,17,19,22]
 
 // 是否暂停定时打卡
 var suspend = false
 
 // 本次打开钉钉前是否需要等待
-var needWaiting = true
+var needWaiting = false
 
 // 运行日志路径
 var globalLogFilePath = "/sdcard/脚本/Archive/" + getCurrentDate() + "-log.txt"
@@ -151,22 +156,28 @@ startRecursiveCard();
 function startRecursiveCard(){
     while(recursiveCard){
         var hour = new Date().getHours()
-        // 直到 早八晚十 启动钉钉
-        while(recursiveCard && hour != 8 && hour != 22){
-            var randomTime = random(ONE_MIN, HALF_AN_HOUR)
-            console.log("未到时间点，进行" + Math.floor(randomTime / 1000) + "秒随机睡眠...")
-            // toastLog("未到时间点，进行" + Math.floor(randomTime / 1000) + "秒随机睡眠...")
+        // 直到打卡时间点 启动钉钉
+        while(recursiveCard && !existsInArray(timeAnchorPoints, hour)){
+            var randomTime = random(ONE_MIN, FIF_MIN)
+            console.log("【循环打卡】未到时间点，进行" + Math.floor(randomTime / 1000) + "秒随机睡眠...")
             sleep(randomTime)
             hour = new Date().getHours()
         }
     
-        doClock()
+        doClock(); // 打卡
         if(DEFAULT_MESSAGE_DELIVER == PUSH_METHOD.QQ){
-            sendQQMsg(new Date() + " 打卡成功")
+            sendQQMsg(new Date() + " 【循环打卡】打卡成功")
+            sendServerChan("【循环打卡】打卡结果", new Date() + " 打卡成功")
+            console.log("【循环打卡】QQ&ServerChan 消息发送成功...")
         }
     
-        console.warn("一小时后恢复循环打卡")
-        sleep(AN_HOUR)
+        // 直到打卡时间点 启动钉钉
+        while(recursiveCard && existsInArray(timeAnchorPoints, hour)){
+            var randomTime = random(ONE_MIN, FIF_MIN)
+            console.log("【循环打卡】已打卡，进行" + Math.floor(randomTime / 1000) + "秒随机睡眠...")
+            sleep(randomTime)
+            hour = new Date().getHours()
+        }
     };
 }
 // =================== ↑↑↑ 副线程：循环打卡 ↑↑↑ =====================
@@ -270,9 +281,17 @@ function notificationHandler(n) {
             break;
 
         case "日志": // 监听文本为 "日志" 的通知
-            threads.shutDownAll()
+            // threads.shutDownAll()
             threads.start(function(){
                 sendEmail("获取日志", globalLogFilePath, globalLogFilePath)
+            })
+            break;
+            
+
+        case "连接": // 连接到 Autojs Server
+            // threads.shutDownAll()
+            threads.start(function(){
+                connectServer()
             })
             break;
 
@@ -283,16 +302,16 @@ function notificationHandler(n) {
             threads.start(function(){
                 switch(DEFAULT_MESSAGE_DELIVER) {
                     case PUSH_METHOD.QQ:
-                        sendQQMsg("开启每天循环打卡功能（早八晚十）")
+                        sendQQMsg("开启每天循环打卡功能（早八晚十），时间点：" + timeAnchorPoints)
                        break;
                     case PUSH_METHOD.Email:
-                        sendEmail("开启每天循环打卡功能（早八晚十）", null)
+                        sendEmail("开启每天循环打卡功能（早八晚十），时间点：" + timeAnchorPoints, null)
                        break;
                     case PUSH_METHOD.ServerChan:
-                        sendServerChan("开启每天循环打卡功能（早八晚十）")
+                        sendServerChan("开启循环打卡成功", "开启每天循环打卡功能（早八晚十），时间点：" + timeAnchorPoints)
                        break;
                     case PUSH_METHOD.PushDeer:
-                        sendPushDeer("开启每天循环打卡功能（早八晚十）")
+                        sendPushDeer("开启循环打卡成功", "开启每天循环打卡功能（早八晚十），时间点：" + timeAnchorPoints)
                        break;
                 }
                 startRecursiveCard();
@@ -312,10 +331,10 @@ function notificationHandler(n) {
                         sendEmail("关闭每天循环打卡功能", null)
                        break;
                     case PUSH_METHOD.ServerChan:
-                        sendServerChan("关闭每天循环打卡功能")
+                        sendServerChan("关闭循环打卡成功", "关闭每天循环打卡功能")
                        break;
                     case PUSH_METHOD.PushDeer:
-                        sendPushDeer("关闭每天循环打卡功能")
+                        sendPushDeer("关闭循环打卡成功", "关闭每天循环打卡功能")
                        break;
                 }
             })
@@ -329,9 +348,11 @@ function notificationHandler(n) {
     return;
     
     // 监听钉钉返回的考勤结果
-    if (packageId == PACKAGE_ID_DD && text.indexOf("考勤打卡") >= 0) { 
+    // if (packageId == PACKAGE_ID_DD && text.indexOf("考勤打卡") >= 0) { 
+    if (packageId == PACKAGE_ID_DD) { 
         setStorageData("dingding", "clockResult", text)
-        threads.shutDownAll()
+        console.warn("监听钉钉返回的消息...")
+        // threads.shutDownAll()
         threads.start(function() {
             switch(DEFAULT_MESSAGE_DELIVER) {
                 case PUSH_METHOD.QQ:
@@ -369,9 +390,9 @@ function doClock() {
     handleLate()        // 处理迟到
     attendKaoqin()      // 考勤打卡
 
-    if (currentDate.getHours() <= 12) 
+    if (null != textContains("上班打卡").findOne(1000)) 
     clockIn()           // 上班打卡
-    else 
+    else if (null != textContains("下班打卡").findOne(1000)) 
     clockOut()          // 下班打卡
     
     lockScreen()        // 关闭屏幕
@@ -391,10 +412,16 @@ function sendEmail(title, message, attachFilePath) {
     brightScreen()      // 唤醒屏幕
     unlockScreen()      // 解锁屏幕
 
+    
+    // 内置电子邮件
+    app.launch("com.android.email");
+    console.log("等待邮箱启动...")
+    sleep(3000) // 等待邮箱启动
+
     if(attachFilePath != null && files.exists(attachFilePath)) {
         console.info(attachFilePath)
         app.sendEmail({
-            email: [EMAILL_ADDRESS], subject: title, text: message, attachment: attachFilePath
+            email: [EMAILL_ADDRESS], subject: title, text: message, attachment: "file://" + attachFilePath
         })
     }
     else {
@@ -403,49 +430,66 @@ function sendEmail(title, message, attachFilePath) {
             email: [EMAILL_ADDRESS], subject: title, text: message
         })
     }
-    
-    console.log("选择邮件应用")
-    waitForActivity("com.android.internal.app.ChooserActivity") // 等待选择应用界面弹窗出现, 如果设置了默认应用就注释掉
-    
-    var emailAppName = app.getAppName(PACKAGE_ID_MAIL_163)
-    if (null != emailAppName) {
-        if (null != textMatches(emailAppName).findOne(1000)) {
-            btn_email = textMatches(emailAppName).findOnce().parent()
-            btn_email.click()
-        }
-    }
-    else {
-        console.error("不存在应用: " + PACKAGE_ID_MAIL_163)
-        lockScreen()
+    sleep(1000)
+
+    // 选择邮箱应用，系统默认应用即可
+    var emailText = text("电子邮件").findOne(1000);
+    if(null == emailText){
+        console.log("邮箱应用选择失败...")
         return;
     }
-
-    // 网易邮箱大师
-    var versoin = getPackageVersion(PACKAGE_ID_MAIL_163)
-    console.log("应用版本: " + versoin)
-    var sp = versoin.split(".")
-    if (sp[0] == 6) {
-        // 网易邮箱大师 6
-        waitForActivity("com.netease.mobimail.activity.MailComposeActivity")
-        id("send").findOne().click()
-    }
-    else {
-        // 网易邮箱大师 7
-        waitForActivity("com.netease.mobimail.module.mailcompose.MailComposeActivity")
-        var input_address = id("input").findOne()
-        if (null == input_address.getText()) {
-            input_address.setText(EMAILL_ADDRESS)
-        }
-        id("iv_arrow").findOne().click()
-        sleep(1000)
-        id("img_send_bg").findOne().click()
-    }
+    emailText.parent().click();
+    console.log("邮箱应用选择成功...")
+    sleep(1000)
     
-    // 内置电子邮件
-    // waitForActivity("com.kingsoft.mail.compose.ComposeActivity")
+    // 点击发送按钮
+    var sendBtn = desc("发送").findOne(1000);
+    if(null == sendBtn){
+        console.log("邮箱发送失败...")
+        return;
+    }
+    sendBtn.click()
+    console.log("正在发送邮件...")
+    
+    // =============================================================================================================
+    // console.log("选择邮件应用")
+    // waitForActivity("com.android.internal.app.ChooserActivity") // 等待选择应用界面弹窗出现, 如果设置了默认应用就注释掉
     // id("compose_send_btn").findOne().click()
 
-    console.log("正在发送邮件...")
+    // var emailAppName = app.getAppName(PACKAGE_ID_MAIL_163)
+    // if (null != emailAppName) {
+    //     if (null != textMatches(emailAppName).findOne(1000)) {
+    //         btn_email = textMatches(emailAppName).findOnce().parent()
+    //         btn_email.click()
+    //     }
+    // }
+    // else {
+    //     console.error("不存在应用: " + PACKAGE_ID_MAIL_163)
+    //     lockScreen()
+    //     return;
+    // }
+
+    // // 网易邮箱大师
+    // var versoin = getPackageVersion(PACKAGE_ID_MAIL_163)
+    // console.log("应用版本: " + versoin)
+    // var sp = versoin.split(".")
+    // if (sp[0] == 6) {
+    //     // 网易邮箱大师 6
+    //     waitForActivity("com.netease.mobimail.activity.MailComposeActivity")
+    //     id("send").findOne().click()
+    // }
+    // else {
+    //     // 网易邮箱大师 7
+    //     waitForActivity("com.netease.mobimail.module.mailcompose.MailComposeActivity")
+    //     var input_address = id("input").findOne()
+    //     if (null == input_address.getText()) {
+    //         input_address.setText(EMAILL_ADDRESS)
+    //     }
+    //     id("iv_arrow").findOne().click()
+    //     sleep(1000)
+    //     id("img_send_bg").findOne().click()
+    // }
+
     
     home()
     sleep(2000)
@@ -684,7 +728,7 @@ function attendKaoqin(){
     
     textContains("申请").waitFor()
     console.info("已进入考勤界面")
-    sleep(5000)
+    sleep(8000)
 }
 
 
@@ -695,13 +739,13 @@ function clockIn() {
 
     console.log("上班打卡...")
 
-    if (null != textContains("已打卡").findOne(1000)) {
-        console.info("已打卡")
-        toast("已打卡")
-        home()
-        sleep(1000)
-        return;
-    }
+    // if (null != textContains("已打卡").findOne(1000)) {
+    //     console.info("已打卡")
+    //     toast("已打卡")
+    //     home()
+    //     sleep(1000)
+    //     return;
+    // }
 
     console.log("等待连接到考勤机...")
     sleep(2000)
@@ -805,6 +849,83 @@ function lockScreen(){
 }
 
 
+/**
+ * @description 连接 AutoJs Server
+ */
+function connectServer(){
+
+    console.log("开始连接 AutoJs Server!")
+    console.log("本地时间: " + getCurrentDate() + " " + getCurrentTime())
+
+    brightScreen()      // 唤醒屏幕
+    unlockScreen()      // 解锁屏幕
+
+    connectAutoJsServer() // 连接 AutoJs Server
+    
+    lockScreen()        // 关闭屏幕
+
+}
+
+/**
+ * 
+ * @description 启动 AutoJs Server 整体流程
+ */
+function connectAutoJsServer(){
+    
+    launchApp("Auto.js")
+    console.log("正在启动 Auto.js...")
+    sleep(10000) // 等待 Auto.js 启动
+
+    // 打开侧拉菜单
+    var menuBtn = className("android.widget.ImageButton").desc("打开侧拉菜单").clickable(true).findOne(1000);
+    if(null != menuBtn){
+        menuBtn.click();
+    }
+    console.log("打开侧拉菜单...")
+    sleep(1000)
+
+    // 滚动屏幕找到连接电脑按钮
+    var menu = id("drawer_menu").findOne(1000);
+    if(null == menu){
+        console.log("滚动屏幕未找到连接电脑按钮...")
+        return;
+    }
+
+    menu.scrollForward()
+    console.log("滚动屏幕找到连接电脑按钮...")
+    sleep(1000)
+
+    // 连接电脑
+    var textCon = className("android.widget.TextView").text("连接电脑").findOne(1000);
+    if(null != textCon){
+        // 寻找按钮（Switch）
+        var layerCon = textCon.parent();
+        var switchBtn = layerCon.children().findOne(className("android.widget.Switch"));
+        console.log("找到连接电脑按钮，按钮状态为：" + switchBtn.text() + " " + switchBtn.checked() +  "...")
+        if(switchBtn.checked() == false){
+            // 按下按钮
+            switchBtn.click();
+            console.log("开始连接电脑...")
+            sleep(2000)
+
+            // 点击确定
+            var okBtn = text("确定").findOne(1000);
+            okBtn.click();
+            console.log("连接电脑成功...")
+        }
+    }
+    
+    sleep(1000) // 等待解锁动画完成
+    home()
+    sleep(1000) // 等待返回动画完成
+
+    // console.log("==========================================================");
+    // id("drawer_menu").findOne().children().forEach(child => {
+    //     var target = child.findOne(id("sw"));
+    //     console.log(target);
+    //     });
+}
+
 
 // ===================== ↓↓↓ 功能函数 ↓↓↓ =======================
 
@@ -829,6 +950,13 @@ function getCurrentDate(){
     var week = currentDate.getDay()
     var formattedDateString = year + '-' + month + '-' + date + '-' + WEEK_DAY[week]
     return formattedDateString
+}
+
+function existsInArray(arr, element){
+    for(var i=0; i<arr.length; i++){
+        if(arr[i] == element) return true;
+    }
+    return false;
 }
 
 // 通知过滤器

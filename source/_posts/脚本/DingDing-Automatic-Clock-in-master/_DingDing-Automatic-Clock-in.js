@@ -6,10 +6,10 @@
  * @URL: https://github.com/georgehuan1994/DingDing-Automatic-Clock-in
  */
 
-const ACCOUNT = "15868141080"
-const PASSWORD = ""
+const ACCOUNT = "钉钉账号"
+const PASSWORD = "钉钉密码"
 
-const QQ =              "2757412961"
+const QQ =              "用于接收打卡结果的QQ号"
 const EMAILL_ADDRESS =  "用于接收打卡结果的邮箱地址"
 const SERVER_CHAN =     "Server酱发送密钥"
 const PUSH_DEER =       "PushDeer发送密钥"
@@ -18,7 +18,7 @@ const PUSH_METHOD = {QQ: 1, Email: 2, ServerChan: 3, PushDeer: 4}
 
 // 默认通信方式：
 // PUSH_METHOD.QQ -- QQ
-// PUSH_METHOD.Email -- Email 
+// PUSH_METHOD.Email -- Email
 // PUSH_METHOD.ServerChan -- Server酱
 // PUSH_METHOD.PushDeer -- Push Deer
 var DEFAULT_MESSAGE_DELIVER = PUSH_METHOD.QQ;
@@ -33,12 +33,9 @@ const PACKAGE_ID_PUSHDEER = "com.pushdeer.os"               // Push Deer
 
 const LOWER_BOUND = 1 * 60 * 1000 // 最小等待时间：1min
 const UPPER_BOUND = 5 * 60 * 1000 // 最大等待时间：5min
-const ONE_MIN = 1 * 60 * 1000 // 等待时间：1min
-const HALF_AN_HOUR = 30 * 60 * 1000 // 等待时间：0.5h
-const AN_HOUR = 1 * 60 * 60 * 1000 // 等待时间：1h
 
 // 执行时的屏幕亮度（0-255）, 需要"修改系统设置"权限
-const SCREEN_BRIGHTNESS = 20    
+const SCREEN_BRIGHTNESS = 20
 
 // 是否过滤通知
 const NOTIFICATIONS_FILTER = true
@@ -47,8 +44,7 @@ const NOTIFICATIONS_FILTER = true
 const PACKAGE_ID_WHITE_LIST = [PACKAGE_ID_QQ,PACKAGE_ID_DD,PACKAGE_ID_XMSF,PACKAGE_ID_MAIL_163,PACKAGE_ID_TASKER,PACKAGE_ID_PUSHDEER]
 
 // 公司的钉钉CorpId, 获取方法见 2020-09-24 更新日志。如果只加入了一家公司, 可以不填
-// dingtalk://dingtalkclient/page/link?url='https://attend.dingtalk.com/attend/index.html?corpId=dingca07f56daee3def1bc961a6cb783455b'
-const CORP_ID = "dingca07f56daee3def1bc961a6cb783455b" 
+const CORP_ID = ""
 
 // 锁屏意图, 配合 Tasker 完成锁屏动作, 具体配置方法见 2021-03-09 更新日志
 const ACTION_LOCK_SCREEN = "autojs.intent.action.LOCK_SCREEN"
@@ -62,9 +58,6 @@ const WEEK_DAY = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","S
 // =================== ↓↓↓ 主线程：监听通知 ↓↓↓ ====================
 
 var currentDate = new Date()
-
-// 是否暂停循环打卡
-var recursiveCard = false
 
 // 是否暂停定时打卡
 var suspend = false
@@ -87,7 +80,7 @@ console.setGlobalLogConfig({
 });
 
 // 监听本机通知
-events.observeNotification()    
+events.observeNotification()
 events.on("notification", function(n) {
     notificationHandler(n)
 });
@@ -97,7 +90,7 @@ events.setKeyInterceptionEnabled("volume_up", OBSERVE_VOLUME_KEY)
 if (OBSERVE_VOLUME_KEY) {
     events.observeKey()
 };
-    
+
 // 监听音量+键
 events.onKeyDown("volume_up", function(event){
     threads.shutDownAll()
@@ -118,48 +111,23 @@ toastLog("监听中, 请在日志中查看记录的通知及其内容")
 // =================== ↑↑↑ 主线程：监听通知 ↑↑↑ =====================
 
 
-// =================== ↑↑↑ 副线程：循环打卡 ↑↑↑ =====================
-startRecursiveCard();
-
-function startRecursiveCard(){
-    while(recursiveCard){
-        var hour = new Date().getHours()
-        // 直到 早八晚十 启动钉钉
-        while(recursiveCard && hour != 8 && hour != 22){
-            var randomTime = random(ONE_MIN, HALF_AN_HOUR)
-            console.log("未到时间点，进行" + Math.floor(randomTime / 1000) + "秒随机睡眠...")
-            // toastLog("未到时间点，进行" + Math.floor(randomTime / 1000) + "秒随机睡眠...")
-            sleep(randomTime)
-            hour = new Date().getHours()
-        }
-    
-        doClock()
-        if(DEFAULT_MESSAGE_DELIVER == PUSH_METHOD.QQ){
-            sendQQMsg(new Date() + " 打卡成功")
-        }
-    
-        console.warn("一小时后恢复循环打卡")
-        sleep(AN_HOUR)
-    };
-}
-// =================== ↑↑↑ 副线程：循环打卡 ↑↑↑ =====================
 
 /**
  * @description 处理通知
  */
 function notificationHandler(n) {
-    
+
     var packageId = n.getPackageName()  // 获取通知包名
     var abstract = n.tickerText         // 获取通知摘要
     var text = n.getText()              // 获取通知文本
-    
+
     // 过滤 PackageId 白名单之外的应用所发出的通知
-    if (!filterNotification(packageId, abstract, text)) { 
+    if (!filterNotification(packageId, abstract, text)) {
         return;
     }
 
     // 监听摘要为 "定时打卡" 的通知, 不一定要从 Tasker 中发出通知, 日历、定时器等App均可实现
-    if (abstract == "定时打卡" && !suspend) { 
+    if (abstract == "定时打卡" && !suspend) {
         needWaiting = true
         threads.shutDownAll()
         threads.start(function(){
@@ -169,7 +137,7 @@ function notificationHandler(n) {
     }
 
     switch(text) {
-        
+
         case "打卡": // 监听文本为 "打卡" 的通知
             needWaiting = false
             threads.shutDownAll()
@@ -184,16 +152,16 @@ function notificationHandler(n) {
                 switch(DEFAULT_MESSAGE_DELIVER) {
                     case PUSH_METHOD.QQ:
                         sendQQMsg(getStorageData("dingding", "clockResult"))
-                       break;
+                        break;
                     case PUSH_METHOD.Email:
                         sendEmail("考勤结果", getStorageData("dingding", "clockResult"), null)
-                       break;
+                        break;
                     case PUSH_METHOD.ServerChan:
                         sendServerChan("考勤结果", getStorageData("dingding", "clockResult"))
-                       break;
+                        break;
                     case PUSH_METHOD.PushDeer:
                         sendPushDeer("考勤结果", getStorageData("dingding", "clockResult"))
-                       break;
+                        break;
                 }
             })
             break;
@@ -206,16 +174,16 @@ function notificationHandler(n) {
                 switch(DEFAULT_MESSAGE_DELIVER) {
                     case PUSH_METHOD.QQ:
                         sendQQMsg("修改成功, 已暂停定时打卡功能")
-                       break;
+                        break;
                     case PUSH_METHOD.Email:
                         sendEmail("修改成功", "已暂停定时打卡功能", null)
-                       break;
+                        break;
                     case PUSH_METHOD.ServerChan:
                         sendServerChan("修改成功", "已暂停定时打卡功能")
-                       break;
+                        break;
                     case PUSH_METHOD.PushDeer:
                         sendPushDeer("修改成功", "已暂停定时打卡功能")
-                       break;
+                        break;
                 }
             })
             break;
@@ -228,16 +196,16 @@ function notificationHandler(n) {
                 switch(DEFAULT_MESSAGE_DELIVER) {
                     case PUSH_METHOD.QQ:
                         sendQQMsg("修改成功, 已恢复定时打卡功能")
-                       break;
+                        break;
                     case PUSH_METHOD.Email:
                         sendEmail("修改成功", "已恢复定时打卡功能", null)
-                       break;
+                        break;
                     case PUSH_METHOD.ServerChan:
                         sendServerChan("修改成功", "已恢复定时打卡功能")
-                       break;
+                        break;
                     case PUSH_METHOD.PushDeer:
                         sendPushDeer("修改成功", "已恢复定时打卡功能")
-                       break;
+                        break;
                 }
             })
             break;
@@ -249,77 +217,32 @@ function notificationHandler(n) {
             })
             break;
 
-        case "开启循环": // 每天循环打卡 早八晚十
-            recursiveCard = true
-            console.warn("每天循环打卡")
-            threads.shutDownAll()
-            threads.start(function(){
-                switch(DEFAULT_MESSAGE_DELIVER) {
-                    case PUSH_METHOD.QQ:
-                        sendQQMsg("开启每天循环打卡功能（早八晚十）")
-                       break;
-                    case PUSH_METHOD.Email:
-                        sendEmail("开启每天循环打卡功能（早八晚十）", null)
-                       break;
-                    case PUSH_METHOD.ServerChan:
-                        sendServerChan("开启每天循环打卡功能（早八晚十）")
-                       break;
-                    case PUSH_METHOD.PushDeer:
-                        sendPushDeer("开启每天循环打卡功能（早八晚十）")
-                       break;
-                }
-                startRecursiveCard();
-            })
-            break;
-        
-        case "关闭循环": // 每天循环打卡 早八晚十
-            recursiveCard = false
-            console.warn("关闭每天循环打卡")
-            threads.shutDownAll()
-            threads.start(function(){
-                switch(DEFAULT_MESSAGE_DELIVER) {
-                    case PUSH_METHOD.QQ:
-                        sendQQMsg("关闭每天循环打卡功能")
-                       break;
-                    case PUSH_METHOD.Email:
-                        sendEmail("关闭每天循环打卡功能", null)
-                       break;
-                    case PUSH_METHOD.ServerChan:
-                        sendServerChan("关闭每天循环打卡功能")
-                       break;
-                    case PUSH_METHOD.PushDeer:
-                        sendPushDeer("关闭每天循环打卡功能")
-                       break;
-                }
-            })
-            break;
-
         default:
             break;
     }
 
-    if (text == null) 
-    return;
-    
+    if (text == null)
+        return;
+
     // 监听钉钉返回的考勤结果
-    if (packageId == PACKAGE_ID_DD && text.indexOf("考勤打卡") >= 0) { 
+    if (packageId == PACKAGE_ID_DD && text.indexOf("考勤打卡") >= 0) {
         setStorageData("dingding", "clockResult", text)
         threads.shutDownAll()
         threads.start(function() {
             switch(DEFAULT_MESSAGE_DELIVER) {
                 case PUSH_METHOD.QQ:
                     sendQQMsg(text)
-                   break;
+                    break;
                 case PUSH_METHOD.Email:
                     sendEmail("考勤结果", text, cameraFilePath)
-                   break;
+                    break;
                 case PUSH_METHOD.ServerChan:
                     sendServerChan("考勤结果", text)
-                   break;
+                    break;
                 case PUSH_METHOD.PushDeer:
                     sendPushDeer("考勤结果", text)
-                   break;
-           }
+                    break;
+            }
         })
         return;
     }
@@ -342,11 +265,11 @@ function doClock() {
     handleLate()        // 处理迟到
     attendKaoqin()      // 考勤打卡
 
-    if (currentDate.getHours() <= 12) 
-    clockIn()           // 上班打卡
-    else 
-    clockOut()          // 下班打卡
-    
+    if (currentDate.getHours() <= 12)
+        clockIn()           // 上班打卡
+    else
+        clockOut()          // 下班打卡
+
     lockScreen()        // 关闭屏幕
 }
 
@@ -376,10 +299,10 @@ function sendEmail(title, message, attachFilePath) {
             email: [EMAILL_ADDRESS], subject: title, text: message
         })
     }
-    
+
     console.log("选择邮件应用")
     waitForActivity("com.android.internal.app.ChooserActivity") // 等待选择应用界面弹窗出现, 如果设置了默认应用就注释掉
-    
+
     var emailAppName = app.getAppName(PACKAGE_ID_MAIL_163)
     if (null != emailAppName) {
         if (null != textMatches(emailAppName).findOne(1000)) {
@@ -413,13 +336,13 @@ function sendEmail(title, message, attachFilePath) {
         sleep(1000)
         id("img_send_bg").findOne().click()
     }
-    
+
     // 内置电子邮件
     // waitForActivity("com.kingsoft.mail.compose.ComposeActivity")
     // id("compose_send_btn").findOne().click()
 
     console.log("正在发送邮件...")
-    
+
     home()
     sleep(2000)
     lockScreen()    // 关闭屏幕
@@ -433,16 +356,16 @@ function sendEmail(title, message, attachFilePath) {
 function sendQQMsg(message) {
 
     console.log("发送QQ消息")
-    
+
     brightScreen()      // 唤醒屏幕
     unlockScreen()      // 解锁屏幕
 
-    app.startActivity({ 
-        action: "android.intent.action.VIEW", 
-        data:"mqq://im/chat?chat_type=wpa&version=1&src_type=web&uin=" + QQ, 
-        packageName: "com.tencent.mobileqq", 
+    app.startActivity({
+        action: "android.intent.action.VIEW",
+        data:"mqq://im/chat?chat_type=wpa&version=1&src_type=web&uin=" + QQ,
+        packageName: "com.tencent.mobileqq",
     });
-    
+
     // waitForActivity("com.tencent.mobileqq.activity.SplashActivity")
 
     id("input").findOne().setText(message)
@@ -459,7 +382,7 @@ function sendQQMsg(message) {
  * @param {string} title 标题
  * @param {string} message 消息
  */
- function sendServerChan(title, message) {
+function sendServerChan(title, message) {
 
     console.log("向 ServerChan 发起推送请求")
 
@@ -481,7 +404,7 @@ function sendQQMsg(message) {
  * @param {string} title 标题
  * @param {string} message 消息
  */
- function sendPushDeer(title, message) {
+function sendPushDeer(title, message) {
 
     console.log("向 PushDeer 发起推送请求")
 
@@ -506,13 +429,13 @@ function sendQQMsg(message) {
 function brightScreen() {
 
     console.log("唤醒设备")
-    
+
     device.setBrightnessMode(0) // 手动亮度模式
     device.setBrightness(SCREEN_BRIGHTNESS)
     device.wakeUpIfNeeded() // 唤醒设备
     device.keepScreenOn()   // 保持亮屏
     sleep(1000) // 等待屏幕亮起
-    
+
     if (!device.isScreenOn()) {
         console.warn("设备未唤醒, 重试")
         device.wakeUpIfNeeded()
@@ -531,7 +454,7 @@ function brightScreen() {
 function unlockScreen() {
 
     console.log("解锁屏幕")
-    
+
     if (isDeviceLocked()) {
 
         gesture(
@@ -597,11 +520,11 @@ function signIn() {
         var password = id("et_pwd_login").findOne()
         password.setText(PASSWORD)
         console.log("输入密码")
-        
+
         var privacy = id("cb_privacy").findOne()
         privacy.click()
         console.log("同意隐私协议")
-        
+
         var btn_login = id("btn_next").findOne()
         btn_login.click()
         console.log("正在登陆...")
@@ -621,14 +544,14 @@ function signIn() {
  * @description 处理迟到打卡
  */
 function handleLate(){
-   
+
     if (null != textMatches("迟到打卡").clickable(true).findOne(1000)) {
-        btn_late = textMatches("迟到打卡").clickable(true).findOnce() 
+        btn_late = textMatches("迟到打卡").clickable(true).findOnce()
         btn_late.click()
         console.warn("迟到打卡")
     }
     if (null != descMatches("迟到打卡").clickable(true).findOne(1000)) {
-        btn_late = descMatches("迟到打卡").clickable(true).findOnce() 
+        btn_late = descMatches("迟到打卡").clickable(true).findOnce()
         btn_late.click()
         console.warn("迟到打卡")
     }
@@ -647,22 +570,21 @@ function attendKaoqin(){
     }
 
     var a = app.intent({
-        // action: "VIEW",
-        action: "android.intent.action.VIEW", 
+        action: "VIEW",
         data: url_scheme,
         //flags: [Intent.FLAG_ACTIVITY_NEW_TASK]
     });
     app.startActivity(a);
     console.log("正在进入考勤界面...")
-    
+
     textContains("申请").waitFor()
     console.info("已进入考勤界面")
-    sleep(5000)
+    sleep(1000)
 }
 
 
 /**
- * @description 上班打卡 
+ * @description 上班打卡
  */
 function clockIn() {
 
@@ -678,7 +600,7 @@ function clockIn() {
 
     console.log("等待连接到考勤机...")
     sleep(2000)
-    
+
     if (null != textContains("未连接").findOne(1000)) {
         console.error("未连接考勤机, 重新进入考勤界面!")
         back()
@@ -702,21 +624,21 @@ function clockIn() {
     }
     sleep(1000)
     handleLate() // 处理迟到打卡
-    
+
     home()
     sleep(1000)
 }
 
 
 /**
- * @description 下班打卡 
+ * @description 下班打卡
  */
 function clockOut() {
 
     console.log("下班打卡...")
     console.log("等待连接到考勤机...")
     sleep(2000)
-    
+
     if (null != textContains("未连接").findOne(1000)) {
         console.error("未连接考勤机, 重新进入考勤界面!")
         back()
@@ -744,7 +666,7 @@ function clockOut() {
         className("android.widget.Button").text("早退打卡").clickable(true).findOnce().parent().click()
         console.warn("早退打卡")
     }
-    
+
     home()
     sleep(1000)
 }
@@ -762,13 +684,13 @@ function lockScreen(){
 
     // 锁屏方案2：No Root
     // press(Math.floor(device.width / 2), Math.floor(device.height * 0.973), 1000) // 小米的快捷手势：长按Home键锁屏
-    
+
     // 万能锁屏方案：向Tasker发送广播, 触发系统锁屏动作。配置方法见 2021-03-09 更新日志
     app.sendBroadcast({action: ACTION_LOCK_SCREEN});
 
     device.setBrightnessMode(1) // 自动亮度模式
     device.cancelKeepingAwake() // 取消设备常亮
-    
+
     if (isDeviceLocked()) {
         console.info("屏幕已关闭")
     }
@@ -806,7 +728,7 @@ function getCurrentDate(){
 
 // 通知过滤器
 function filterNotification(bundleId, abstract, text) {
-    var check = PACKAGE_ID_WHITE_LIST.some(function(item) {return bundleId == item}) 
+    var check = PACKAGE_ID_WHITE_LIST.some(function(item) {return bundleId == item})
     if (!NOTIFICATIONS_FILTER || check) {
         console.verbose(bundleId)
         console.verbose(abstract)
@@ -815,7 +737,7 @@ function filterNotification(bundleId, abstract, text) {
         return true
     }
     else {
-        return false 
+        return false
     }
 }
 
