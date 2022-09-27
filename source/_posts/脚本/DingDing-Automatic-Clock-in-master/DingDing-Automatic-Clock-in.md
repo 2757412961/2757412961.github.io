@@ -54,7 +54,7 @@ var DEFAULT_MESSAGE_DELIVER = PUSH_METHOD.QQ;
 
 const PACKAGE_ID_QQ = "com.tencent.mobileqq"                // QQ
 // const PACKAGE_ID_DD = "com.alibaba.android.rimet"           // 钉钉
-const PACKAGE_ID_DD = "com.alibaba.android.rimet.zju"           // 浙大钉
+const PACKAGE_ID_DD = "com.alibaba.android.rimet.zju"       // 浙大钉
 const PACKAGE_ID_XMSF = "com.xiaomi.xmsf"                   // 小米推送服务
 const PACKAGE_ID_TASKER = "net.dinglisch.android.taskerm"   // Tasker
 const PACKAGE_ID_MAIL_163 = "com.netease.mail"              // 网易邮箱大师
@@ -165,7 +165,9 @@ function startRecursiveCard(){
         }
     
         doClock(); // 打卡
+        console.log(new Date() + " 【循环打卡】打卡成功")
         if(DEFAULT_MESSAGE_DELIVER == PUSH_METHOD.QQ){
+            sleep(10000) // 等待默认消息通知程序发送
             sendQQMsg(new Date() + " 【循环打卡】打卡成功")
             sendServerChan("【循环打卡】打卡结果", new Date() + " 打卡成功")
             console.log("【循环打卡】QQ&ServerChan 消息发送成功...")
@@ -210,14 +212,14 @@ function notificationHandler(n) {
         
         case "打卡": // 监听文本为 "打卡" 的通知
             needWaiting = false
-            threads.shutDownAll()
+            // threads.shutDownAll()
             threads.start(function(){
                 doClock()
             })
             break;
 
         case "查询": // 监听文本为 "查询" 的通知
-            threads.shutDownAll()
+            // threads.shutDownAll()
             threads.start(function(){
                 switch(DEFAULT_MESSAGE_DELIVER) {
                     case PUSH_METHOD.QQ:
@@ -669,9 +671,11 @@ function signIn() {
         password.setText(PASSWORD)
         console.log("输入密码")
         
-        var privacy = id("cb_privacy").findOne()
-        privacy.click()
-        console.log("同意隐私协议")
+        var privacy = id("cb_privacy").findOne(1000)
+        if(null != privacy){
+            privacy.click()
+            console.log("同意隐私协议")
+        }
         
         var btn_login = id("btn_next").findOne()
         btn_login.click()
