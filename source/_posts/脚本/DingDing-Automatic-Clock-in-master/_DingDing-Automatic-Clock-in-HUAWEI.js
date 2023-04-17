@@ -128,9 +128,10 @@ startRecursiveCard();
 function startRecursiveCard(){
     while(recursiveCard){
         var hour = new Date().getHours()
+        var min = new Date().getMinutes()
         // 直到打卡时间点 启动钉钉
-        while(recursiveCard && !existsInArray(timeAnchorPoints, hour)){
-            var randomTime = random(ONE_MIN, FOR_MIN)
+        while(recursiveCard && !existsInArray(timeAnchorPoints, hour) && min <= 30){
+            var randomTime = random(ONE_MIN, THI_MIN)
             console.log("【循环打卡】未到时间点，进行" + Math.floor(randomTime / 1000) + "秒随机睡眠...")
             sleep(randomTime)
             hour = new Date().getHours()
@@ -146,7 +147,7 @@ function startRecursiveCard(){
     
         // 直到打卡时间点 启动钉钉
         while(recursiveCard && existsInArray(timeAnchorPoints, hour)){
-            var randomTime = random(ONE_MIN, FOR_MIN)
+            var randomTime = random(ONE_MIN, AN_HOUR)
             console.log("【循环打卡】已打卡，进行" + Math.floor(randomTime / 1000) + "秒随机睡眠...")
             sleep(randomTime)
             hour = new Date().getHours()
@@ -186,6 +187,7 @@ function notificationHandler(n) {
             // threads.shutDownAll()
             threads.start(function(){
                 doClock()
+                sendServerChan("【定时打卡】打卡结果", new Date() + " 打卡成功")
             })
             break;
 
@@ -842,7 +844,7 @@ function lockScreen(){
     app.sendBroadcast({action: ACTION_LOCK_SCREEN});
 
     device.setBrightnessMode(1) // 自动亮度模式
-    device.cancelKeepingAwake() // 取消设备常亮
+    // device.cancelKeepingAwake() // 取消设备常亮
     
     if (isDeviceLocked()) {
         console.info("屏幕已关闭")

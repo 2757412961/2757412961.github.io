@@ -128,26 +128,27 @@ startRecursiveCard();
 function startRecursiveCard(){
     while(recursiveCard){
         var hour = new Date().getHours()
+        var min = new Date().getMinutes()
         // 直到打卡时间点 启动钉钉
-        while(recursiveCard && !existsInArray(timeAnchorPoints, hour)){
-            var randomTime = random(ONE_MIN, FIF_MIN)
-            console.log("【柠檬酱循环打卡】未到时间点，进行" + Math.floor(randomTime / 1000) + "秒随机睡眠...")
+        while(recursiveCard && !existsInArray(timeAnchorPoints, hour) && min <= 30){
+            var randomTime = random(ONE_MIN, THI_MIN)
+            console.log("【循环打卡】未到时间点，进行" + Math.floor(randomTime / 1000) + "秒随机睡眠...")
             sleep(randomTime)
             hour = new Date().getHours()
         }
     
         doClock(); // 打卡
-        console.log(new Date() + " 【柠檬酱循环打卡】打卡成功")
+        console.log(new Date() + " 【循环打卡】打卡成功")
         if(DEFAULT_MESSAGE_DELIVER == PUSH_METHOD.QQ){
-            sendQQMsg(new Date() + " 【柠檬酱循环打卡】打卡成功")
-            sendServerChan("【柠檬酱循环打卡】打卡结果", new Date() + " 打卡成功")
-            console.log("【柠檬酱循环打卡】QQ&ServerChan 消息发送成功...")
+            sendQQMsg(new Date() + " 【循环打卡】打卡成功")
+            sendServerChan("【循环打卡】打卡结果", new Date() + " 打卡成功")
+            console.log("【循环打卡】QQ&ServerChan 消息发送成功...")
         }
     
         // 直到打卡时间点 启动钉钉
         while(recursiveCard && existsInArray(timeAnchorPoints, hour)){
-            var randomTime = random(ONE_MIN, FIF_MIN)
-            console.log("【柠檬酱循环打卡】已打卡，进行" + Math.floor(randomTime / 1000) + "秒随机睡眠...")
+            var randomTime = random(ONE_MIN, AN_HOUR)
+            console.log("【循环打卡】已打卡，进行" + Math.floor(randomTime / 1000) + "秒随机睡眠...")
             sleep(randomTime)
             hour = new Date().getHours()
         }
@@ -713,7 +714,7 @@ function attendKaoqin(){
     
     textContains("申请").waitFor()
     console.info("已进入考勤界面")
-    sleep(8000)
+    sleep(12000)
 }
 
 
