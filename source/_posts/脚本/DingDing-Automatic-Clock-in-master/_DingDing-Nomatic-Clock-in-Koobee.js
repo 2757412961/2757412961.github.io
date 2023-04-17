@@ -6,12 +6,12 @@
  * @URL: https://github.com/georgehuan1994/DingDing-Automatic-Clock-in
  */
 
-const ACCOUNT = "15868141080"
-const PASSWORD = "MoYan0000"
+const ACCOUNT = "13372567306"
+const PASSWORD = "dingding1121"
 
-const QQ =              "2757412961"
+const QQ =              "903993822"
 const EMAILL_ADDRESS =  "2757412961@qq.com"
-const SERVER_CHAN =     "SCT171904TfSMLDvHz2oGuB8NU9NdMg1W0"
+const SERVER_CHAN =     "SCT173721T1Oa9aRBTElAiezl0Nyvu4bre"
 const PUSH_DEER =       "PushDeer发送密钥"
 
 const PUSH_METHOD = {QQ: 1, Email: 2, ServerChan: 3, PushDeer: 4}
@@ -24,8 +24,8 @@ const PUSH_METHOD = {QQ: 1, Email: 2, ServerChan: 3, PushDeer: 4}
 var DEFAULT_MESSAGE_DELIVER = PUSH_METHOD.QQ;
 
 const PACKAGE_ID_QQ = "com.tencent.mobileqq"                // QQ
-// const PACKAGE_ID_DD = "com.alibaba.android.rimet"           // 钉钉
-const PACKAGE_ID_DD = "com.alibaba.android.rimet.zju"       // 浙大钉
+const PACKAGE_ID_DD = "com.alibaba.android.rimet"           // 钉钉
+// const PACKAGE_ID_DD = "com.alibaba.android.rimet.zju"       // 浙大钉
 const PACKAGE_ID_XMSF = "com.xiaomi.xmsf"                   // 小米推送服务
 const PACKAGE_ID_TASKER = "net.dinglisch.android.taskerm"   // Tasker
 const PACKAGE_ID_MAIL_163 = "com.netease.mail"              // 网易邮箱大师
@@ -90,32 +90,32 @@ console.setGlobalLogConfig({
     file: globalLogFilePath
 });
 
-// 监听本机通知
-events.observeNotification()    
-events.on("notification", function(n) {
-    notificationHandler(n)
-});
+// // 监听本机通知
+// events.observeNotification()    
+// events.on("notification", function(n) {
+//     notificationHandler(n)
+// });
 
-events.setKeyInterceptionEnabled("volume_up", OBSERVE_VOLUME_KEY)
+// events.setKeyInterceptionEnabled("volume_up", OBSERVE_VOLUME_KEY)
 
-if (OBSERVE_VOLUME_KEY) {
-    events.observeKey()
-};
+// if (OBSERVE_VOLUME_KEY) {
+//     events.observeKey()
+// };
     
-// 监听音量+键
-events.onKeyDown("volume_up", function(event){
-    threads.shutDownAll()
-    device.setBrightnessMode(1)
-    device.cancelKeepingAwake()
-    toast("已中断所有子线程!")
+// // 监听音量+键
+// events.onKeyDown("volume_up", function(event){
+//     threads.shutDownAll()
+//     device.setBrightnessMode(1)
+//     device.cancelKeepingAwake()
+//     toast("已中断所有子线程!")
 
-    // 可以在此调试各个方法
-    // doClock()
-    // sendQQMsg("测试文本")
-    // sendEmail("测试主题", "测试文本", null)
-    // sendServerChan(测试主题, 测试文本)
-    // sendPushDeer(测试主题, 测试文本)
-});
+//     // 可以在此调试各个方法
+//     // doClock()
+//     // sendQQMsg("测试文本")
+//     // sendEmail("测试主题", "测试文本", null)
+//     // sendServerChan(测试主题, 测试文本)
+//     // sendPushDeer(测试主题, 测试文本)
+// });
 
 toastLog("监听中, 请在日志中查看记录的通知及其内容")
 
@@ -123,32 +123,32 @@ toastLog("监听中, 请在日志中查看记录的通知及其内容")
 
 
 // =================== ↑↑↑ 副线程：循环打卡 ↑↑↑ =====================
+doClock(); // 打卡
 startRecursiveCard();
 
 function startRecursiveCard(){
     while(recursiveCard){
         var hour = new Date().getHours()
-        var min = new Date().getMinutes()
         // 直到打卡时间点 启动钉钉
-        while(recursiveCard && (!existsInArray(timeAnchorPoints, hour) || min < 30)){
-            var randomTime = random(ONE_MIN, THI_MIN)
-            console.log("【循环打卡】未到时间点，进行" + Math.floor(randomTime / 1000) + "秒随机睡眠...")
+        while(recursiveCard && !existsInArray(timeAnchorPoints, hour)){
+            var randomTime = random(ONE_MIN, FIF_MIN)
+            console.log("【柠檬酱循环打卡】未到时间点，进行" + Math.floor(randomTime / 1000) + "秒随机睡眠...")
             sleep(randomTime)
             hour = new Date().getHours()
         }
     
         doClock(); // 打卡
-        console.log(new Date() + " 【循环打卡】打卡成功")
+        console.log(new Date() + " 【柠檬酱循环打卡】打卡成功")
         if(DEFAULT_MESSAGE_DELIVER == PUSH_METHOD.QQ){
-            sendQQMsg(new Date() + " 【循环打卡】打卡成功")
-            sendServerChan("【循环打卡】打卡结果", new Date() + " 打卡成功")
-            console.log("【循环打卡】QQ&ServerChan 消息发送成功...")
+            sendQQMsg(new Date() + " 【柠檬酱循环打卡】打卡成功")
+            sendServerChan("【柠檬酱循环打卡】打卡结果", new Date() + " 打卡成功")
+            console.log("【柠檬酱循环打卡】QQ&ServerChan 消息发送成功...")
         }
     
-        // 每个时间段只打一次卡
+        // 直到打卡时间点 启动钉钉
         while(recursiveCard && existsInArray(timeAnchorPoints, hour)){
-            var randomTime = random(ONE_MIN, AN_HOUR)
-            console.log("【循环打卡】已打卡，进行" + Math.floor(randomTime / 1000) + "秒随机睡眠...")
+            var randomTime = random(ONE_MIN, FIF_MIN)
+            console.log("【柠檬酱循环打卡】已打卡，进行" + Math.floor(randomTime / 1000) + "秒随机睡眠...")
             sleep(randomTime)
             hour = new Date().getHours()
         }
@@ -187,7 +187,6 @@ function notificationHandler(n) {
             // threads.shutDownAll()
             threads.start(function(){
                 doClock()
-                sendServerChan("【定时打卡】打卡结果", new Date() + " 打卡成功")
             })
             break;
 
@@ -324,7 +323,8 @@ function notificationHandler(n) {
     
     // 监听钉钉返回的考勤结果
     // if (packageId == PACKAGE_ID_DD && text.indexOf("考勤打卡") >= 0) { 
-    if (packageId == PACKAGE_ID_DD && text.indexOf("考勤打卡") < 0) { 
+    if (packageId == PACKAGE_ID_DD) { 
+        sleep(10000) // 等待其他消息通知程序发送
         setStorageData("dingding", "clockResult", text)
         console.warn("监听钉钉返回的消息...")
         // threads.shutDownAll()
@@ -346,7 +346,7 @@ function notificationHandler(n) {
         })
         return;
     }
-    
+
     // 更新运行日志路径
     globalLogFilePath = "/sdcard/脚本/Archive/" + getCurrentDate() + "-log.txt"
     console.setGlobalLogConfig({
@@ -367,6 +367,7 @@ function doClock() {
 
     brightScreen()      // 唤醒屏幕
     unlockScreen()      // 解锁屏幕
+    restartBlue()       // 重启蓝牙
     holdOn()            // 随机等待
     signIn()            // 自动登录
     handleLate()        // 处理迟到
@@ -396,9 +397,9 @@ function sendEmail(title, message, attachFilePath) {
 
     
     // 内置电子邮件
-    app.launch("com.android.email");
-    console.log("等待邮箱启动...")
-    sleep(3000) // 等待邮箱启动
+    // app.launch("com.android.email");
+    // console.log("等待邮箱启动...")
+    // sleep(3000) // 等待邮箱启动
 
     if(attachFilePath != null && files.exists(attachFilePath)) {
         console.info(attachFilePath)
@@ -412,20 +413,20 @@ function sendEmail(title, message, attachFilePath) {
             email: [EMAILL_ADDRESS], subject: title, text: message
         })
     }
-    sleep(1000)
+    sleep(2000)
 
     // 选择邮箱应用，系统默认应用即可
-    var emailText = text("电子邮件").findOne(1000);
+    var emailText = text("通过邮件发送").findOne(1000);
     if(null == emailText){
         console.log("邮箱应用选择失败...")
         return;
     }
     emailText.parent().click();
     console.log("邮箱应用选择成功...")
-    sleep(1000)
+    sleep(5000)
     
     // 点击发送按钮
-    var sendBtn = desc("发送").findOne(1000);
+    var sendBtn = textContains("发送").findOne(1000);
     if(null == sendBtn){
         console.log("邮箱发送失败...")
         return;
@@ -812,8 +813,8 @@ function clockOut() {
  * 关闭考勤界面
  */
  function closeColck(){
-    sleep(5000)
-    var btn = id("close_layout").findOne(1000);
+    sleep(10000)
+    var btn = id("close_layout").findOne(2000);
     console.log("等待关闭考勤机...")
 
     if (null == btn){
@@ -844,7 +845,7 @@ function lockScreen(){
     app.sendBroadcast({action: ACTION_LOCK_SCREEN});
 
     device.setBrightnessMode(1) // 自动亮度模式
-    // device.cancelKeepingAwake() // 取消设备常亮
+    device.cancelKeepingAwake() // 取消设备常亮
     
     if (isDeviceLocked()) {
         console.info("屏幕已关闭")
@@ -1026,3 +1027,61 @@ function setVolume(volume) {
     console.verbose("媒体音量:" + device.getMusicVolume())
     console.verbose("通知音量:" + device.getNotificationVolume())
 }
+
+
+/**
+ * @description 打开蓝牙
+ */
+ function openBlue(){
+    console.log("打开蓝牙...")
+   
+    quickSettings()
+    while (null == text("蓝牙").findOne(1000))  {
+        console.log("not find bule");
+    }
+    var settingBlue = text("蓝牙").findOne().parent();
+    var bule = settingBlue.parent();
+    bule.click();
+    
+    var done = text("完成").findOne();
+    done.click();
+    console.log("打开蓝牙成功...")
+
+    sleep(1000) // 等待动画完成
+    home()
+    sleep(2000) // 等待动画完成
+}
+
+
+/**
+ * @description 关闭蓝牙
+ */
+function closeBlue(){
+    console.log("关闭蓝牙...")
+  
+    quickSettings()
+    while (null == text("蓝牙").findOne(1000))  {
+        console.log("not find bule");
+    }
+    var settingBlue = text("蓝牙").findOne().parent();
+    var bule = settingBlue.parent();
+    bule.click();
+    
+    var btnBlue = text("蓝牙").findOne().parent();
+    btnBlue.click();
+    console.log(btnBlue)
+    console.log("关闭蓝牙成功...")
+
+    sleep(1000) // 等待动画完成
+    home()
+    sleep(2000) // 等待动画完成
+}
+
+/**
+ * @description 重启蓝牙
+ */
+function restartBlue(){
+    closeBlue()
+    openBlue()
+}
+

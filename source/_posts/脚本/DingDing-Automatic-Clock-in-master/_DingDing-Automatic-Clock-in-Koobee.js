@@ -130,7 +130,7 @@ function startRecursiveCard(){
         var hour = new Date().getHours()
         var min = new Date().getMinutes()
         // 直到打卡时间点 启动钉钉
-        while(recursiveCard && !existsInArray(timeAnchorPoints, hour) && min <= 30){
+        while(recursiveCard && (!existsInArray(timeAnchorPoints, hour) || min < 30)){
             var randomTime = random(ONE_MIN, THI_MIN)
             console.log("【循环打卡】未到时间点，进行" + Math.floor(randomTime / 1000) + "秒随机睡眠...")
             sleep(randomTime)
@@ -145,7 +145,7 @@ function startRecursiveCard(){
             console.log("【循环打卡】QQ&ServerChan 消息发送成功...")
         }
     
-        // 直到打卡时间点 启动钉钉
+        // 每个时间段只打一次卡
         while(recursiveCard && existsInArray(timeAnchorPoints, hour)){
             var randomTime = random(ONE_MIN, AN_HOUR)
             console.log("【循环打卡】已打卡，进行" + Math.floor(randomTime / 1000) + "秒随机睡眠...")
