@@ -187,7 +187,7 @@ function notificationHandler(n) {
             // threads.shutDownAll()
             threads.start(function(){
                 doClock()
-                sendServerChan("【定时打卡】打卡结果", new Date() + " 打卡成功")
+                sendServerChan("【手动打卡】打卡结果", new Date() + " 打卡成功")
             })
             break;
 
