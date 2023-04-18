@@ -135,6 +135,7 @@ function startRecursiveCard(){
             console.log("【循环打卡】未到时间点，进行" + Math.floor(randomTime / 1000) + "秒随机睡眠...")
             sleep(randomTime)
             hour = new Date().getHours()
+            min = new Date().getMinutes()
         }
     
         doClock(); // 打卡
