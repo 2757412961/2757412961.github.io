@@ -101,7 +101,7 @@
 <td>Java</td>
 <td>JCaptcha</td>
 <td><a target="_blank" rel="noopener" href="https://jcaptcha.atlassian.net/wiki/spaces/general/pages/1212427/Samples+tests">示例</a></td>
-<td><img src="/.com//jcaptcha1.jpg" alt="效果1"> <img src="/.com//jcaptcha2.jpg" alt="效果2"> <img src="/.com//jcaptcha3.jpg" alt="效果3"></td>
+<td><img src="/./readme_image/jcaptcha1.jpg" alt="效果1"> <img src="/./readme_image/jcaptcha2.jpg" alt="效果2"> <img src="/./readme_image/jcaptcha3.jpg" alt="效果3"></td>
 </tr>
 <tr>
 <td>Java</td>
@@ -113,19 +113,19 @@
 <td>Java</td>
 <td>SimpleCaptcha</td>
 <td><a target="_blank" rel="noopener" href="https://www.oschina.net/p/simplecaptcha">例子</a></td>
-<td><img src="/.com//SimpleCaptcha_1.jpg" alt="效果1"> <img src="/.com//SimpleCaptcha_2.jpg" alt="效果2"> <img src="/.com//SimpleCaptcha_3.jpg" alt="效果3"></td>
+<td><img src="/./readme_image/SimpleCaptcha_1.jpg" alt="效果1"> <img src="/./readme_image/SimpleCaptcha_2.jpg" alt="效果2"> <img src="/./readme_image/SimpleCaptcha_3.jpg" alt="效果3"></td>
 </tr>
 <tr>
 <td>Java</td>
 <td>kaptcha</td>
 <td><a target="_blank" rel="noopener" href="https://github.com/linghushaoxia/kaptcha">例子</a></td>
-<td><img src="/.com//Kaptcha_5.png" alt="水纹效果"> <img src="/.com//Kaptcha_2.png" alt="鱼眼效果"> <img src="/.com//Kaptcha_3.png" alt="阴影效果"></td>
+<td><img src="/./readme_image/Kaptcha_5.png" alt="水纹效果"> <img src="/./readme_image/Kaptcha_2.png" alt="鱼眼效果"> <img src="/./readme_image/Kaptcha_3.png" alt="阴影效果"></td>
 </tr>
 <tr>
 <td>Java</td>
 <td>patchca</td>
 <td></td>
-<td><img src="/.com//patchca_1.png" alt="效果1"></td>
+<td><img src="/./readme_image/patchca_1.png" alt="效果1"></td>
 </tr>
 <tr>
 <td>Java</td>
@@ -137,25 +137,25 @@
 <td>Java</td>
 <td>iCaptcha</td>
 <td></td>
-<td><img src="/.com//iCaptcha.jpg" alt="效果1"></td>
+<td><img src="/./readme_image/iCaptcha.jpg" alt="效果1"></td>
 </tr>
 <tr>
 <td>Java</td>
 <td>SkewPassImage</td>
 <td></td>
-<td><img src="/.com//SkewPassImage.jpg" alt="效果1"></td>
+<td><img src="/./readme_image/SkewPassImage.jpg" alt="效果1"></td>
 </tr>
 <tr>
 <td>Java</td>
 <td>Cage</td>
 <td></td>
-<td><img src="/.com//Cage1.jpg" alt="效果1"> <img src="/.com//Cage2.jpg" alt="效果2"></td>
+<td><img src="/./readme_image/Cage1.jpg" alt="效果1"> <img src="/./readme_image/Cage2.jpg" alt="效果2"></td>
 </tr>
 <tr>
 <td>Python</td>
 <td>captcha</td>
 <td><a target="_blank" rel="noopener" href="https://github.com/nickliqian/cnn_captcha/blob/master/gen_image/gen_sample_by_captcha.py">例子</a></td>
-<td><img src="/.com//py_Captcha-1.jpg" alt="py_Captcha"></td>
+<td><img src="/./readme_image/py_Captcha-1.jpg" alt="py_Captcha"></td>
 </tr>
 <tr>
 <td>Python</td>
@@ -371,11 +371,11 @@
 <p>使用<code>test_batch.py</code>测试，日志如下：  </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">100个样本识别耗时6.513171672821045秒，准确率37.0%</span><br></pre></td></tr></table></figure>
 <p>有37%的准确率，可以说是识别成功的第一步了。  </p>
-<p>曲线图如下：<br>训练集-<br><img src="/.com//train_acc.png" alt="train_acc"> </p>
-<p>测试集-<br><img src="/.com//test_acc.png" alt="test_acc">  </p>
+<p>曲线图如下：<br>训练集-<br><img src="/readme_image/train_acc.png" alt="train_acc"> </p>
+<p>测试集-<br><img src="/readme_image/test_acc.png" alt="test_acc">  </p>
 <h2 id="3-2-压力测试和统计数据"><a href="#3-2-压力测试和统计数据" class="headerlink" title="3.2 压力测试和统计数据"></a>3.2 压力测试和统计数据</h2><p>提供了一个简易的压力测试脚本，可以统计api运行过程中识别耗时和请求耗时的相关数据，不过图需要自己用Excel拉出来。<br>打开文件<code>recognize_time_test.py</code>，修改<code>main</code>函数下的<code>test_file</code>路径，这里会重复使用一张图片来访问是被接口。<br>最后数据会储存在test.csv文件中。<br>使用如下命令运行：  </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">python3 recognize_time_test.py</span><br><span class="line">----输出如下</span><br><span class="line">2938,5150,13:30:25,总耗时：29ms,识别：15ms,请求：14ms</span><br><span class="line">2939,5150,13:30:25,总耗时：41ms,识别：21ms,请求：20ms</span><br><span class="line">2940,5150,13:30:25,总耗时：47ms,识别：16ms,请求：31ms</span><br></pre></td></tr></table></figure>
-<p>这里对一个模型进行了两万次测试后，一组数据test.csv。<br>把test.csv使用箱线图进行分析后可以看到：<br><img src="/.com//%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C.png" alt="压力测试结果">  </p>
+<p>这里对一个模型进行了两万次测试后，一组数据test.csv。<br>把test.csv使用箱线图进行分析后可以看到：<br><img src="/readme_image/%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C.png" alt="压力测试结果">  </p>
 <ul>
 <li>单次请求API总耗时（平均值）：27ms  </li>
 <li>单次识别耗时（平均值）：12ms  </li>
@@ -398,7 +398,7 @@
 <h1 id="4-已知BUG"><a href="#4-已知BUG" class="headerlink" title="4 已知BUG"></a>4 已知BUG</h1><ol>
 <li><p>使用pycharm启动recognize_api.py文件报错</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">2018-12-01 00:35:15.106333: W T:\src\github\tensorflow\tensorflow\core\framework\op_kernel.cc:1273] OP_REQUIRES failed at save_restore_tensor.cc:170 : Invalid argument: Unsuccessful TensorSliceReader constructor: Failed to get matching files on ./model/: Not found: FindFirstFile failed for: ./model : ϵͳ�Ҳ���ָ����·����</span><br><span class="line">; No such process</span><br><span class="line">......</span><br><span class="line">tensorflow.python.framework.errors_impl.InvalidArgumentError: Unsuccessful TensorSliceReader constructor: Failed to get matching files on ./model/: Not found: FindFirstFile failed for: ./model : ϵͳ\udcd5Ҳ\udcbb\udcb5\udcbdָ\udcb6\udca8\udcb5\udcc4·\udcbe\udcb6\udca1\udca3</span><br><span class="line">; No such process</span><br><span class="line">	 [[Node: save/RestoreV2 = RestoreV2[dtypes=[DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT], _device=&quot;/job:localhost/replica:0/task:0/device:CPU:0&quot;](_arg_save/Const_0_0, save/RestoreV2/tensor_names, save/RestoreV2/shape_and_slices)]]</span><br></pre></td></tr></table></figure>
-<p>由pycharm默认设置了工作空间，导致读取相对路径的model文件夹出错。<br>解决办法：编辑运行配置，设置工作空间为项目目录即可。<br><img src="/.com//bug_api%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5.png" alt="bug_api启动失败"></p>
+<p>由pycharm默认设置了工作空间，导致读取相对路径的model文件夹出错。<br>解决办法：编辑运行配置，设置工作空间为项目目录即可。<br><img src="/readme_image/bug_api%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5.png" alt="bug_api启动失败"></p>
 </li>
 <li><p>FileNotFoundError: [Errno 2] No such file or directory: ‘xxxxxx’<br>目录下有文件夹不存在，在指定目录创建好文件夹即可。</p>
 </li>
