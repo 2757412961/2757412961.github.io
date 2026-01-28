@@ -14,8 +14,7 @@
 <p>例如，需要在所有类的方法执行前后打印日志。</p>
 <h1 id="二、JVM-创建对象"><a href="#二、JVM-创建对象" class="headerlink" title="二、JVM 创建对象"></a>二、JVM 创建对象</h1><h2 id="对象创建过程"><a href="#对象创建过程" class="headerlink" title="对象创建过程"></a>对象创建过程</h2><center>
 <img style="border-radius: 0.3125em;
-box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-src="http://msy-test.oss-cn-hangzhou.aliyuncs.com/share/docs/java/dynamicProxy/Java%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%20fig001.png">
+box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="http://msy-test.oss-cn-hangzhou.aliyuncs.com/share/docs/java/dynamicProxy/Java%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%20fig001.png">
 <br>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9;
 display: inline-block;
@@ -27,8 +26,7 @@ padding: 2px;">对象创建过程</div>
 <p><strong>实例对象</strong>：实例对象是由 Class 对象创建的。</p>
 <center>
 <img style="border-radius: 0.3125em;
-box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-src="http://msy-test.oss-cn-hangzhou.aliyuncs.com/share/docs/java/dynamicProxy/Java%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%20fig002.png">
+box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="http://msy-test.oss-cn-hangzhou.aliyuncs.com/share/docs/java/dynamicProxy/Java%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%20fig002.png">
 <br>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9;
 display: inline-block;
@@ -52,8 +50,7 @@ padding: 2px;"> Class 对象和实例对象</div>
 <h1 id="三、静态代理"><a href="#三、静态代理" class="headerlink" title="三、静态代理"></a>三、静态代理</h1><p>静态代理的逻辑：</p>
 <center>
 <img style="border-radius: 0.3125em;
-box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-src="http://msy-test.oss-cn-hangzhou.aliyuncs.com/share/docs/java/dynamicProxy/Java%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%20fig003.png">
+box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="http://msy-test.oss-cn-hangzhou.aliyuncs.com/share/docs/java/dynamicProxy/Java%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%20fig003.png">
 <br>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9;
 display: inline-block;
@@ -64,8 +61,7 @@ padding: 2px;">静态代理的逻辑</div>
 <h2 id="静态代理缺陷"><a href="#静态代理缺陷" class="headerlink" title="静态代理缺陷"></a>静态代理缺陷</h2><p>对于每一个目标类都需要写对应的 XXProxy 代理类，如果目标类很多的话，写成百上千个代理类是不切实际的。</p>
 <h1 id="四、动态代理"><a href="#四、动态代理" class="headerlink" title="四、动态代理"></a>四、动态代理</h1><h2 id="动态代理的思路"><a href="#动态代理的思路" class="headerlink" title="动态代理的思路"></a>动态代理的思路</h2><center>
 <img style="border-radius: 0.3125em;
-box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-src="http://msy-test.oss-cn-hangzhou.aliyuncs.com/share/docs/java/dynamicProxy/Java%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%20fig004.png">
+box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="http://msy-test.oss-cn-hangzhou.aliyuncs.com/share/docs/java/dynamicProxy/Java%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%20fig004.png">
 <br>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9;
 display: inline-block;
@@ -82,8 +78,7 @@ padding: 2px;">动态代理的思路</div>
 <p>入参是 ClassLoader 类加载器以及一组接口 Class 对象。出参是 Class 类型，也就是一个 Class 对象，实际就是一个代理 Class，通过这个 Class 可以创建对应入参的代理对象。</p>
 <center>
 <img style="border-radius: 0.3125em;
-box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-src="http://msy-test.oss-cn-hangzhou.aliyuncs.com/share/docs/java/dynamicProxy/Java%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%20fig005.png">
+box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="http://msy-test.oss-cn-hangzhou.aliyuncs.com/share/docs/java/dynamicProxy/Java%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%20fig005.png">
 <br>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9;
 display: inline-block;
@@ -97,8 +92,7 @@ padding: 2px;"> </div>
 
 <h2 id="动态代理逻辑图"><a href="#动态代理逻辑图" class="headerlink" title="动态代理逻辑图"></a>动态代理逻辑图</h2><center>
 <img style="border-radius: 0.3125em;
-box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-src="http://msy-test.oss-cn-hangzhou.aliyuncs.com/share/docs/java/dynamicProxy/Java%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%20fig006.png">
+box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="http://msy-test.oss-cn-hangzhou.aliyuncs.com/share/docs/java/dynamicProxy/Java%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%20fig006.png">
 <br>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9;
 display: inline-block;
@@ -116,7 +110,7 @@ padding: 2px;">动态代理逻辑图</div>
 <h1 id="六、参考材料"><a href="#六、参考材料" class="headerlink" title="六、参考材料"></a>六、参考材料</h1><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20794107">Java 动态代理作用是什么？</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jie-y/p/10732347.html">Java中三种代理模式</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/dufufd/article/details/80537638">Java中Class对象详解</a></p>
-</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">ZJH</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/04/07/java/Java 动态代理/">http://example.com/2022/04/07/java/Java 动态代理/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com">Zany's Blog</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">动态代理</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2022/09/02/%E9%83%A8%E7%BD%B2%E6%89%8B%E5%86%8C/"><i class="fa fa-chevron-left">  </i><span>hexo 部署手册</span></a></div><div class="next-post pull-right"><a href="/2021/11/09/%E8%B0%83%E7%A0%94/%E4%BA%91%E5%8E%9F%E7%94%9F-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%A0%94/"><span>云原生概念和技术路线</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2026 By ZJH</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/lib/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.1"></script><script src="/js/fancybox.js?version=1.9.1"></script><script src="/js/sidebar.js?version=1.9.1"></script><script src="/js/copy.js?version=1.9.1"></script><script src="/js/fireworks.js?version=1.9.1"></script><script src="/js/transition.js?version=1.9.1"></script><script src="/js/scroll.js?version=1.9.1"></script><script src="/js/head.js?version=1.9.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+</center></center></center></center></center></center></div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">ZJH</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/04/07/java/Java 动态代理/">http://example.com/2022/04/07/java/Java 动态代理/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com">Zany's Blog</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">动态代理</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2022/09/02/%E9%83%A8%E7%BD%B2%E6%89%8B%E5%86%8C/"><i class="fa fa-chevron-left">  </i><span>hexo 部署手册</span></a></div><div class="next-post pull-right"><a href="/2021/11/09/%E8%B0%83%E7%A0%94/%E4%BA%91%E5%8E%9F%E7%94%9F-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%A0%94/"><span>云原生概念和技术路线</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2026 By ZJH</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/lib/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.1"></script><script src="/js/fancybox.js?version=1.9.1"></script><script src="/js/sidebar.js?version=1.9.1"></script><script src="/js/copy.js?version=1.9.1"></script><script src="/js/fireworks.js?version=1.9.1"></script><script src="/js/transition.js?version=1.9.1"></script><script src="/js/scroll.js?version=1.9.1"></script><script src="/js/head.js?version=1.9.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
   $('#nav').addClass('is-mobile')
   $('footer').addClass('is-mobile')
   $('#top-container').addClass('is-mobile')
