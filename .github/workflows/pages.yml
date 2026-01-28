@@ -29,7 +29,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'  # 建议升级到 LTS 版本
-          cache: 'npm'        # 自动缓存 npm
+          # cache: 'npm'        # 自动缓存 npm
       # 缓存依赖项: https://docs.github.com/cn/actions/using-workflows/caching-dependencies-to-speed-up-workflows
       - name: Cache NPM dependencies
         uses: actions/cache@v4
