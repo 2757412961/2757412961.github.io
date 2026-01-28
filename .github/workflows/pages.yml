@@ -64,16 +64,16 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY  }}
-          user_name: 2757412961
-          user_email: 2757412961@qq.com
+          # deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY  }}
+          # GITHUB_TOKEN不是个人访问令牌，GitHub Actions 运行器会自动创建一个GITHUB_TOKEN密钥以在您的工作流程中进行身份验证。因此，您无需任何配置即可立即开始部​​署
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # user_name: 2757412961
+          # user_email: 2757412961@qq.com
           publish_branch: web
+          publish_dir: ./public
           # 获取提交文章源码时的commit message，作为发布web分支的信息
           commit_message: ${{ github.event.head_commit.message }}
           full_commit_message: ${{ github.event.head_commit.message }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          # GITHUB_TOKEN不是个人访问令牌，GitHub Actions 运行器会自动创建一个GITHUB_TOKEN密钥以在您的工作流程中进行身份验证。因此，您无需任何配置即可立即开始部​​署
-          publish_dir: ./public
           allow_empty_commit: true # 允许空提交
       # Use the output from the `deploy` step(use for test action)
       - name: Get the output
