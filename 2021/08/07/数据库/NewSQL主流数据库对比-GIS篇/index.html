@@ -7,14 +7,14 @@
     error: '复制错误',
     noSupport: '浏览器不支持'
   },
-  hexoVersion: '5.4.0'
-} </script><meta name="generator" content="Hexo 5.4.0"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NewSQL%E4%B8%BB%E6%B5%81%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AF%B9%E6%AF%94%E2%80%94%E2%80%94GIS%E7%AF%87"><span class="toc-number">1.</span> <span class="toc-text">NewSQL主流数据库对比——GIS篇</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#NewSQL-%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">NewSQL 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%81%EF%BC%81%EF%BC%81%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90"><span class="toc-number">1.2.</span> <span class="toc-text">！！！对比分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Azure-Cosmos-DB"><span class="toc-number">1.2.1.</span> <span class="toc-text">Azure Cosmos DB</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#NoSQL-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8E%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%8B%E9%97%B4%E7%9A%84%E5%B7%AE%E5%88%AB"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">NoSQL 数据库与关系数据库之间的差别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Azure-Cosmos-DB-%E4%B8%AD%E7%9A%84%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E5%92%8C-GeoJSON-%E4%BD%8D%E7%BD%AE%E6%95%B0%E6%8D%AE"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">Azure Cosmos DB 中的地理空间和 GeoJSON 位置数据</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Altibase%EF%BC%88%E5%95%86%E7%94%A8%E6%94%B6%E8%B4%B9%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">Altibase（商用收费）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CockroachDB"><span class="toc-number">1.2.3.</span> <span class="toc-text">CockroachDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Citus"><span class="toc-number">1.2.4.</span> <span class="toc-text">Citus</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ClustrixDB-%E6%94%B6%E8%B4%B9"><span class="toc-number">1.2.5.</span> <span class="toc-text">ClustrixDB(收费)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MemSQL"><span class="toc-number">1.2.6.</span> <span class="toc-text">MemSQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NuoDB"><span class="toc-number">1.2.7.</span> <span class="toc-text">NuoDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OceanBase"><span class="toc-number">1.2.8.</span> <span class="toc-text">OceanBase</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SequoiaDB"><span class="toc-number">1.2.9.</span> <span class="toc-text">SequoiaDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TDSQL"><span class="toc-number">1.2.10.</span> <span class="toc-text">TDSQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TiDB"><span class="toc-number">1.2.11.</span> <span class="toc-text">TiDB </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VoltDB"><span class="toc-number">1.2.12.</span> <span class="toc-text">VoltDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vitess"><span class="toc-number">1.2.13.</span> <span class="toc-text">Vitess</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NewSQL%EF%BC%8CNoSQL%E4%B8%8EOldSQL%E7%9A%84%E6%B7%B7%E5%90%88%E9%83%A8%E7%BD%B2"><span class="toc-number">2.</span> <span class="toc-text">NewSQL，NoSQL与OldSQL的混合部署</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">ZJH</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">11</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">17</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">8</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Zany's Blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">NewSQL主流数据库对比——GIS篇</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-08-08</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h1 id="NewSQL主流数据库对比——GIS篇"><a href="#NewSQL主流数据库对比——GIS篇" class="headerlink" title="NewSQL主流数据库对比——GIS篇"></a>NewSQL主流数据库对比——GIS篇</h1><p>[TOC]</p>
+  hexoVersion: '7.3.0'
+} </script><meta name="generator" content="Hexo 7.3.0"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NewSQL%E4%B8%BB%E6%B5%81%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AF%B9%E6%AF%94%E2%80%94%E2%80%94GIS%E7%AF%87"><span class="toc-number">1.</span> <span class="toc-text">NewSQL主流数据库对比——GIS篇</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#NewSQL-%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">NewSQL 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%81%EF%BC%81%EF%BC%81%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90"><span class="toc-number">1.2.</span> <span class="toc-text">！！！对比分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Azure-Cosmos-DB"><span class="toc-number">1.2.1.</span> <span class="toc-text">Azure Cosmos DB</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#NoSQL-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8E%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%8B%E9%97%B4%E7%9A%84%E5%B7%AE%E5%88%AB"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">NoSQL 数据库与关系数据库之间的差别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Azure-Cosmos-DB-%E4%B8%AD%E7%9A%84%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E5%92%8C-GeoJSON-%E4%BD%8D%E7%BD%AE%E6%95%B0%E6%8D%AE"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">Azure Cosmos DB 中的地理空间和 GeoJSON 位置数据</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Altibase%EF%BC%88%E5%95%86%E7%94%A8%E6%94%B6%E8%B4%B9%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">Altibase（商用收费）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CockroachDB"><span class="toc-number">1.2.3.</span> <span class="toc-text">CockroachDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Citus"><span class="toc-number">1.2.4.</span> <span class="toc-text">Citus</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ClustrixDB-%E6%94%B6%E8%B4%B9"><span class="toc-number">1.2.5.</span> <span class="toc-text">ClustrixDB(收费)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MemSQL"><span class="toc-number">1.2.6.</span> <span class="toc-text">MemSQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NuoDB"><span class="toc-number">1.2.7.</span> <span class="toc-text">NuoDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OceanBase"><span class="toc-number">1.2.8.</span> <span class="toc-text">OceanBase</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SequoiaDB"><span class="toc-number">1.2.9.</span> <span class="toc-text">SequoiaDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TDSQL"><span class="toc-number">1.2.10.</span> <span class="toc-text">TDSQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TiDB"><span class="toc-number">1.2.11.</span> <span class="toc-text">TiDB </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VoltDB"><span class="toc-number">1.2.12.</span> <span class="toc-text">VoltDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vitess"><span class="toc-number">1.2.13.</span> <span class="toc-text">Vitess</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NewSQL%EF%BC%8CNoSQL%E4%B8%8EOldSQL%E7%9A%84%E6%B7%B7%E5%90%88%E9%83%A8%E7%BD%B2"><span class="toc-number">2.</span> <span class="toc-text">NewSQL，NoSQL与OldSQL的混合部署</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">ZJH</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">12</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">19</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">8</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Zany's Blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">NewSQL主流数据库对比——GIS篇</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-08-08</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h1 id="NewSQL主流数据库对比——GIS篇"><a href="#NewSQL主流数据库对比——GIS篇" class="headerlink" title="NewSQL主流数据库对比——GIS篇"></a>NewSQL主流数据库对比——GIS篇</h1><p>[TOC]</p>
 <h2 id="NewSQL-简介"><a href="#NewSQL-简介" class="headerlink" title="NewSQL 简介"></a>NewSQL 简介</h2><p>NewSQL 是一种新方式关系数据库，意在整合 RDBMS 所提供的ACID事务特性，以及 NoSQL 提供的横向可扩展性。</p>
-<p>大多数 NewSQL 数据库做了全新的设计，或是主要聚焦于 OLTP，或是采用了 OLTP/OLAP 的混合架构载的全新设计。</p>
+<p>大多数 NewSQL 数据库做了全新的设计，或是主要聚焦于 OLTP，或是采用了 OLTP&#x2F;OLAP 的混合架构载的全新设计。</p>
 <ul>
 <li>一致性：相对于可用性而言，NewSQL 更重视一致性，即侧重 CAP 中的 C 和 P。</li>
 <li>内存数据库：一些 NewSQL 解决方案使用内存（RAM）作为存储介质。</li>
-<li>HTAP：HTAP（混合事务 / 分析处理，Hybrid Transactional/Analytical Processing）</li>
+<li>HTAP：HTAP（混合事务 &#x2F; 分析处理，Hybrid Transactional&#x2F;Analytical Processing）</li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/1166059074.png" alt="1166059074"></p>
 <h2 id="！！！对比分析"><a href="#！！！对比分析" class="headerlink" title="！！！对比分析"></a>！！！对比分析</h2><table>
@@ -44,7 +44,7 @@
 <td>OceanBase</td>
 <td>阿里</td>
 <td>开源</td>
-<td>MySQL/ORACLE兼容、增量数据放在内存、基线数据放在SSD盘、读写分</td>
+<td>MySQL&#x2F;ORACLE兼容、增量数据放在内存、基线数据放在SSD盘、读写分</td>
 <td>线性扩展</td>
 <td>×</td>
 <td>阿里社区、博客</td>
@@ -63,7 +63,7 @@
 <tr>
 <td>Azure Cosmos DB</td>
 <td>微软</td>
-<td>商业（2RMB/月）</td>
+<td>商业（2RMB&#x2F;月）</td>
 <td>支持键值、列存储、文档和图数据库，并支持通过 SQL 和 NoSQL API 提供数据。</td>
 <td>水平扩展</td>
 <td>支持</td>
@@ -121,7 +121,7 @@
 <td></td>
 </tr>
 <tr>
-<td>MemSQL/SingleStore</td>
+<td>MemSQL&#x2F;SingleStore</td>
 <td>前 Facebook 工程师创办</td>
 <td>开源的社区版</td>
 <td><strong>内存数据库</strong>、兼容MySQL、MySQL InnoDB</td>
@@ -234,7 +234,7 @@
 </li>
 <li>Gremlin API<ul>
 <li>Azure Cosmos DB 通过 Gremlin API 在为任何规模设计的完全托管数据库服务中提供<strong>图形数据库</strong>服务。</li>
-<li> 使用 Gremlin 查询语言。</li>
+<li>使用 Gremlin 查询语言。</li>
 </ul>
 </li>
 <li>表 API<ul>
@@ -244,7 +244,7 @@
 </ul>
 </li>
 <li>Azure Cosmos DB API for MongoDB<ul>
-<li>通过用于 MongoDB 的 Azure Cosmos DB API，可以轻松使用 Cosmos DB，就像它是 MongoDB <strong>文档数据库</strong>一样。 </li>
+<li>通过用于 MongoDB 的 Azure Cosmos DB API，可以轻松使用 Cosmos DB，就像它是 MongoDB <strong>文档数据库</strong>一样。</li>
 </ul>
 </li>
 </ul>
@@ -268,7 +268,7 @@
 </li>
 <li><p>地理空间数据编制索引</p>
 <ul>
-<li>简单来说，测地坐标的几何图形会投影在 2D 平面上，并使用 <strong>四叉树</strong> 以渐进方式划分成单元格。 这些单元格会根据 <strong>Hilbert 空间填充曲线</strong> 内的单元格位置映射到 1D，并保留点的位置。 </li>
+<li>简单来说，测地坐标的几何图形会投影在 2D 平面上，并使用 <strong>四叉树</strong> 以渐进方式划分成单元格。 这些单元格会根据 <strong>Hilbert 空间填充曲线</strong> 内的单元格位置映射到 1D，并保留点的位置。</li>
 </ul>
 </li>
 <li><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/cosmos-db/sql-query-geospatial-intro">https://docs.microsoft.com/zh-cn/azure/cosmos-db/sql-query-geospatial-intro</a></p>
@@ -347,7 +347,7 @@
 <p>NuoDB 是newsql数据库的典型代表之一，同时也是世界上首个也是唯一一个具有专利的、弹性可伸缩的SQL关系数据库，主要用于去集中化的计算资源。</p>
 </blockquote>
 <h3 id="OceanBase"><a href="#OceanBase" class="headerlink" title="OceanBase"></a><a target="_blank" rel="noopener" href="https://open.oceanbase.com/">OceanBase</a></h3><blockquote>
-<p>OceanBase 社区版是一款开源分布式 HTAP（Hybrid Transactional/Analytical Processing）数据库管理系统，具有原生分布式架构，支持金融级高可用、透明水平扩展、分布式事务、多租户和语法兼容等企业级特性。</p>
+<p>OceanBase 社区版是一款开源分布式 HTAP（Hybrid Transactional&#x2F;Analytical Processing）数据库管理系统，具有原生分布式架构，支持金融级高可用、透明水平扩展、分布式事务、多租户和语法兼容等企业级特性。</p>
 </blockquote>
 <blockquote>
 <p>2020 年 5 月，OceanBase 以 7.07亿 tpmC 的在线事务处理性能，打破了 OceanBase 自己在 2019 年创造的 6088万 tpmC 的 TPC-C 世界纪录。截止至目前，OceanBase是第一个也是唯一一个上榜的中国数据库。</p>
@@ -361,7 +361,7 @@
 <ul>
 <li><strong>高性能</strong>：OceanBase采用了读写分离的架构，把数据分为基线数据和增量数据。其中增量数据放在内存里（MemTable），基线数据放在SSD盘（SSTable）。对数据的修改都是增量数据，只写内存。所以DML是完全的内存操作，性能非常高。</li>
 <li><strong>低成本</strong>：OceanBase通过数据编码压缩技术实现高压缩。数据编码是基于数据库关系表中不同字段的值域和类型信息，所产生的一系列的编码方式，它比通用的压缩算法更懂数据，从而能够实现更高的压缩效率。</li>
-<li><strong>高兼容</strong>：兼容常用MySQL/ORACLE功能及MySQL/ORACLE前后台协议，业务零修改或少量修改即可从MySQL/ORACLE迁移至OceanBase。</li>
+<li><strong>高兼容</strong>：兼容常用MySQL&#x2F;ORACLE功能及MySQL&#x2F;ORACLE前后台协议，业务零修改或少量修改即可从MySQL&#x2F;ORACLE迁移至OceanBase。</li>
 <li><strong>高可用</strong>：数据采用多副本存储，少数副本故障不影响数据可用性。通过“三地五中心”部署实现城市级故障自动无损容灾。</li>
 </ul>
 </li>
@@ -383,22 +383,20 @@
 <li><p>MySQL 版</p>
 <p>高度兼容 MySQL，支持水平拆分（分表）的高性能数据库。部署在腾讯云上的一种支持自动水平拆分、Shared Nothing 架构的分布式数据库。TDSQL MySQL版 默认部署主备架构，提供容灾、备份、恢复、监控、迁移等全套解决方案，适用于 TB 或 PB 级的海量数据库场景。</p>
 </li>
-</ol>
-<ol start="2">
 <li><p>PostgreSQL 版 （原 TBase）</p>
 <p>稳定、安全、高性能的分布式数据库服务，满足您海量 HTAP 场景。集高扩展性、高SQL兼容度、完整的分布式事务支持、多级容灾能力以及多维度资源隔离等能力于一身。TDSQL PostgreSQL 版采用无共享的集群架构，为用户提供容灾、备份、恢复、监控、安全、审计等全套解决方案，适用于GB～PB级的海量 HTAP 场景。  </p>
 <p> 具有丰富的周边生态：</p>
 <ul>
 <li>支持强大的地理信息系统（GIS）。通过集群化的 PostGis 插件，支持存储空间地理数据，使 TDSQL PostgreSQL版 成为一个空间数据库，能够通过 SQL 语言高效的进行空间数据管理、数量测量和几何拓扑分析。</li>
 <li>TDSQL PostgreSQL版 不仅是一个分布式关系型数据库系统，同时还支持非关系数据类型 JSON。</li>
-<li>支持 Foreign Data Wrappers（FDW）功能，该功能实现了部分的 SQL/MED 规定，允许用户使用普通 SQL 查询来访问位于 PostgreSQL 之外的数据。<br>FDW 功能提供一套编程接口，用户可进行插件式的二次开发，建立外部数据源和数据库间的数据通道。大多数情况下用户可用 oracle_fdw、mysql_fdw、postgres_fdw，非关系型数据库的 redis_fdw、mongodb_fdw，以及大数据的 hive_fdw、hdfs_fdw 等。基于 FDW 功能和已有插件，TDSQL PostgreSQL版 提供强大的数据库联邦能力，通过 TDSQL PostgreSQL版 能够访问已有的多个数据源的数据。</li>
+<li>支持 Foreign Data Wrappers（FDW）功能，该功能实现了部分的 SQL&#x2F;MED 规定，允许用户使用普通 SQL 查询来访问位于 PostgreSQL 之外的数据。<br>FDW 功能提供一套编程接口，用户可进行插件式的二次开发，建立外部数据源和数据库间的数据通道。大多数情况下用户可用 oracle_fdw、mysql_fdw、postgres_fdw，非关系型数据库的 redis_fdw、mongodb_fdw，以及大数据的 hive_fdw、hdfs_fdw 等。基于 FDW 功能和已有插件，TDSQL PostgreSQL版 提供强大的数据库联邦能力，通过 TDSQL PostgreSQL版 能够访问已有的多个数据源的数据。</li>
 </ul>
 </li>
 </ol>
 <p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210704180213145.png" alt="image-20210704180213145"></p>
 <ul>
 <li><p>价格</p>
-<p>​    <img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210704180327148.png" alt="image-20210704180327148"></p>
+<p>​	<img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210704180327148.png" alt="image-20210704180327148"></p>
 </li>
 </ul>
 <h3 id="TiDB"><a href="#TiDB" class="headerlink" title="TiDB "></a><a target="_blank" rel="noopener" href="https://pingcap.com/">TiDB </a></h3><h3 id="VoltDB"><a href="#VoltDB" class="headerlink" title="VoltDB"></a><a target="_blank" rel="noopener" href="https://www.voltdb.com/">VoltDB</a></h3><h3 id="Vitess"><a href="#Vitess" class="headerlink" title="Vitess"></a><a target="_blank" rel="noopener" href="https://vitess.io/zh/">Vitess</a></h3><p><img src="https://raw.githubusercontent.com/2757412961/TyporaImageRepository/master/img/image-20210703213038339.png" alt="image-20210703213038339"></p>
@@ -423,7 +421,7 @@
 <li>NewSQL+NoSQL</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://supmarket.net/xy/771126462">https://supmarket.net/xy/771126462</a></p>
-</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">ZJH</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/08/07/数据库/NewSQL主流数据库对比-GIS篇/">http://example.com/2021/08/07/数据库/NewSQL主流数据库对比-GIS篇/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com">Zany's Blog</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/GIS/">GIS</a><a class="post-meta__tags" href="/tags/NewSQL/">NewSQL</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2021/11/09/%E8%B0%83%E7%A0%94/%E4%BA%91%E5%8E%9F%E7%94%9F-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%A0%94/"><i class="fa fa-chevron-left">  </i><span>云原生概念和技术路线</span></a></div><div class="next-post pull-right"><a href="/2021/07/03/%E8%B0%83%E7%A0%94/PostGIS%E8%B0%83%E7%A0%94/"><span>postgis 相关调研</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2024 By ZJH</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/lib/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.1"></script><script src="/js/fancybox.js?version=1.9.1"></script><script src="/js/sidebar.js?version=1.9.1"></script><script src="/js/copy.js?version=1.9.1"></script><script src="/js/fireworks.js?version=1.9.1"></script><script src="/js/transition.js?version=1.9.1"></script><script src="/js/scroll.js?version=1.9.1"></script><script src="/js/head.js?version=1.9.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">ZJH</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/08/07/数据库/NewSQL主流数据库对比-GIS篇/">http://example.com/2021/08/07/数据库/NewSQL主流数据库对比-GIS篇/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com">Zany's Blog</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/GIS/">GIS</a><a class="post-meta__tags" href="/tags/NewSQL/">NewSQL</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2021/11/09/%E8%B0%83%E7%A0%94/%E4%BA%91%E5%8E%9F%E7%94%9F-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%A0%94/"><i class="fa fa-chevron-left">  </i><span>云原生概念和技术路线</span></a></div><div class="next-post pull-right"><a href="/2021/07/03/%E8%B0%83%E7%A0%94/PostGIS%E8%B0%83%E7%A0%94/"><span>postgis 相关调研</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2026 By ZJH</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/lib/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.1"></script><script src="/js/fancybox.js?version=1.9.1"></script><script src="/js/sidebar.js?version=1.9.1"></script><script src="/js/copy.js?version=1.9.1"></script><script src="/js/fireworks.js?version=1.9.1"></script><script src="/js/transition.js?version=1.9.1"></script><script src="/js/scroll.js?version=1.9.1"></script><script src="/js/head.js?version=1.9.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
   $('#nav').addClass('is-mobile')
   $('footer').addClass('is-mobile')
   $('#top-container').addClass('is-mobile')
